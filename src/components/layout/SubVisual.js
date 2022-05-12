@@ -6,7 +6,6 @@ const SubVisualLayout = styled.section`
 padding-top:80px;
 background: #ccc;
 height: 270px;
-margin-bottom: 80px;
 `;
 
 const SubVisual = () => {

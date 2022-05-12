@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
+//image
+import quote from "../../styles/images/img_quotes_left.png"
+
 //components
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
@@ -34,17 +37,19 @@ p{
 const TabB = styled.ul`
 display:flex;
 margin-bottom:70px;
-justify-content: center;
 border-bottom: 2px solid #efefef;
 li{
     cursor:pointer;
     position: relative;
     bottom: -2px;
+    border: 1px solid #d3d3d3;
+    border-left: none;
     span{
         display:block;
-        font-size: 18px;
-        padding: 0 40px 20px 40px;
+        font-size: 17px;
+        padding: 15px 30px;
         transition:color .5s;
+        background: #efefef;
     }
     &:hover{
         span{
@@ -52,9 +57,8 @@ li{
         }
     }
     &.on{
-        border-bottom:3px solid #ffa90b;
         span{
-            color:#ffa90b;
+            background:#fff;
             font-weight: 800;
         }
     }
@@ -143,8 +147,31 @@ text-align: center;
 font-size: 30px;
 font-weight: 600;
 margin-top: 40px;
-padding: 30px;
-background: #e9e9e9;
+padding: 40px 30px;
+background: #000000;
+color: #fff;
+em{
+    position:relative;
+    padding: 0 100px;
+    &:before, &:after{
+        content:'';
+        width: 70px;
+        height: 45px;
+        background:url(${quote})center no-repeat;
+        position:absolute;
+        top:0;
+        background-size:100%;
+    }
+    &:before{
+        left:0;
+        top: -10px;
+    }
+    &:after{
+        right:0;
+        transform:rotate(180deg);
+    }
+}
+
 `;
 
 
@@ -246,7 +273,7 @@ const PCRepair = () => {
                         </dl>
                     </ServiceList01>
 
-                    <BoxTitle>하드웨어와 소프트웨어 수리는 별개입니다.</BoxTitle>
+                    <BoxTitle><em>하드웨어와 소프트웨어 수리는 별개입니다.</em></BoxTitle>
 
                     <div className="btnarea center">
                         <OrangeBtn text="서비스 신청 접수"><em></em></OrangeBtn>
@@ -414,7 +441,7 @@ const PCRepair = () => {
                         <li><p>하드웨어(부품) 교체시에는 별도의 하드웨어(부품)비용이 청구됩니다.</p></li>
                         <li><p>하드웨어(부품) 교체시에 고장 하드웨어(고장부품)은 회수 조치 합니다.</p></li>
                     </ul>
-                    <BoxTitle>항상 최선을 다하는 MANGO COM이 되도록 노력하겠습니다.</BoxTitle>
+                    <BoxTitle><em>항상 최선을 다하는 MANGO COM이 되도록 노력하겠습니다.</em></BoxTitle>
                     <div className="btnarea center">
                         <OrangeBtn text="서비스 신청 접수"><em></em></OrangeBtn>
                     </div>

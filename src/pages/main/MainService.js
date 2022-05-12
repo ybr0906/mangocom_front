@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
 //component
@@ -169,6 +169,25 @@ const MainService = () => {
     const onPrivacyHandler = (e) => {       
         setPrivacyModal(!privacyModal) 
     }
+    const navigate = useNavigate();
+    
+    const onMacRepairHandler = (e) => {
+        navigate(`/informationuse/mac`);
+        window.scrollTo({top:0, left:0});
+    }
+    const onAssemblyPCHandler = (e) => {
+        navigate(`/informationuse/pcrepair`);
+        window.scrollTo({top:0, left:0});
+    }
+    const onPCRepairHandler = (e) => {
+        navigate(`/informationuse/assemblypc`);
+        window.scrollTo({top:0, left:0});
+    }
+    const onMonitorHandler = (e) => {
+        navigate(`/informationuse/monitor`);
+        window.scrollTo({top:0, left:0});
+    }
+
     return (
         <ServiceLayout>
             <div className="wrap">
@@ -217,19 +236,19 @@ const MainService = () => {
                 </QuickApplication>
 
                 <ServiceCategory>
-                    <div className="box">
+                    <div className="box" onClick={onMacRepairHandler}>
                         <img src={category01} alt="" />
                         <p>맥북, 아이맥 수리(애플)</p>
                     </div>
-                    <div className="box">
+                    <div className="box" onClick={onAssemblyPCHandler}>
                         <img src={category02} alt="" />
                         <p>컴퓨터 수리(출장AS)</p>
                     </div>
-                    <div className="box">
+                    <div className="box" onClick={onPCRepairHandler}>
                         <img src={category03} alt="" />
                         <p>조립 및 중고 PC 판매</p>
                     </div>
-                    <div className="box">
+                    <div className="box" onClick={onMonitorHandler}>
                         <img src={category04} alt="" />
                         <p>노트북 액정문의</p>
                     </div>

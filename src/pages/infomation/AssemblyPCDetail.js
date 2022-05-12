@@ -8,6 +8,7 @@ import TitleA from "../../components/layout/TitleA";
 import YellowBtn from "../../components/layout/YellowBtn";
 import TitleB from "../../components/layout/TitleB";
 import OrangeBtn from "../../components/layout/OrangeBtn";
+import BlackBtn from "../../components/layout/BlackBtn";
 
 //image
 import dobuleArrow from '../../styles/images/arrow_double.svg'
@@ -15,7 +16,16 @@ import rightArrow from '../../styles/images/arrow_right.svg'
 import computer from '../../styles/images/computer.jpg'
 import sample_detail from '../../styles/images/sample_detail.jpg'
 
-const AssemblyPCDetailLayout = styled.section``;
+const AssemblyPCDetailLayout = styled.section`
+.btnarea{
+    margin-top:70px;
+    button{
+        margin-right:5px;
+        &:last-child{
+            margin-right:0;
+        }
+    }
+}`;
 const Info = styled.section`
     .name{
         font-size: 25px;
@@ -90,7 +100,14 @@ const AssemblyPCDetail = () => {
     const navigate = useNavigate();
     const onListHandler = (e) => {        
         navigate(-1);
+        window.scrollTo({top:0, left:0});
     }
+
+    const onEditHandler = (e) => {        
+        navigate(`/informationuse/assemblypc/edit`);
+        window.scrollTo({top:0, left:0});
+    }
+    
     return (
         <AssemblyPCDetailLayout>
             <Info>
@@ -155,6 +172,9 @@ const AssemblyPCDetail = () => {
                 <img src={sample_detail} alt="" />
             </Detail>
             <div className="btnarea right">
+                {/*관리자일경우 보이는 버튼*/}
+                <BlackBtn text="수정" click={onEditHandler}></BlackBtn>
+                <BlackBtn text="삭제"></BlackBtn>
                 <YellowBtn text="목록" click={onListHandler}><em></em></YellowBtn>
             </div>
         </AssemblyPCDetailLayout>

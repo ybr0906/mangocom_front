@@ -6,6 +6,7 @@ import styled from "styled-components";
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
 import YellowBtn from "../../components/layout/YellowBtn";
+import BlackBtn from "../../components/layout/BlackBtn";
 
 //image
 import dobuleArrow from '../../styles/images/arrow_double.svg'
@@ -232,7 +233,14 @@ const AssemblyPCList = () => {
     const onDetatilHandler = (e) => {
         refId.current = e.currentTarget.dataset.key;
         navigate(`/informationuse/assemblypc/${e.currentTarget.dataset.key}`);
+        window.scrollTo({top:0, left:0});
     }
+    const onWriteHandler = (e) => {
+        navigate(`/informationuse/assemblypc/write`);
+        window.scrollTo({top:0, left:0});
+    }
+
+    
     return (
         <AssemblyPCListLayout>
             <SearchForm>
@@ -270,6 +278,13 @@ const AssemblyPCList = () => {
                 <span className="arrow next_arrow"><img src={rightArrow} alt="" /></span>
                 <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>                    
             </Paging>    
+
+
+            {/*관리자일때 보이는 버튼*/}
+            <div className="btnarea right">
+                <BlackBtn text="등록" click={onWriteHandler}></BlackBtn>
+            </div>                
+            {/*관리자일때 보이는 버튼*/}
         </AssemblyPCListLayout>
     )
 }
