@@ -8,9 +8,9 @@ const OrangeButton = styled.button`
     font-weight: 800;
     padding: 20px 41px;
     border-radius: 42px;
-    transition: background .4s;
+    transition: box-shadow .4s;
     :hover{
-        box-shadow:0 0 20px rgba(255,255,255,.5);
+        box-shadow:0 0 20px rgba(255,200,11,.5);
     }
     em{
         display:inline-block;

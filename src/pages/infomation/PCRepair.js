@@ -44,19 +44,24 @@ li{
     bottom: -2px;
     border: 1px solid #d3d3d3;
     border-left: none;
+    &:first-child{
+        border-left:1px solid #d3d3d3;
+    }
     span{
         display:block;
         font-size: 17px;
         padding: 15px 30px;
-        transition:color .5s;
+        transition:font-weight .5s;
         background: #efefef;
     }
     &:hover{
         span{
-            color:#ffa90b;
+            font-weight: 800;
         }
     }
     &.on{
+        background: #fff;
+        border-bottom: 0;
         span{
             background:#fff;
             font-weight: 800;

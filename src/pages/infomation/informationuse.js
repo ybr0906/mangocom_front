@@ -18,7 +18,6 @@ const TabA = styled.ul`
 display:flex;
 align-itmes:center;
 justify-content:center;
-margin-bottom: 100px;
 border-bottom: 1px solid #efefef;
 li{
     span{
@@ -40,19 +39,22 @@ li{
 const Informationuse = () => {
     const navigate = useNavigate();
     const refId= useRef();
+    const [target, setTargetTab] = useState('mac')
 
     const onMenuHandler = (e) => {
-        refId.current = e.currentTarget.dataset.key;
-        navigate(`/informationuse/${e.target.dataset.title}`);
+        refId.current = e.currentTarget.dataset.num;
+        const target = e.target.dataset.title
+        navigate(`/informationuse/${target}`);
+        setTargetTab(e.target.dataset.title);
     }
     return (
         <section className="sub_section">
             <SubVisual></SubVisual>
             <TabA>
-                <li className="on" onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
-                <li><span data-title="pcrepair" onClick={onMenuHandler}>컴퓨터수리(출장AS)</span></li>
-                <li><span data-title="assemblypc" onClick={onMenuHandler}>조립 및 중고 PC판매</span></li>
-                <li><span data-title="monitor" onClick={onMenuHandler}>노트북 액정문의</span></li>
+                <li className={target == 'mac' ? 'on' : ''} onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
+                <li className={target == 'pcrepair' ? 'on' : ''}><span data-title="pcrepair" onClick={onMenuHandler}>컴퓨터수리(출장AS)</span></li>
+                <li className={target == 'assemblypc' ? 'on' : ''}><span data-title="assemblypc" onClick={onMenuHandler}>조립 및 중고 PC판매</span></li>
+                <li className={target == 'monitor' ? 'on' : ''}><span data-title="monitor" onClick={onMenuHandler}>모니터 액정문의</span></li>
             </TabA>
             <div className="wrap">
                 <Routes>
@@ -63,7 +65,7 @@ const Informationuse = () => {
                     <Route path="/pcrepair" element={<PCRepair />}></Route>
                     {/* 조립 및 중고 PC판매 */}
                     <Route path="/assemblypc/*" element={<AssemblyPC />}></Route>
-                    {/* 노트북 액정문의 */}
+                    {/* 모니터 액정문의 */}
                     <Route path="/monitor" element={<Monitor />}></Route>
                 </Routes>          
             </div>            

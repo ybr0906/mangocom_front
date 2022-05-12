@@ -10,6 +10,13 @@ import OrangeBtn from "../../components/layout/OrangeBtn";
 //images
 import macbook from '../../styles/images/macbook.svg'
 import imac from '../../styles/images/imac.png'
+import monitor from '../../styles/images/monitor.png'
+import keyboard from '../../styles/images/keyboard.png'
+import m_board from '../../styles/images/m_board.png'
+import ssd from '../../styles/images/ssd.png'
+import etc from '../../styles/images/etc.png'
+import power from '../../styles/images/power.png'
+import ram from '../../styles/images/ram.png'
 
 const MacRepairLayout = styled.section``;
 
@@ -25,15 +32,23 @@ max-width: 1200px;
     max-width:1100px;
     margin-top: 200px;
     .textbox{
-        top: 33%;
+        top: 37%;
     }
 }
 img{
     display:block;
     width:100%;
 }
+li{
+    &>img{
+        max-width: 60px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+}
 .textbox{
     position:absolute;
+    width: 100%;
     left:50%;
     top:50%;
     transform:translate(-50%, -50%);
@@ -47,7 +62,7 @@ img{
         font-size: 30px;
         color:#ff9000;
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 45px;
     }
 }
 
@@ -118,31 +133,31 @@ const MacRepair = () => {
                         <p className="title">MACBOOK AS</p>
                         <ul className="service_category">
                             <li>
-                                <span></span>
+                                <img src={monitor} alt="" />
                                 <p>액정수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={power} alt="" />
                                 <p>배터리수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={keyboard} alt="" />
                                 <p>키보드수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={m_board} alt="" />
                                 <p>메인보드수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={m_board} alt="" />
                                 <p>메인보드교체</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={ssd} alt="" />
                                 <p>SSD 업그레이드</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={etc} alt="" />
                                 <p>기타수리</p>
                             </li>
                         </ul>
@@ -157,27 +172,27 @@ const MacRepair = () => {
                         <p className="title">iMac AS</p>
                         <ul className="service_category">
                             <li>
-                                <span></span>
+                                <img src={monitor} alt="" />
                                 <p>액정수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={power} alt="" />
                                 <p>파워수리</p>
                             </li>   
                             <li>
-                                <span></span>
+                                <img src={m_board} alt="" />
                                 <p>메인보드수리</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={ssd} alt="" />
                                 <p>SSD 업그레이드</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={ram} alt="" />
                                 <p>RAM 업그레이드</p>
                             </li>
                             <li>
-                                <span></span>
+                                <img src={etc} alt="" />
                                 <p>기타수리</p>
                             </li>
                         </ul>

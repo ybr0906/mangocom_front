@@ -63,7 +63,7 @@ const Header = () => {
                     <span data-title="introduce" onClick={onMenuHandler}>회사소개</span>
                     <span data-title="informationuse" onClick={onMenuHandler}>이용안내</span>
                     <span data-title="service" onClick={onMenuHandler}>서비스 문의</span>
-                    <span data-title="directions" onClick={onMenuHandler}>찾아오시는 길</span>
+                    <span data-title="directions" onClick={onMenuHandler}>오시는 길</span>
                 </nav>                
             </div>
         </HeaderLayout>
