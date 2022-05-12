@@ -212,8 +212,6 @@ const data = [
     }
 ]
 const ServiceList = () => {
-    
-    
     const navigate = useNavigate();
     const refId= useRef();
     const onDetatilHandler = (e) => {

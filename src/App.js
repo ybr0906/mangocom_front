@@ -10,10 +10,10 @@ import Footer from "./components/layout/Footer";
 
 //pages
 import Index from "./pages/Index";
-import Introduce from "./pages/Introduce";
+import Introduce from "./pages/company/Introduce";
 import Informationuse from "./pages/infomation/informationuse";
 import Service from "./pages/service/Service";
-import Directions from "./pages/Directions";
+import Directions from "./pages/locate/Directions";
 
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
                 {/* 회사소개 */}
                 <Route path="/introduce" element={<Introduce></Introduce>}></Route>
                 {/* 이용안내 */}
-                <Route path="informationuse" element={<Informationuse></Informationuse>}></Route>
+                <Route path="informationuse/*" element={<Informationuse></Informationuse>}></Route>
                 {/* 서비스문의 */}
                 <Route path="/service/*" element={<Service></Service>}></Route>               
                 {/* 찾아오시는길 */}

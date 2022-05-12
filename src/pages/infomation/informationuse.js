@@ -14,18 +14,55 @@ import AssemblyPC from "./AssemblyPC";
 import Monitor from "./Monitor";
 
 
+const TabA = styled.ul`
+display:flex;
+align-itmes:center;
+justify-content:center;
+margin-bottom: 70px;
+box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+border-radius: 50px;
+li{
+    span{
+        display: block;
+        font-size: 18px;
+        padding: 15px 30px;
+        cursor:pointer;
+    }
+    &.on{
+        span{
+
+        }
+    }
+}
+`;
+
+
 const Informationuse = () => {
+    const navigate = useNavigate();
+    const refId= useRef();
+
+    const onMenuHandler = (e) => {
+        refId.current = e.currentTarget.dataset.key;
+        navigate(`/informationuse/${e.target.dataset.title}`);
+    }
     return (
         <section className="sub_section">
             <SubVisual></SubVisual>
             <div className="wrap">
+                <TabA>
+                    <li className="on" onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
+                    <li><span data-title="pcrepair" onClick={onMenuHandler}>컴퓨터수리(출장AS)</span></li>
+                    <li><span data-title="assemblypc" onClick={onMenuHandler}>조립 및 중고 PC판매</span></li>
+                    <li><span data-title="monitor" onClick={onMenuHandler}>노트북 액정문의</span></li>
+                </TabA>
                 <Routes>
                     {/* 맥북, 아이맥 수리(애플) */}
                     <Route path="/" element={<MacRepair />}></Route>
+                    <Route path="/mac" element={<MacRepair />}></Route>
                     {/* 컴퓨터수리(출장AS) */}
                     <Route path="/pcrepair" element={<PCRepair />}></Route>
                     {/* 조립 및 중고 PC판매 */}
-                    <Route path="/assemblypc" element={<AssemblyPC />}></Route>
+                    <Route path="/assemblypc/*" element={<AssemblyPC />}></Route>
                     {/* 노트북 액정문의 */}
                     <Route path="/monitor" element={<Monitor />}></Route>
                 </Routes>          

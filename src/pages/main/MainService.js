@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
 
 //component
 import YellowBtn from '../../components/layout/YellowBtn'
+import PrivacyModal from "../../components/modal/PrivacyModal";
 
 //images
 import ArrowGray from '../../styles/images/arrow_gray.svg'
@@ -88,8 +89,19 @@ const QuickApplication = styled.div`
         }
         .checkbox{
             margin-top:15px;
+            display: flex;
+            align-items: center;
             em{
                 text-decoration:underline;
+            }
+            .link{
+                background: #ccc;
+                display: inline-block;
+                padding: 2px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+                margin-left: 10px;
+                cursor:pointer;
             }
         }
         .btnarea{
@@ -113,7 +125,6 @@ const QuickApplication = styled.div`
                 }
             }
         }
-        
     }
 `;
 
@@ -154,6 +165,10 @@ const ServiceCategory = styled.div`
 //component
 
 const MainService = () => {
+    const [privacyModal, setPrivacyModal] = useState(false);    
+    const onPrivacyHandler = (e) => {       
+        setPrivacyModal(!privacyModal) 
+    }
     return (
         <ServiceLayout>
             <div className="wrap">
@@ -193,6 +208,7 @@ const MainService = () => {
                         <div className="checkbox">
                             <input type="checkbox" id="check" name="check" />
                             <label htmlFor="check"><em>개인정보 수집 이용</em>에 동의합니다</label>
+                            <span className="link" onClick={onPrivacyHandler}>보기</span>
                         </div>                        
                         <div className="btnarea center">
                             <YellowBtn text="서비스 신청 접수"><em></em></YellowBtn>
@@ -219,6 +235,8 @@ const MainService = () => {
                     </div>
                 </ServiceCategory>
             </div>
+            {/*개인정보처리방침 모달*/}     
+            {privacyModal && <PrivacyModal onPrivacyHandler={onPrivacyHandler}></PrivacyModal>}
         </ServiceLayout>
     )
 }
