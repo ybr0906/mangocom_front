@@ -97,6 +97,21 @@ li{
             width: 78%;
             color: #999999;
         }
+        .default{
+            border: none;
+            border-bottom: 2px solid #d8d8d8;
+            width: 100%;
+            min-width: auto;
+            font-size: 17px;
+            height: 54px;
+            padding: 15px 13px;
+            -webkit-transition: border-color .5s;
+            transition: border-color .5s;
+            position:relative;
+        }
+        .file-name{
+            font-size: 17px;
+        }
         label {
             display: inline-block;
             padding: 10px 20px;
@@ -237,8 +252,10 @@ const ServiceWrite = () => {
                             <p className="item">첨부파일.</p>
                             <div className="text long">
                                 <div className="filebox">
-                                    <input className="upload-name" defaultValue="첨부파일" placeholder="첨부파일" />
-                                    <label htmlFor="file">파일찾기</label> 
+                                    <div className="default">
+                                        {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)}
+                                    </div>
+                                    <label htmlFor="file">파일찾기</label>
                                     <input type="file" id="file" multiple onChange={onFileHandler} />
                                 </div>
                             </div>

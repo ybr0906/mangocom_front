@@ -56,7 +56,7 @@ const DeleteAlert = (props) => {
         <DeleteAlertLayout>
             <div className="inner">
                 <p>삭제하시겠습니까?</p>
-                <div className="btnarea right">
+                <div className="btnarea center">
                     <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
                     <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
                 </div>

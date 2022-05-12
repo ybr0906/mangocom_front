@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useL } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -84,14 +84,64 @@ li{
             margin-right:0;
         }        
     }
+
+    .filebox{
+        display:flex;
+        align-items:flex-end;
+        .upload-name {
+            display: inline-block;
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #dddddd;
+            width: 78%;
+            color: #999999;
+        }
+        .default{
+            border: none;
+            border-bottom: 2px solid #d8d8d8;
+            width: 100%;
+            min-width: auto;
+            font-size: 17px;
+            height: 54px;
+            padding: 15px 13px;
+            -webkit-transition: border-color .5s;
+            transition: border-color .5s;
+            position:relative;
+        }
+        .file-name{
+            font-size: 17px;
+        }
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #999999;
+            cursor: pointer;
+            height: 40px;
+            margin-left: 10px;
+        }
+        input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+    }
 }
 `;
 
 const ServiceEdit = () => {
     const navigate = useNavigate();
-    const onListHandler = (e) => {        
+    const onListHandler = (e) => {
         navigate(-1);
     }
+    useEffect(() => {
+
+    }, [])
     return (
         <ServiceEditLayout>
             <div className="wrap">
@@ -146,12 +196,26 @@ const ServiceEdit = () => {
                             </p>
                         </div>
                     </li>
-                </ServiceEditTable>    
-                
+                    <li className="w100">
+                        <div className="line">
+                            <p className="item">첨부파일.</p>
+                            <div className="text long">
+                                <div className="filebox">
+                                    <div className="default">
+                                        {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                    </div>
+                                    <label htmlFor="file">파일찾기</label>
+                                    <input type="file" id="file" multiple />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ServiceEditTable>
+
                 <div className="btnarea right">
                     <BorderBtn text="취소" click={onListHandler}><em></em></BorderBtn>
                     <YellowBtn text="확인" click={onListHandler}><em></em></YellowBtn>
-                </div>                  
+                </div>
             </div>
         </ServiceEditLayout>
     )

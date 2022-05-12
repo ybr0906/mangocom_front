@@ -16,6 +16,51 @@ const ServiceListLayout = styled.section`
 .btnarea{
     margin-top:70px;
 }
+.paging{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top: 80px;
+    span{
+        background: #fff;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        width: 36px;
+        height: 36px;
+        transition: background .4s;
+        cursor:pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 3px;
+        &.arrow{
+            &.first_arrow, &.prev_arrow{
+                transform:rotate(180deg);
+            }
+        }
+    }
+    .paging_num{
+        margin:0 5px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        .num{
+            font-family: 'Poppins', sans-serif;
+            color: #b5b5b5;
+            font-size: 16px;
+            line-height: 36px;
+            transition:.5s;
+            &:hover{
+                color:#ffc80b;
+            }
+            &.on{            
+                background-color: #ffc80b;
+                color: #252525;
+                border: 1px solid #ffc80b;
+            }
+        }
+    }
+    }
 `;
 
 const SearchForm = styled.div`
@@ -110,51 +155,6 @@ flex-wrap:wrap;
         }
     }
 `;
-const Paging = styled.div`
-display:flex;
-align-items:center;
-justify-content:center;
-margin-top: 80px;
-span{
-    background: #fff;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    width: 36px;
-    height: 36px;
-    transition: background .4s;
-    cursor:pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 3px;
-    &.arrow{
-        &.first_arrow, &.prev_arrow{
-            transform:rotate(180deg);
-        }
-    }
-}
-.paging_num{
-    margin:0 5px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    .num{
-        font-family: 'Poppins', sans-serif;
-        color: #b5b5b5;
-        font-size: 16px;
-        line-height: 36px;
-        transition:.5s;
-        &:hover{
-            color:#ffc80b;
-        }
-        &.on{            
-            background-color: #ffc80b;
-            color: #252525;
-            border: 1px solid #ffc80b;
-        }
-    }
-}
-`;
 
 const ServiceList = () => {
     const [data, setData] = useState([]);
@@ -207,7 +207,7 @@ const ServiceList = () => {
                     })
                 }
             </CardTable>
-            <Pagenation total={count} setData={setData} page={page} setPage={setPage}></Pagenation>
+            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage}></Pagenation>
             {/* <Paging>
                 <span className="arrow first_arrow"><img src={dobuleArrow} alt="" /></span>
                 <span className="arrow prev_arrow"><img src={rightArrow} alt="" /></span>

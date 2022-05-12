@@ -168,13 +168,6 @@ const ServiceDetail = () => {
                             <p className="text">{data.address}</p>
                         </div>
                     </li>
-                    {
-                        (data.file_name || '').split(',').map((i, index) => {
-                            return (
-                                <span className='file' key={index} data-name={i} data-url={file[index]} onClick={onFileHandler}>{i}</span>
-                            )
-                        })
-                    }
                     <li className="w100">
                         <div className="line">
                             <p className="item">증상.</p>
@@ -187,6 +180,20 @@ const ServiceDetail = () => {
                                         </span>
                                     );
                                 })}
+                            </p>
+                        </div>
+                    </li>
+                    <li className="w100">
+                        <div className="line">
+                            <p className="item">첨부파일.</p>
+                            <p className="text">
+                                {
+                                    (data.file_name || '').split(',').map((i, index) => {
+                                        return (
+                                            <span className='file' key={index} data-name={i} data-url={file[index]} onClick={onFileHandler}>{i}</span>
+                                        )
+                                    })
+                                }
                             </p>
                         </div>
                     </li>
