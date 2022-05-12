@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import YellowBtn from "../layout/YellowBtn";
@@ -45,17 +46,20 @@ const DeleteAlertLayout = styled.div`
 
 const DeleteAlert = (props) => {
     const navigate = useNavigate();
-    const onDeleteHandler = (e) => {    
-        navigate(`/service`);
+    const onCancleHandler = (e) => {
+        navigate(-1);
+    }
+    const onConfirmHandler = (e) => {
+
     }
     return (
         <DeleteAlertLayout>
             <div className="inner">
-                <p>삭제하시겠습니까?</p>             
+                <p>삭제하시겠습니까?</p>
                 <div className="btnarea right">
-                    <BorderBtn text="취소" click={onDeleteHandler}><em></em></BorderBtn>
-                    <YellowBtn text="확인" click={onDeleteHandler}><em></em></YellowBtn>
-                </div>      
+                    <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
+                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
+                </div>
             </div>
             <div className="shadow"></div>
         </DeleteAlertLayout>

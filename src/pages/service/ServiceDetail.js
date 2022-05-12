@@ -1,10 +1,13 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
+import fileDownload from 'js-file-download'
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
 import BorderBtn from "../../components/layout/BorderBtn";
+import CheckAlert from "../../components/modal/CheckAlert";
 
 //image
 import dobuleArrow from '../../styles/images/arrow_double.svg'
@@ -77,24 +80,64 @@ li{
 
 const ServiceDetail = () => {
     const navigate = useNavigate();
-    
-    const [deleteModal, setDeleteModal] = useState(false);    
-    const [reply, setreply] = useState(false);    
+    const param = useParams();
 
-    const onDeleteHandler = (e) => {        
-        setDeleteModal(true) 
+    const [type, setType] = useState('');
+    const [checkAlertModal, setcheckAlertModal] = useState(false)
+    const [data, setData] = useState({
+        name: "",
+        phone: "",
+        address: "",
+        symptom: "",
+        reg_date: "",
+        type: "",
+        reply: "",
+    });
+    const [file, setFile] = useState([]);
+
+    const onFileHandler = (e) => {
+        const { name, url } = e.target.dataset;
+        axios.get(url, {
+            responseType: 'blob',
+        }).then((res) => {
+            fileDownload(res.data, name)
+        })
     }
-    const onListHandler = (e) => {        
+
+    const onDeleteHandler = (e) => {
+        setType('delete');
+        if (localStorage.getItem('neoulSession')) {
+            // axios.post(`${process.env.host}/member/check`, {sid:localStorage.getItem('neoulSession')}).then(({data})=>{
+            //     setDeleteModal(modal => !modal)
+            // })            
+        } else {
+            setcheckAlertModal(true)
+        }
+    }
+    const onEditHandler = (e) => {
+        setType('edit');
+        if (localStorage.getItem('neoulSession')) {
+            //navigate('/message/edit', {state:{id_board:data.id_board}})                    
+        } else {
+            setcheckAlertModal(true)
+        }
+    }
+
+    const onListHandler = (e) => {
         navigate(-1);
     }
-    const onEditHandler = (e) => {        
-        navigate(`/service/edit`);
-    }
-    const replyCompeleteHandler = (e) => {          
-        setreply(true) 
+
+    const replyCompeleteHandler = (e) => {
+        setreply(true)
     }
 
-    
+    useEffect(() => {
+        axios.get(`${process.env.host}/service/${param.id}`).then(({ data }) => {
+            setFile((data.file_url || '').split(','));
+            setData(data);
+        })
+    }, [])
+
     return (
         <ServiceDetailLayout>
             <div className="wrap">
@@ -102,39 +145,48 @@ const ServiceDetail = () => {
                     <li>
                         <div className="line">
                             <p className="item">성함.</p>
-                            <p className="text">MSI스트레*</p>
+                            <p className="text">{data.name}</p>
                         </div>
                         <div className="line">
                             <p className="item">서비스 항목.</p>
-                            <p className="text">맥북 아이맥 수리(애플)</p>
+                            <p className="text">{data.type}</p>
                         </div>
                     </li>
                     <li>
                         <div className="line">
                             <p className="item">연락처.</p>
-                            <p className="text">000-0000-0000</p>
+                            <p className="text">{data.phone}</p>
                         </div>
                         <div className="line">
                             <p className="item">날짜.</p>
-                            <p className="text">2022-05-10</p>
+                            <p className="text">{data.reg_date}</p>
                         </div>
                     </li>
                     <li className="w100">
                         <div className="line">
                             <p className="item">주소.</p>
-                            <p className="text">서울특별시 서초구 반포동</p>
+                            <p className="text">{data.address}</p>
                         </div>
                     </li>
+                    {
+                        (data.file_name || '').split(',').map((i, index) => {
+                            return (
+                                <span className='file' key={index} data-name={i} data-url={file[index]} onClick={onFileHandler}>{i}</span>
+                            )
+                        })
+                    }
                     <li className="w100">
                         <div className="line">
                             <p className="item">증상.</p>
                             <p className="text long">
-                                노트북 발열 쓰로틀링 쿨러청소와 써멀구리스재도포희망 한성 SPARQ 노트북 배터리 충전이 안되요 
-                                <br/>화면 연결되는 힌지부분 좌측이 벌어져요 배터리 선 연결해도
-                                <br/>화면 연결되는 힌지부분 좌측이 벌어져요 배터리 선 연결해도
-                                <br/>화면 연결되는 힌지부분 좌측이 벌어져요 배터리 선 연결해도
-                                <br/>화면 연결되는 힌지부분 좌측이 벌어져요 배터리 선 연결해도
-                                <br/>화면 연결되는 힌지부분 좌측이 벌어져요 배터리 선 연결해도
+                                {(data.symptom || '').split('\n').map((line, index) => {
+                                    return (
+                                        <span key={index}>
+                                            {line}
+                                            <br />
+                                        </span>
+                                    );
+                                })}
                             </p>
                         </div>
                     </li>
@@ -142,25 +194,32 @@ const ServiceDetail = () => {
                         <div className="line">
                             <p className="item">답변.</p>
                             <div className="replyarea">
-                                <textarea></textarea>
-                                <div className="btnarea right">
-                                    <YellowBtn text="확인" click={replyCompeleteHandler}><em></em></YellowBtn>
-                                </div>
-                                {reply && <p className="text long">접수되었습니다</p>}
-                                
+                                {
+                                    data.progress == 0 ?
+                                        <>
+                                            <textarea></textarea>
+                                            <div className="btnarea right">
+                                                <YellowBtn text="확인" click={replyCompeleteHandler}><em></em></YellowBtn>
+                                            </div>
+                                        </>
+                                        :
+                                        <p className="text long">{data.reply}</p>
+                                }
+
                             </div>
                         </div>
                     </li>
-                </ServiceDetailTable>    
-                
+                </ServiceDetailTable>
+
                 <div className="btnarea right">
                     <BorderBtn text="삭제" click={onDeleteHandler}><em></em></BorderBtn>
                     <BorderBtn text="수정" click={onEditHandler}><em></em></BorderBtn>
                     <YellowBtn text="목록" click={onListHandler}><em></em></YellowBtn>
-                </div>             
+                </div>
             </div>
-            {/*삭제버튼 클릭시 모달*/}     
-            {deleteModal && <DeleteAlert setDeleteModal={setDeleteModal}></DeleteAlert>}
+            {/*삭제 수정 버튼 클릭시 모달*/}
+            {checkAlertModal && <CheckAlert setcheckAlertModal={setcheckAlertModal} file={file} type={type} service_id={param.id}></CheckAlert>}
+            {/* {deleteModal && <DeleteAlert setDeleteModal={setDeleteModal}></DeleteAlert>} */}
         </ServiceDetailLayout>
     )
 }

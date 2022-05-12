@@ -1,9 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
+import Pagenation from '../../components/Pagenation';
+import CheckAlert from "../../components/modal/CheckAlert";
 
 //image
 import dobuleArrow from '../../styles/images/arrow_double.svg'
@@ -152,97 +155,60 @@ span{
     }
 }
 `;
-//임시데이터
-const data = [
-    {
-        key:1,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수대기'
-    },
-    {
-        key:2,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수대기'
-    },
-    {
-        key:3,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:4,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:5,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:6,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:7,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:8,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    }
-]
+
 const ServiceList = () => {
+    const [data, setData] = useState([]);
+    const [count, setCount] = useState(0);
+    const [page, setPage] = useState(1);
+    const [checkAlertModal, setcheckAlertModal] = useState(false)
+    const service_id = useRef();
+
+
     const navigate = useNavigate();
-    const refId= useRef();
+
+
     const onDetatilHandler = (e) => {
-        refId.current = e.currentTarget.dataset.key;
-        navigate(`/service/${e.currentTarget.dataset.key}`);
+        service_id.current = e.currentTarget.dataset.key;
+
+        setcheckAlertModal(true);
+
+        //const key = e.currentTarget.dataset.key;
+        //navigate(`/service/${key}`);
+
     }
     const onWriteHandler = () => {
         navigate("/service/write");
     }
+
+    useEffect(() => {
+        axios.get(`${process.env.host}/service?page=${page}`).then(({ data }) => {
+            setCount(data.data[0].count);
+            setData(data.data);
+        })
+    }, [])
     return (
         <ServiceListLayout>
             <SearchForm>
                 <input type="text" placeholder="검색어를 입력해주세요" />
                 <button>검색</button>
             </SearchForm>
-            
+
             <CardTable>
                 {
-                    data && data.map(i=>{
-                        return(
-                            <div className="box" key={i.key} data-key={i.key} onClick={onDetatilHandler}>
-                                <p className="writer">{i.writer}님</p>
-                                <p className="title"><span>{i.title}</span></p>
-                                <p className="date">{i.date}</p>
-                                <p className="status_line">{i.reply == "" || i.reply == null ? <span className='status wait'>접수대기</span>: <span className='status complete'>접수완료</span>}</p>
+                    data && data.map(i => {
+                        return (
+                            <div className="box" key={i.service_id} data-key={i.service_id} onClick={onDetatilHandler}>
+                                <p className="writer">{i.name}님</p>
+                                <p className="title"><span>{i.symptom}</span></p>
+                                <p className="date">{i.reg_date}</p>
+                                <p className="status_line">{i.progress == 0 ? <span className='status wait'>접수대기</span> : <span className='status complete'>접수완료</span>}</p>
                             </div>
                         )
                     })
                 }
             </CardTable>
-            <Paging>
+            <Pagenation total={count} setData={setData} page={page} setPage={setPage}></Pagenation>
+            {/* <Paging>
                 <span className="arrow first_arrow"><img src={dobuleArrow} alt="" /></span>
                 <span className="arrow prev_arrow"><img src={rightArrow} alt="" /></span>
                 <div className="paging_num">
@@ -251,11 +217,12 @@ const ServiceList = () => {
                     <span className="num">3</span>
                 </div>
                 <span className="arrow next_arrow"><img src={rightArrow} alt="" /></span>
-                <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>                    
-            </Paging>
+                <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>
+            </Paging> */}
             <div className="btnarea center">
                 <YellowBtn text="글쓰기" click={onWriteHandler}><em></em></YellowBtn>
-            </div>      
+            </div>
+            {checkAlertModal && <CheckAlert service_id={service_id.current} type="detail" setcheckAlertModal={setcheckAlertModal}></CheckAlert>}
         </ServiceListLayout>
     )
 }
