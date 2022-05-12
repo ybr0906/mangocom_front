@@ -85,6 +85,37 @@ li{
             margin-right:0;
         }        
     }
+    .filebox{
+        display:flex;
+        align-items:flex-end;
+        .upload-name {
+            display: inline-block;
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #dddddd;
+            width: 78%;
+            color: #999999;
+        }
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #999999;
+            cursor: pointer;
+            height: 40px;
+            margin-left: 10px;
+        }
+        input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+    }
 }
 `;
 
@@ -146,6 +177,7 @@ const ServiceWrite = () => {
         }
     }
 
+
     return (
         <ServiceWriteLayout>
             <div className="wrap">
@@ -200,8 +232,18 @@ const ServiceWrite = () => {
                             </p>
                         </div>
                     </li>
-
-                    <input type="file" name="file" multiple onChange={onFileHandler}></input>
+                    <li className="w100">
+                        <div className="line">
+                            <p className="item">첨부파일.</p>
+                            <div className="text long">
+                                <div className="filebox">
+                                    <input className="upload-name" defaultValue="첨부파일" placeholder="첨부파일" />
+                                    <label htmlFor="file">파일찾기</label> 
+                                    <input type="file" id="file" multiple onChange={onFileHandler} />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ServiceWriteTable>
 
                 <div className="btnarea right">
