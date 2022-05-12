@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from 'axios';
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
@@ -88,10 +89,63 @@ li{
 `;
 
 const ServiceWrite = () => {
+    const [input, setInput] = useState();
+    const [postfiles, setPostfiles] = useState({
+        file: [],
+        previewURL: "",
+    });
     const navigate = useNavigate();
-    const onListHandler = (e) => {        
-        navigate(-1);
+
+    const onCancleHandler = (e) => {
+        navigate(-1)
     }
+    const onConfirmHandler = (e) => {
+
+        if (input.name == '') {
+            alert('이름을 입력해주세요.');
+        } else if (input.password == '') {
+            alert('비밀번호를 입력해주세요.');
+        } else if (input.title == '') {
+            alert('제목을 입력해주세요.');
+        } else if (input.contents == "") {
+            alert('내용을 입력해주세요.');
+        } else {
+            const formData = new FormData();
+            postfiles.file.map((i) => {
+                formData.append('file', i);
+            })
+            formData.append('input', JSON.stringify(input));
+
+            axios.post(`${process.env.host}/service`, formData).then(({ data }) => {
+                console.log(data)
+            })
+        }
+    }
+
+    const onInputHandler = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+    const onSelectHandler = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+    const onFileHandler = (e) => {
+        e.stopPropagation();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        const filesInArr = Array.from(e.target.files);
+
+        reader.onloadend = () => {
+            setPostfiles({
+                file: filesInArr,
+                previewURL: reader.result,
+            });
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
     return (
         <ServiceWriteLayout>
             <div className="wrap">
@@ -100,13 +154,13 @@ const ServiceWrite = () => {
                         <div className="line">
                             <p className="item">성함.</p>
                             <p className="text">
-                                <input type="text" placeholder="성함을 입력해주세요."/>
+                                <input type="text" placeholder="성함을 입력해주세요." name="name" onChange={onInputHandler} />
                             </p>
                         </div>
                         <div className="line">
                             <p className="item">비밀번호.</p>
                             <p className="text">
-                                <input type="password" placeholder="비밀번호를 입력해 주세요" />
+                                <input type="password" placeholder="비밀번호를 입력해 주세요" name="password" onChange={onInputHandler} />
                             </p>
                         </div>
                     </li>
@@ -114,18 +168,18 @@ const ServiceWrite = () => {
                         <div className="line">
                             <p className="item">연락처.</p>
                             <p className="text">
-                                <input type="text" placeholder="연락처를 입력해 주세요" />
+                                <input type="text" placeholder="연락처를 입력해 주세요" name="phone" onChange={onInputHandler} />
                             </p>
                         </div>
                         <div className="line">
                             <p className="item">서비스 항목.</p>
                             <p className="text">
-                                <select>
-                                    <option>항목을 선택해 주세요</option>
-                                    <option>맥북, 아이맥 수리(애플)</option>
-                                    <option>컴퓨터 수리(출장AS)</option>
-                                    <option>조립 및 중고 PC 판매</option>
-                                    <option>노트북 액정문의</option>
+                                <select name="type" onChange={onSelectHandler}>
+                                    <option value="">항목을 선택해 주세요</option>
+                                    <option value="apple">맥북, 아이맥 수리(애플)</option>
+                                    <option value="as">컴퓨터 수리(출장AS)</option>
+                                    <option value="product">조립 및 중고 PC 판매</option>
+                                    <option value="monitor">노트북 액정문의</option>
                                 </select>
                             </p>
                         </div>
@@ -134,7 +188,7 @@ const ServiceWrite = () => {
                         <div className="line">
                             <p className="item">주소.</p>
                             <p className="text">
-                                <input type="text" placeholder="주소를 입력해 주세요" />
+                                <input type="text" placeholder="주소를 입력해 주세요" name="address" onChange={onInputHandler} />
                             </p>
                         </div>
                     </li>
@@ -142,16 +196,18 @@ const ServiceWrite = () => {
                         <div className="line">
                             <p className="item">증상.</p>
                             <p className="text long">
-                                <textarea placeholder="증상을 입력해 주세요"></textarea>
+                                <textarea placeholder="증상을 입력해 주세요" name="symptom" onChange={onInputHandler}></textarea>
                             </p>
                         </div>
                     </li>
-                </ServiceWriteTable>    
-                
+
+                    <input type="file" name="file" multiple onChange={onFileHandler}></input>
+                </ServiceWriteTable>
+
                 <div className="btnarea right">
-                    <BorderBtn text="취소" click={onListHandler}><em></em></BorderBtn>
-                    <YellowBtn text="확인" click={onListHandler}><em></em></YellowBtn>
-                </div>                  
+                    <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
+                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
+                </div>
             </div>
         </ServiceWriteLayout>
     )
