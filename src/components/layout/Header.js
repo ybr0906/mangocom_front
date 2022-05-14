@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ padding: 20px 0;
 .logo{
     cursor:pointer;
 }
-.mobile_btn{
+.mobile_btn, .shadow{
     display:none;
 }
 nav{
@@ -64,7 +64,7 @@ nav{
 
 @media screen and (max-width: 768px) {
     padding:0;
-    height:6vw;
+    height:40px;
     .wrap{
         height:100%;
     }
@@ -73,16 +73,86 @@ nav{
     }
     .mobile_btn{
         display:block;
-        
+        position:relative;
+        width:25px;
+        height:16px;
+        z-index:6;
+        .line{
+            width:100%;
+            height:3px;
+            background-color:#333;
+            border-radius:3px;
+            position:absolute;
+            left:0;
+            &.line01{
+                top:0;
+            }
+            &.line02{
+                top:50%;
+            }
+            &.line03{
+                top:100%;
+            }
+        }
+        &.close{
+            .line{
+                &.line01{
+                    top:50%;
+                    transform: rotate(45deg);
+                }
+                &.line02{
+                    opacity:0;
+                }
+                &.line03{
+                    top:50%;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
     }
     nav{
         display:none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50vw;
+        height: 100vh;
+        background: #fff;
+        flex-wrap: wrap;
+        padding: 60px 5vw;
+        z-index:5;
         span{
-            font-size: 1.3vw;
-            margin: 0 2vw;
-            padding-bottom: 1vw;
+            font-size: 3vw;
+            margin: 0;
+            padding-bottom:3vw;
+        }
+        &.open{
+            display:block;
         }
     }
+    .shadow{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.3);
+        z-index: 2;
+        &.open{
+            display:block;
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    nav{
+        width: 60vw;
+        padding: 60px 25px;
+        span{
+            font-size: 15px;
+            padding-bottom:14px;
+        }
+    }
+}
 `;
 
 const Header = () => {
@@ -91,18 +161,32 @@ const Header = () => {
     const onMenuHandler = (e) => {
         navigate(`/${e.target.dataset.title}`);
     }
+   
+    const [nav, setNav] = useState(false);
+    const onNavHandler = () => {
+        const navBg = document.getElementById('nav')
+        const shadow = document.querySelector('.shadow');
+        setNav(!nav);
+        navBg.classList.toggle('open')
+        shadow.classList.toggle('open')
+    }
 
     return (
         <HeaderLayout>
             <div className="wrap">
                 <h1 className="logo" data-title="" onClick={onMenuHandler}>로고</h1>
-                <span className="mobile_btn">메뉴열기</span>
-                <nav>
+                <span className={nav ? "mobile_btn close" : "mobile_btn"} onClick={onNavHandler}>
+                    <em className="line line01"></em>
+                    <em className="line line02"></em>
+                    <em className="line line03"></em>
+                </span>
+                <nav id="nav">
                     <span data-title="introduce" onClick={onMenuHandler}>회사소개</span>
                     <span data-title="informationuse" onClick={onMenuHandler}>이용안내</span>
                     <span data-title="service" onClick={onMenuHandler}>서비스 문의</span>
                     <span data-title="directions" onClick={onMenuHandler}>오시는 길</span>
-                </nav>                
+                </nav>     
+                <div className="shadow"></div>           
             </div>
         </HeaderLayout>
     )

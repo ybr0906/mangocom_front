@@ -93,6 +93,116 @@ const ManagerModalLayout = styled.div`
             }
         }
     }
+
+@media screen and (max-width: 1500px) {
+
+    .inner{
+        border-radius:2vw;
+        .title{
+            font-size: 1.5vw;
+            padding: 1.3vw 0.8vw;
+            border-radius:2vw 2vw 0 0;
+        }
+        .inner_wrap{
+            padding:1.5vw 2vw 2vw 2vw;
+        }
+        dl{
+            margin-top:0.5vw;
+            dt{
+                font-size: 1.2vw;
+                width: 7vw;
+            }
+            dd{
+                width:calc(100% - 7vw);
+            }
+        }
+        .btnarea{
+            margin-top:2vw;
+        }
+        .close{
+            right: 2vw;
+            top: 1.5vw;
+            width: 2vw;
+            height: 2vw;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .inner{
+        .title{
+            font-size: 2.5vw;
+            padding: 1.8vw 0.8vw;
+        }
+        .inner_wrap{
+            padding:3vw 3.5vw 3.5vw 3.5vw;
+        }
+        dl{
+            width:40vw;
+            dt{
+                font-size: 1.7vw;
+                width: 9vw;
+            }
+            dd{
+                width:calc(100% - 9vw);
+            }
+        }
+        .close{
+            top: 2.5vw;
+            width:3vw;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .inner{
+        dl{
+            width:50vw;
+            dt{
+                font-size: 2vw;
+                width: 10vw;
+            }
+            dd{
+                width:calc(100% - 10vw);
+            }
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    .inner{
+        border-radius:15px;
+        .title{
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 15px 15px 0 0;
+        }
+        .inner_wrap{
+            padding:15px;
+        }
+        .close{
+            right: 11px;
+            top: 12px;
+            width: 20px;
+            height: 20px;
+        }
+
+        dl{
+            width:80vw;
+            margin-top:5px;
+            dt{
+                font-size: 15px;
+                width: 75px;
+            }
+            dd{
+                width:calc(100% - 75px);
+            }
+        }
+        .btnarea{
+            margin-top:20px;
+        }
+    }
+}
 `;
 
 const ManagerModal = ({ onManagerHandler }) => {

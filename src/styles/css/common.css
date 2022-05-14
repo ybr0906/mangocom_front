@@ -63,7 +63,8 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
 
 @media screen and (max-width: 1500px) {
     body,html,button,select,input{font-size:1.3vw;}
-	.wrap{width:100%;margin:0;padding:0 50px;}
+    input{height:3vw;padding:0 1vw;font-size:1.2vw;}
+	.wrap{width:100%;margin:0;padding:0 50px;max-width:100%;}
     .sub_section{padding-bottom:10vw;min-height:calc(100vh - 10vw);}
     .sub_section>.wrap{padding-top:8vw;}
 
@@ -80,11 +81,13 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
     body,html,button,select,input{font-size:1.8vw;}
     .wrap{padding:0 3vw;}
     .bullet01 li:before{top:30%;width: 0.5vw;height: 0.5vw;}
+    input{height:4.5vw;}
 }
 
 @media screen and (max-width: 414px) {
 
     body,html,button,select,input{font-size:13px;}
+    input{height: 34px;padding: 0 10px;}
     .mb80{margin-bottom:40px;}
     .bullet01 li:before{top:20%;}
     .tablescroll{width:100%;overflow-x:auto;}

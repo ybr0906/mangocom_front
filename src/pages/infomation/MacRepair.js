@@ -207,7 +207,11 @@ li{
             }
         }
     }
-
+    .orange_btn{
+        font-size: 13px;
+        padding: 10px 20px;
+        border-radius: 40px;    
+    }
 }
 `;
 

@@ -47,8 +47,82 @@ const IntroduceLayout = styled.section`
         right: 0;
         top: 18%;
     }
-
 }
+
+@media screen and (max-width: 1500px) {
+
+.inner{
+    .title{
+        font-size: 4vw;
+        margin-bottom: 4vw;
+    }
+    .big{
+        font-size: 2vw;
+        margin-top: 1.5vw;
+    }
+    .small{
+        font-size: 1.3vw;
+        margin-top: 2vw;
+    }
+    .ceo{
+        margin-top: 3vw;
+        font-size: 2vw;
+    }
+    .bg{
+        top: 15%;
+        img{
+            width:20vw;
+        }
+    }
+}
+}
+
+@media screen and (max-width: 768px) {
+
+    .inner{
+        .title{
+            font-size: 4.5vw;
+        }
+        .big{
+            font-size: 2.5vw;
+        }
+        .small{
+            font-size: 1.8vw;
+        }
+        .ceo{
+            font-size: 2.5vw;
+        }
+    }
+    }
+
+@media screen and (max-width: 414px) {
+
+    .inner{
+        .title{
+            font-size: 25px;
+            margin-bottom: 25px;
+        }
+        .big{
+            font-size: 16px;
+            margin-top: 10px;
+            br{
+                display:none;
+            }
+        }
+        .small{
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        .ceo{
+            margin-top: 25px;
+            font-size: 17px;
+        }
+        .bg{
+            display:none;
+        }
+    }
+    }
+    
 `;
 
 const Introduce = () => {

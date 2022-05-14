@@ -57,6 +57,63 @@ const DirectionsLayout = styled.section`
         }
     }
 }
+@media screen and (max-width: 1500px) {
+.info{
+    margin-top: 2vw;
+    padding-left: 10vw;
+    &:after{
+        width:3.5vw;
+        height:3.5vw;
+        background-size:100%;
+        left: 3vw;
+        top: 0.5vw;
+    }
+    dl{
+        margin-top: 1vw;
+        dt{
+            font-size: 1.5vw;
+            width: 8vw;
+        }
+        dd{
+            width: calc(100% - 8vw);
+            font-size: 1.3vw;
+        }
+    }
+} 
+}
+@media screen and (max-width: 768px) {
+.info{
+    dl{
+        dt{
+            font-size: 1.8vw;
+        }
+        dd{
+            font-size: 1.7vw;
+        }
+    }
+} 
+}
+
+@media screen and (max-width: 414px) {
+    .info{
+        margin-top: 15px;
+        padding-left: 0;
+        &:after{
+            display:none;
+        }
+        dl{
+            margin-top:10px;
+            dt{
+                font-size: 13px;
+                width:45px;
+            }
+            dd{
+                font-size: 12px;
+                width:calc(100% - 45px);
+            }
+        }
+    } 
+    }
 `;
 
 const Directions = () => {
