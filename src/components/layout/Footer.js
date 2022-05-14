@@ -64,6 +64,86 @@ address{
         }
     }
 }
+
+@media screen and (max-width: 1500px) {
+    padding: 0 0 2.5vw 0;
+    .footer_top{
+        margin-bottom: 2vw;
+        span{
+            font-size: 1.2vw;
+            padding: 1.5vw;
+        }
+    }
+    .logo{
+        font-size:2.5vw;
+    }
+    address{
+        max-width: 35vw;
+        p{
+            font-size:1.1vw;
+            margin-right: 2vw;
+            &.copyright{
+                margin-top:2vw;
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 768px) {
+    padding: 0 0 2.5vw 0;
+    .footer_top{
+        margin-bottom: 2.5vw;
+        span{
+            font-size: 1.6vw;
+            padding:2vw;
+        }
+    }
+    .logo{
+        font-size:2.5vw;
+    }
+    address{
+        max-width: initial;
+        margin-top:2vw;
+        p{
+            font-size:1.4vw;
+            &.copyright{
+                margin-top:0.5vw;
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 606px) {
+    address{
+        p{
+            &.copyright{
+                margin-top:0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 414px) {
+    padding: 0 0 20px 0;
+    .footer_top{
+        margin-bottom: 20px;
+        span{
+            font-size: 11px;
+            padding: 14px 20px;
+        }
+    }
+    .logo{
+        font-size:19px;
+    }
+    address{
+        margin-top:10px;
+        p{
+            font-size:11px;
+            margin-right:15px;
+        }
+    }
+
+}
 `;
 
 const Footer = () => {
