@@ -41,6 +41,7 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
 .btnarea.center{justify-content: center;}
 
 .sub_section{padding-bottom:120px;min-height:calc(100vh - 201px);}
+.sub_section>.wrap{padding-top:100px;}
 .noscroll{overflow: hidden;height: 100vh;}
 
 .tableA{font-size: 17px;}
@@ -59,3 +60,38 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
 .bullet02:before{content:attr(data-num);position: absolute;left:0;top:0}
 
 .mb80{margin-bottom:80px;}
+
+@media screen and (max-width: 1500px) {
+    body,html,button,select,input{font-size:1.3vw;}
+	.wrap{width:100%;margin:0;padding:0 50px;}
+    .sub_section{padding-bottom:10vw;min-height:calc(100vh - 10vw);}
+    .sub_section>.wrap{padding-top:8vw;}
+
+    .bullet01 li{font-size:1vw;padding-left:1.5vw;margin-top:0.5vw;}
+    .bullet01 li:before{top:0.8vw;}
+    .bullet02{padding-left:2vw;}
+
+    .tableA{font-size:1.3vw;}
+    .tableA thead th, .tableA tbody td{padding: 1.2vw 2vw;}
+
+    .mb80{margin-bottom:5vw;}
+}
+@media screen and (max-width: 768px) {
+    body,html,button,select,input{font-size:1.8vw;}
+    .wrap{padding:0 3vw;}
+    .bullet01 li:before{top:30%;width: 0.5vw;height: 0.5vw;}
+}
+
+@media screen and (max-width: 414px) {
+
+    body,html,button,select,input{font-size:13px;}
+    .mb80{margin-bottom:40px;}
+    .bullet01 li:before{top:20%;}
+    .tablescroll{width:100%;overflow-x:auto;}
+    .tableA{font-size:13px;}
+    .tableA thead th, .tableA tbody td{padding:8px 13px;}
+    .bullet02{padding-left:15px;}
+
+    .sub_section{padding-bottom: 70px;min-height: calc(100vh - 70px);}
+    .sub_section>.wrap{padding-top:40px}
+}

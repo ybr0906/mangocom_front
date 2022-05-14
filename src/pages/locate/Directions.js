@@ -9,6 +9,7 @@ import YellowBtn from "../../components/layout/YellowBtn";
 
 //image
 import map from '../../styles/images/locate.jpg'
+import map_icon from '../../styles/images/map.png'
 
 
 const DirectionsLayout = styled.section`
@@ -22,6 +23,18 @@ const DirectionsLayout = styled.section`
     margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 150px;
+    position:relative;
+    &:after{
+        content:'';
+        width:46px;
+        height:46px;
+        background-size:100%;
+        background:url(${map_icon})left top no-repeat;
+        position:absolute;
+        left: 42px;
+        top: 9px;
+    }
     dl{
         margin-top: 15px;
         width:100%;
@@ -51,7 +64,7 @@ const Directions = () => {
         <DirectionsLayout className="sub_section">
             <SubVisual></SubVisual>
             <div className="wrap">
-                <TitleA title="찾아오시는 길"></TitleA>      
+                <TitleA title="오시는 길"></TitleA>      
                 <div className="maparea">
                     <img src={map} alt="" />
                 </div>

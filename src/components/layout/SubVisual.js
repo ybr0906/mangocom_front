@@ -8,11 +8,14 @@ background: #ccc;
 height: 270px;
 `;
 
+
 const SubVisual = () => {
+
     return (
         <SubVisualLayout>
             <div className="wrap">
-            서브비주얼
+                <img src="" alt="" />
+                <p></p>
             </div>
         </SubVisualLayout>
     )

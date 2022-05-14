@@ -143,6 +143,8 @@ const ServiceCategory = styled.div`
         box-shadow: 5px 5px 15px rgb(0 0 0 / 15%);
         padding-top: 60px;
         cursor:pointer;
+        position: relative;
+        transition: background .5s;
         &:nth-child(2n){
             margin-right:0;
         }
@@ -157,7 +159,27 @@ const ServiceCategory = styled.div`
             color:#333;
             font-weight:600;
             margin-top: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transform: skew(-0.1deg);
+            img{
+                opacity:0;
+                display:block;
+                margin-left: 0;
+                transition: .5s;
+            }
+        }
+        
+        &:hover{
+            background:#ffc80b;
+            p{
+                img{
+                    opacity:1;
+                    display:block;
+                    margin-left: 20px;
+                }
+            }
         }
     }
 `;
@@ -238,19 +260,19 @@ const MainService = () => {
                 <ServiceCategory>
                     <div className="box" onClick={onMacRepairHandler}>
                         <img src={category01} alt="" />
-                        <p>맥북, 아이맥 수리(애플)</p>
+                        <p>맥북, 아이맥 수리(애플)<img src={ArrowRight} alt="" /></p>
                     </div>
                     <div className="box" onClick={onAssemblyPCHandler}>
                         <img src={category02} alt="" />
-                        <p>컴퓨터 수리(출장AS)</p>
+                        <p>컴퓨터 수리(출장AS)<img src={ArrowRight} alt="" /></p>
                     </div>
                     <div className="box" onClick={onPCRepairHandler}>
                         <img src={category03} alt="" />
-                        <p>조립 및 중고 PC 판매</p>
+                        <p>조립 및 중고 PC 판매<img src={ArrowRight} alt="" /></p>
                     </div>
                     <div className="box" onClick={onMonitorHandler}>
                         <img src={category04} alt="" />
-                        <p>노트북 액정문의</p>
+                        <p>노트북 액정문의<img src={ArrowRight} alt="" /></p>
                     </div>
                 </ServiceCategory>
             </div>
