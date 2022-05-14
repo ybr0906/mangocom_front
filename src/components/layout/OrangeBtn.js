@@ -17,6 +17,17 @@ const OrangeButton = styled.button`
         color: #fff;
         transform: skew(-0.1deg);
     }
+
+    @media screen and (max-width: 1500px) {
+        font-size: 1.7vw;
+        padding: 1.5vw 3.5vw;
+        border-radius: 4vw;
+    }
+    @media screen and (max-width: 414px) {
+        font-size: 16px;
+        padding: 12px 30px;
+        border-radius: 40px;
+    }
 `;
 
 const OrangeBtn = (props) => {

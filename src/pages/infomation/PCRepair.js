@@ -33,6 +33,37 @@ p{
         text-align:center;
     }
 }
+@media screen and (max-width: 1500px) {
+    p{
+        font-size:1.3vw;
+    }
+    .btnarea{
+        margin-top:5vw;
+    }
+    .tableA{
+        margin:3vw 0;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .wrap{
+        padding:0 2vw !important;
+    }
+}
+@media screen and (max-width: 414px) {
+    .wrap{
+        padding:0 !important;
+    }
+    p{
+        font-size:12px;
+    }
+    .btnarea{
+        margin-top:40px;
+    }
+    .tableA{
+        width:500px;
+    }
+}
 `;
 const TabB = styled.ul`
 display:flex;
@@ -68,6 +99,24 @@ li{
         }
     }
 }
+@media screen and (max-width: 1500px) {
+    margin-bottom:4vw;
+    li{
+        span{
+            font-size: 1.4vw;
+            padding: 1.5vw 2vw; 
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    margin-bottom:25px;
+    li{
+        span{
+            font-size: 12px;
+            padding: 10px 20px;
+        }
+    }
+}
 `;
 const ServiceBox = styled.div`
     display:flex;
@@ -92,6 +141,10 @@ const ServiceBox = styled.div`
             margin-top: 15px;
         }
     }
+
+@media screen and (max-width: 1500px) {
+    
+}
 `;
 const ServiceList01 = styled.div`
 dl{
@@ -146,6 +199,55 @@ dl{
         }
     }
 }
+
+@media screen and (max-width: 1500px) {
+    dl{
+        padding:1.5vw 0;
+        dt{
+            font-size: 1.5vw;
+            padding: 1vw 3vw;
+            padding-left: 6vw;
+            width: 22vw;
+            &:before{
+                font-size:2.5vw;
+                left:2vw;
+            }
+            &.center{
+                padding-left:3vw;
+            }
+        }
+        dd{
+            font-size: 1.3vw;
+            padding: 1vw;
+            margin-left: 2vw;
+            width: calc(100% - 22vw);
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    dl{
+        flex-wrap:wrap;
+        padding:10px 0;
+        dt{
+            font-size:13px;
+            padding:10px 20px;
+            padding-left: 40px;
+            width: 100%;
+            &:before {
+                font-size: 22px;
+                left: 9px;
+                top: 18px;
+            }
+        }
+        dd{
+            font-size: 12px;
+            padding: 10px;
+            margin-left: 0;
+            width: 100%;
+            padding-bottom:0;
+        }
+    }
+}
 `;
 const BoxTitle = styled.div`
 text-align: center;
@@ -177,6 +279,44 @@ em{
     }
 }
 
+@media screen and (max-width: 1500px) {
+    font-size: 2.2vw;
+    margin-top: 3vw;
+    padding: 3vw 2vw;
+    em{
+        padding:0 7vw;
+        &:before, &:after{
+            width:4vw;
+            height:3vw;
+        }
+        &:before{
+            top: -0.5vw;
+        }
+
+    }
+}
+@media screen and (max-width: 500px) {
+    em{
+        padding: 0 5vw;
+        width: 100%;
+        display: block;
+    }
+}
+@media screen and (max-width: 414px) {
+    font-size: 16px;
+    padding: 18px 30px;
+    em{
+        padding:0 31px;
+        &:before, &:after{
+            width: 22px;
+            height: 17px;
+        }
+        &:before{
+            top: -1px;
+        }
+
+    }
+}
 `;
 
 
@@ -294,151 +434,153 @@ const PCRepair = () => {
                         <li><p>SW적인 수리 후 동일불량이 발생하는 경우 15일 이내(1회) 무상 AS를 진행해 드립니다.</p></li>
                     </ul>
 
-                    <table className="tableA">
-                        <caption>AS요금표</caption>
-                        <colgroup>
-                            <col style={{"width" : "12%"}} />
-                            <col style={{"width" : "20%"}} />
-                            <col style={{"width" : "48%"}} />
-                            <col style={{"width" : "20%"}} />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>부분</th>
-                                <th>구분</th>
-                                <th>수리내역</th>
-                                <th>요금</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>복구</td>
-                                <td>데이터 복구</td>
-                                <td>바이러스 및 기타 원인으로 데이터 복구</td>
-                                <td className="no_bor">25,000원 ~ 400,000원</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={18}>S/W</td>
-                                <td rowSpan={2}>포맷</td>
-                                <td>하드디스트 초기화</td>
-                                <td className="no_bor" rowSpan={2}>10,000원</td>
-                            </tr>
-                            <tr>
-                                <td>베드섹터처리(사용자의 동의를 얻은 후 실행)</td>
-                            </tr>
-                            <tr>
-                                <td>응용프로그램 설치</td>
-                                <td>각종 프로그램 설치</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td>바이러스</td>
-                                <td>바이러스 치료 및 백신 설치</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={5}>환경설정</td>
-                                <td>CMOS SETUP</td>
-                                <td className="no_bor" rowSpan={3}>10,000원</td>
-                            </tr>
-                            <tr>
-                                <td>CONFIG, AUTOEXEC</td>
-                            </tr>
-                            <tr>
-                                <td>간단한 프로그램 세팅</td>
-                            </tr>
-                            <tr>
-                                <td>카드류 설치 및 세팅</td>
-                                <td className="no_bor" rowSpan={2}>20,000원</td>
-                            </tr>
-                            <tr>
-                                <td>주변기기 설치 및 세팅</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={2}>주변기기 설치</td>
-                                <td>각종 주변기기 Drive 설치(프린터, 스캐너 등)</td>
-                                <td className="no_bor" rowSpan={2}>10,000원</td>
-                            </tr>
-                            <tr>
-                                <td>호환성 문제로 인한 드라이버 업데이트</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={7}>Windows 설치 <br/>드라이버 세팅 포함</td>
-                                <td>윈도우 설치 (매장 방문 시)</td>
-                                <td className="no_bor">25,000원</td>
-                            </tr>
-                            <tr>
-                                <td>윈도우 설치 (출장 시)</td>
-                                <td className="no_bor">35,000원</td>
-                            </tr>
-                            <tr>
-                                <td>맥 운영체제 OSX 초기화 (매장 방문 시)</td>
-                                <td className="no_bor">25,000원</td>
-                            </tr>
-                            <tr>
-                                <td>맥 운영체제 OSX 초기화 (출장 시)</td>
-                                <td className="no_bor">40,000원</td>
-                            </tr>
-                            <tr>
-                                <td>부트캠프 설치 (매장 방문 시)</td>
-                                <td className="no_bor">35,000원</td>
-                            </tr>
-                            <tr>
-                                <td>부트캠프 설치 (출장 시)</td>
-                                <td className="no_bor">50,000원</td>
-                            </tr>
-                            <tr>
-                                <td>데이터 백업 (5G당 7,000원 추가)</td>
-                                <td className="no_bor">10,000원</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={10}>H/W</td>
-                                <td rowSpan={3}>하드웨어 분해 및 <br/>교체, 추가</td>
-                                <td>충격, 이물질 등으로 인한 기구물 추가 및 교체</td>
-                                <td className="no_bor" rowSpan={2}>10,000원</td>
-                            </tr>
-                            <tr>
-                                <td>FAN 교체, CD-ROM, FDD 가이드 추가</td>
-                            </tr>
-                            <tr>
-                                <td>BIOS 업데이트</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td rowSpan={2}>하드웨어 미분해 수리</td>
-                                <td>충격, 이물질 등으로 인한 키보드, 마우스 수리</td>
-                                <td className="no_bor" rowSpan={2}>10,000</td>
-                            </tr>
-                            <tr>
-                                <td>마이크 등 단순교체</td>
-                            </tr>
-                            <tr>
-                                <td>소모성 교환</td>
-                                <td>하드웨어 분해 후 배터리 또는 소모성 부품 교체</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td>이동설치</td>
-                                <td>컴퓨터 및 주변기기 이동설치</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td>통신회선</td>
-                                <td>선로점검, 사용자의 사용환경 설정</td>
-                                <td className="no_bor">15,000원</td>
-                            </tr>
-                            <tr>
-                                <td>하드디스트 교체</td>
-                                <td>하드디스크 교체로 인한 데이터 백업 (500MB이하)</td>
-                                <td className="no_bor">20,000원</td>
-                            </tr>
-                            <tr>
-                                <td>인터넷 공유</td>
-                                <td>S/W, H/W 인터넷 공유 (장비, 공사비는 심사 후 결정)</td>
-                                <td className="no_bor">30,000원</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="tablescroll">
+                        <table className="tableA">
+                            <caption>AS요금표</caption>
+                            <colgroup>
+                                <col style={{"width" : "12%"}} />
+                                <col style={{"width" : "20%"}} />
+                                <col style={{"width" : "48%"}} />
+                                <col style={{"width" : "20%"}} />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>부분</th>
+                                    <th>구분</th>
+                                    <th>수리내역</th>
+                                    <th>요금</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>복구</td>
+                                    <td>데이터 복구</td>
+                                    <td>바이러스 및 기타 원인으로 데이터 복구</td>
+                                    <td className="no_bor">25,000원 ~ 400,000원</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={18}>S/W</td>
+                                    <td rowSpan={2}>포맷</td>
+                                    <td>하드디스트 초기화</td>
+                                    <td className="no_bor" rowSpan={2}>10,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>베드섹터처리(사용자의 동의를 얻은 후 실행)</td>
+                                </tr>
+                                <tr>
+                                    <td>응용프로그램 설치</td>
+                                    <td>각종 프로그램 설치</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>바이러스</td>
+                                    <td>바이러스 치료 및 백신 설치</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={5}>환경설정</td>
+                                    <td>CMOS SETUP</td>
+                                    <td className="no_bor" rowSpan={3}>10,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>CONFIG, AUTOEXEC</td>
+                                </tr>
+                                <tr>
+                                    <td>간단한 프로그램 세팅</td>
+                                </tr>
+                                <tr>
+                                    <td>카드류 설치 및 세팅</td>
+                                    <td className="no_bor" rowSpan={2}>20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>주변기기 설치 및 세팅</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={2}>주변기기 설치</td>
+                                    <td>각종 주변기기 Drive 설치(프린터, 스캐너 등)</td>
+                                    <td className="no_bor" rowSpan={2}>10,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>호환성 문제로 인한 드라이버 업데이트</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={7}>Windows 설치 <br/>드라이버 세팅 포함</td>
+                                    <td>윈도우 설치 (매장 방문 시)</td>
+                                    <td className="no_bor">25,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>윈도우 설치 (출장 시)</td>
+                                    <td className="no_bor">35,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>맥 운영체제 OSX 초기화 (매장 방문 시)</td>
+                                    <td className="no_bor">25,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>맥 운영체제 OSX 초기화 (출장 시)</td>
+                                    <td className="no_bor">40,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>부트캠프 설치 (매장 방문 시)</td>
+                                    <td className="no_bor">35,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>부트캠프 설치 (출장 시)</td>
+                                    <td className="no_bor">50,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>데이터 백업 (5G당 7,000원 추가)</td>
+                                    <td className="no_bor">10,000원</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={10}>H/W</td>
+                                    <td rowSpan={3}>하드웨어 분해 및 <br/>교체, 추가</td>
+                                    <td>충격, 이물질 등으로 인한 기구물 추가 및 교체</td>
+                                    <td className="no_bor" rowSpan={2}>10,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>FAN 교체, CD-ROM, FDD 가이드 추가</td>
+                                </tr>
+                                <tr>
+                                    <td>BIOS 업데이트</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td rowSpan={2}>하드웨어 미분해 수리</td>
+                                    <td>충격, 이물질 등으로 인한 키보드, 마우스 수리</td>
+                                    <td className="no_bor" rowSpan={2}>10,000</td>
+                                </tr>
+                                <tr>
+                                    <td>마이크 등 단순교체</td>
+                                </tr>
+                                <tr>
+                                    <td>소모성 교환</td>
+                                    <td>하드웨어 분해 후 배터리 또는 소모성 부품 교체</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>이동설치</td>
+                                    <td>컴퓨터 및 주변기기 이동설치</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>통신회선</td>
+                                    <td>선로점검, 사용자의 사용환경 설정</td>
+                                    <td className="no_bor">15,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>하드디스트 교체</td>
+                                    <td>하드디스크 교체로 인한 데이터 백업 (500MB이하)</td>
+                                    <td className="no_bor">20,000원</td>
+                                </tr>
+                                <tr>
+                                    <td>인터넷 공유</td>
+                                    <td>S/W, H/W 인터넷 공유 (장비, 공사비는 심사 후 결정)</td>
+                                    <td className="no_bor">30,000원</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     
                     <ul className="bullet01">
                         <li><p>상황에 따라 약간의 요금 변동은 있을 수 있습니다.</p></li>

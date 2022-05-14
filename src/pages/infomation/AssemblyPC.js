@@ -18,7 +18,13 @@ import AssemblyPCDetail from "./AssemblyPCDetail";
 import AssemblyPCWrite from "./AssemblyPCWrite";
 import AssemblyPCEdit from "./AssemblyPCEdit";
 
-const AssemblyPCLayout = styled.section``;
+const AssemblyPCLayout = styled.section`
+@media screen and (max-width: 1100px) {
+    .wrap{
+        padding:0 !important;
+    }
+}
+`;
 
 const AssemblyPC = () => {
     return (

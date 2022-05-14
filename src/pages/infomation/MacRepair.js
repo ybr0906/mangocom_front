@@ -18,7 +18,18 @@ import etc from '../../styles/images/etc.png'
 import power from '../../styles/images/power.png'
 import ram from '../../styles/images/ram.png'
 
-const MacRepairLayout = styled.section``;
+const MacRepairLayout = styled.section`
+@media screen and (max-width: 980px) {
+    .wrap{
+        padding:0 2vw !important;
+    }
+}
+@media screen and (max-width: 414px) {
+    .wrap{
+        padding:0 !important;
+    }
+}
+`;
 
 const MacLayout = styled.article`
 display:block;
@@ -82,6 +93,122 @@ li{
     }
     
 }
+
+@media screen and (max-width: 1500px) {
+    margin-bottom:5vw;
+    &.imac{
+        margin-top:10vw;
+    }
+    .textbox{
+        .text{
+            font-size:2vw;
+            margin-bottom:2vw;
+        }
+        .title{
+            font-size:2vw;
+            margin-bottom:3vw;
+        }
+    }
+    .service_category{
+        margin-bottom:4vw;
+        li{
+            &>img{
+                max-width:5vw;
+                margin-bottom:1vw;
+            }
+            p{
+                font-size: 1.3vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 980px) {
+    &.macbook{
+        .textbox{
+            top:47%;
+        }
+        .service_category{
+            width:70%;
+            margin:0 auto;
+            margin-bottom:2vw;
+            flex-wrap:wrap;
+        }
+    }
+
+    &.imac{
+        .service_category{
+            width:85%;
+            margin:0 auto;
+            margin-bottom:2vw;
+            flex-wrap:wrap;
+        }
+    }
+    .textbox{
+        .text{
+            font-size: 2.5vw;
+            margin-bottom: 1vw;
+        }
+        .title{
+            font-size:2.5vw;
+            margin-bottom:1vw;
+        }
+
+    }
+    .service_category{
+        margin-bottom:2vw;
+        li{
+            margin:1vw 2vw;
+            p{
+                margin-bottom:0.5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .service_category{
+        li{
+            margin:0.5vw 1vw;
+            &>img {
+                max-width: 4vw;
+                margin-bottom: 0.5vw;
+            }
+            p{
+                font-size:1.2vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    &.macbook{
+        .service_category{
+            width:80%;
+        }   
+    }
+    .textbox{
+        .text{
+            font-size:3vw;
+            margin-bottom:3vw;
+        }
+        .title{
+            font-size:4vw;
+            margin-bottom:3vw;
+        }
+    }
+    .service_category{
+        margin-bottom:4vw !important;
+        li{
+            margin:0.5vw 2vw;
+            &>img {
+                display:none;
+            }
+            p{
+                font-size:1.2vw;
+            }
+        }
+    }
+
+}
 `;
 
 const BoxText = styled.article`
@@ -116,6 +243,54 @@ const BoxText = styled.article`
             font-weight: 600;
             letter-spacing: -1px;
             font-family: 'Poppins', sans-serif;
+        }
+    }
+}
+@media screen and (max-width: 1500px) {
+    .title{
+        font-size:2vw;
+        margin-bottom:2vw;
+    }
+    .box{
+        padding:4vw 3vw;
+        p{
+            font-size: 1.5vw;
+            margin-bottom: 1.5vw;
+            padding-left:3.5vw;
+            &:before{
+                font-size:2vw;
+                top:-0.3vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .title{
+        font-size:2.5vw;
+    }
+    .box{
+        padding:3vw;
+        p{
+            font-size:1.6vw;
+            margin-bottom:1.2vw;
+        }
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .title{
+        font-size:3.5vw;
+    }
+    .box{
+        p{
+            font-size:2vw;
+            padding-left:4vw;
+
+            &:before{
+                font-size:2.5vw;
+                top:0;
+            }
         }
     }
 }

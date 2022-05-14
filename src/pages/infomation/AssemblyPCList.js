@@ -13,7 +13,9 @@ import dobuleArrow from '../../styles/images/arrow_double.svg'
 import rightArrow from '../../styles/images/arrow_right.svg'
 import computer from '../../styles/images/computer.jpg'
 
-const AssemblyPCListLayout = styled.section``;
+const AssemblyPCListLayout = styled.section`
+
+`;
 
 const SearchForm = styled.div`
 display:flex;
@@ -25,6 +27,7 @@ input{
     width:330px;
     border-radius: 25px 0 0 25px;
     padding-left: 25px;
+    width:30vw;
 }
 button{
     background: #555;
@@ -39,6 +42,46 @@ button{
     transition: background .4s;
     :hover{
         background: #000;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    margin-bottom:2vw;
+    input{
+        height:4vw;
+        padding-left:2.5vw;
+    }
+    button{
+        height: 4vw;
+        padding: 1.1vw 2.5vw 1.5vw 2vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    input{
+        height: 5vw;
+        padding-left: 2.5vw;
+        width: 35vw;
+    }
+    button{
+        height: 5vw;
+        padding: 0 3.5vw 0 3vw;
+        line-height: 5vw;
+    }
+}
+@media screen and (max-width: 414px) {
+    margin-bottom:5vw;
+    input{
+        height: 35px;
+        padding-left: 21px;
+        width: 80vw;
+        font-size:12px;
+    }
+    button{
+        height: 35px;
+        padding: 0 3.5vw 0 3vw;
+        line-height: 35px;
+        font-size: 12px;
+        width: 20vw;    
     }
 }
 `;
@@ -149,6 +192,132 @@ flex-wrap:wrap;
             text-align: right;
         }
     }
+
+
+@media screen and (max-width: 1500px) {
+    .box{
+        margin-right: 2vw;
+        width: calc((100% - 4vw) / 3);
+        padding: 2vw 2vw 2.5vw 2vw;
+        border-radius:2vw;
+        &:nth-child(4n){
+            margin-right:2vw;
+        }
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+4){
+            margin-top:2vw;
+        }
+        .imgarea{
+            margin-bottom:1vw;
+        }
+        .name{
+            font-size:1.5vw;
+            padding:2.5vw 0 1vw 0;
+            em{
+                font-size: 1vw;
+                padding: 0.3vw 1.2vw;
+                border-radius: 2vw;
+            }
+        }
+        .detail{
+            font-size:1.1vw;
+        }
+        .price{
+            margin-top: 2vw;
+            font-size: 1.8vw;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box{
+        .name{
+            font-size:2vw;
+            padding:3vw 0 2vw 0;
+        }
+        .detail{
+            font-size:1.5vw;
+        }
+        .price{
+            font-size: 2.5vw;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .box{
+        margin-right: 4vw;
+        width: calc((100% - 4vw) / 2);
+        padding: 2vw 4vw 3.5vw 4vw;
+        border-radius:3vw;
+        &:nth-child(3n){
+            margin-right:4vw;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:4vw;
+        }
+        .name{
+            font-size: 2.4vw;
+            padding: 4vw 0 1.5vw 0;
+        }
+        .detail{
+            font-size:1.8vw;
+        }
+        .price{
+            font-size: 2.8vw;
+        }
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .box{
+        margin-right: 10px;
+        width: calc((100% - 10px) / 2);
+        padding: 10px 15px 20px 15px;
+        border-radius: 15px;
+        &:nth-child(3n){
+            margin-right:10px;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:10px;
+        }
+        .name{
+            font-size: 13px;
+            padding: 22px 0 10px 0;
+            em{
+                font-size: 10px;
+                padding: 2px 7px;
+                border-radius: 20px;
+            }
+        }
+        .detail{
+            font-size:11px;
+        }
+        .price{
+            font-size:15px;
+            margin-top:13px;
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .box{
+        margin-right: 0;
+        width: 100%;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+    }
+}
 `;
 
 //임시데이터

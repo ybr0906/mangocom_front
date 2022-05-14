@@ -16,6 +16,9 @@ padding: 20px 0;
 .logo{
     cursor:pointer;
 }
+.mobile_btn{
+    display:none;
+}
 nav{
     display:flex;
     align-items:center;
@@ -46,6 +49,40 @@ nav{
         }
     }
 }
+@media screen and (max-width: 1500px) {
+padding: 1.5vw 0 1vw 0;
+.logo{
+    font-size:2vw;
+}
+nav{
+    span{
+        font-size: 1.3vw;
+        margin: 0 2vw;
+        padding-bottom: 1vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    padding:0;
+    height:6vw;
+    .wrap{
+        height:100%;
+    }
+    .logo{
+        font-size:2vw;
+    }
+    .mobile_btn{
+        display:block;
+        
+    }
+    nav{
+        display:none;
+        span{
+            font-size: 1.3vw;
+            margin: 0 2vw;
+            padding-bottom: 1vw;
+        }
+    }
 `;
 
 const Header = () => {
@@ -59,6 +96,7 @@ const Header = () => {
         <HeaderLayout>
             <div className="wrap">
                 <h1 className="logo" data-title="" onClick={onMenuHandler}>로고</h1>
+                <span className="mobile_btn">메뉴열기</span>
                 <nav>
                     <span data-title="introduce" onClick={onMenuHandler}>회사소개</span>
                     <span data-title="informationuse" onClick={onMenuHandler}>이용안내</span>
