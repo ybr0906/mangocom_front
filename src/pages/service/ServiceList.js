@@ -157,31 +157,39 @@ flex-wrap:wrap;
 `;
 
 const ServiceList = () => {
+    const [input, setInput] = useState('');
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
     const [checkAlertModal, setcheckAlertModal] = useState(false)
     const service_id = useRef();
 
-
     const navigate = useNavigate();
-
 
     const onDetatilHandler = (e) => {
         service_id.current = e.currentTarget.dataset.key;
-
         setcheckAlertModal(true);
-
-        //const key = e.currentTarget.dataset.key;
-        //navigate(`/service/${key}`);
-
+        if (localStorage.getItem("mangocomSession")) {
+            navigate(`/service/${service_id.current}`);
+        }
     }
     const onWriteHandler = () => {
         navigate("/service/write");
     }
 
+    const onInputHandler = (e) => {
+        setInput(e.target.value);
+    }
+
+    const onSearchHandler = (e) => {
+        axios.get(`${process.env.host}/service?page=${page}&input=${input}`).then(({ data }) => {
+            setCount(data.data[0].count);
+            setData(data.data);
+        })
+    }
+
     useEffect(() => {
-        axios.get(`${process.env.host}/service?page=${page}`).then(({ data }) => {
+        axios.get(`${process.env.host}/service?page=${page}&input=${input}`).then(({ data }) => {
             setCount(data.data[0].count);
             setData(data.data);
         })
@@ -189,8 +197,8 @@ const ServiceList = () => {
     return (
         <ServiceListLayout>
             <SearchForm>
-                <input type="text" placeholder="검색어를 입력해주세요" />
-                <button>검색</button>
+                <input type="text" placeholder="검색어를 입력해주세요" onChange={onInputHandler} />
+                <button onClick={onSearchHandler}>검색</button>
             </SearchForm>
 
             <CardTable>
@@ -207,7 +215,7 @@ const ServiceList = () => {
                     })
                 }
             </CardTable>
-            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage}></Pagenation>
+            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input}></Pagenation>
             {/* <Paging>
                 <span className="arrow first_arrow"><img src={dobuleArrow} alt="" /></span>
                 <span className="arrow prev_arrow"><img src={rightArrow} alt="" /></span>

@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect, useL } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
@@ -135,12 +136,67 @@ li{
 `;
 
 const ServiceEdit = () => {
+    const location = useLocation();
     const navigate = useNavigate();
-    const onListHandler = (e) => {
-        navigate(-1);
-    }
-    useEffect(() => {
 
+    const [data, setData] = useState({});
+    const [file, setFile] = useState([]);
+    const [editFile, setEditFile] = useState({
+        file: [],
+        previewURL: "",
+    })
+
+
+    const onInputHandler = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+
+    const onFileHandler = (e) => {
+        setData({ ...data, file_name: null });
+        e.stopPropagation();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        const filesInArr = Array.from(e.target.files);
+
+        reader.onloadend = () => {
+            setEditFile({
+                file: filesInArr,
+                previewURL: reader.result,
+            });
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    const onCancleHandler = () => {
+        navigate(-1)
+    }
+    const onConfirmHandler = () => {
+        const formData = new FormData();
+
+        if (editFile.file.length != 0) {
+            editFile.file.map((i) => {
+                formData.append('file', i);
+            })
+            file.map((i) => {
+                formData.append('deleteFile', i);
+            })
+        }
+
+        formData.append('input', JSON.stringify(data));
+
+        axios.put(`${process.env.host}/service/${location.state.service_id}`, formData).then(({ data }) => {
+            navigate(-1);
+        })
+    }
+
+    useEffect(() => {
+        axios.get(`${process.env.host}/service/${location.state.service_id}`).then(({ data }) => {
+            setFile((data.file_url || '').split(','));
+            setData(data);
+        })
     }, [])
     return (
         <ServiceEditLayout>
@@ -150,13 +206,13 @@ const ServiceEdit = () => {
                         <div className="line">
                             <p className="item">성함.</p>
                             <p className="text">
-                                <input type="text" />
+                                <input type="text" name="name" defaultValue={data.name} onChange={onInputHandler} />
                             </p>
                         </div>
                         <div className="line">
                             <p className="item">비밀번호.</p>
                             <p className="text">
-                                <input type="password" />
+                                <input type="password" name="password" defaultValue={data.password} onChange={onInputHandler} />
                             </p>
                         </div>
                     </li>
@@ -164,18 +220,18 @@ const ServiceEdit = () => {
                         <div className="line">
                             <p className="item">연락처.</p>
                             <p className="text">
-                                <input type="text" />
+                                <input type="text" name="phone" defaultValue={data.phone} onChange={onInputHandler} />
                             </p>
                         </div>
                         <div className="line">
                             <p className="item">서비스 항목.</p>
                             <p className="text">
-                                <select>
-                                    <option>항목을 선택해 주세요</option>
-                                    <option>맥북, 아이맥 수리(애플)</option>
-                                    <option>컴퓨터 수리(출장AS)</option>
-                                    <option>조립 및 중고 PC 판매</option>
-                                    <option>노트북 액정문의</option>
+                                <select value={data.type} name="type" onChange={onInputHandler}>
+                                    <option value="">항목을 선택해 주세요</option>
+                                    <option value="apple">맥북, 아이맥 수리(애플)</option>
+                                    <option value="as">컴퓨터 수리(출장AS)</option>
+                                    <option value="product">조립 및 중고 PC 판매</option>
+                                    <option value="monitor">노트북 액정문의</option>
                                 </select>
                             </p>
                         </div>
@@ -184,7 +240,7 @@ const ServiceEdit = () => {
                         <div className="line">
                             <p className="item">주소.</p>
                             <p className="text">
-                                <input type="text" />
+                                <input type="text" name="address" defaultValue={data.address} onChange={onInputHandler} />
                             </p>
                         </div>
                     </li>
@@ -192,7 +248,7 @@ const ServiceEdit = () => {
                         <div className="line">
                             <p className="item">증상.</p>
                             <p className="text long">
-                                <textarea placeholder="증상을 입력해 주세요"></textarea>
+                                <textarea placeholder="증상을 입력해 주세요" name="symptom" defaultValue={data.symptom} onChange={onInputHandler}></textarea>
                             </p>
                         </div>
                     </li>
@@ -202,10 +258,24 @@ const ServiceEdit = () => {
                             <div className="text long">
                                 <div className="filebox">
                                     <div className="default">
-                                        {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+
+                                        {(data.file_name || '').split(',').map((i, index) => {
+                                            return (
+                                                <div className='file-name' key={index}>{i}</div>
+                                            )
+                                        })}
+                                        {
+                                            editFile.file && editFile.file.map((i, index) => {
+                                                return (
+                                                    <div className='file-name' key={index}>{i.name}</div>
+                                                )
+                                            })
+                                        }
+
+
                                     </div>
                                     <label htmlFor="file">파일찾기</label>
-                                    <input type="file" id="file" multiple />
+                                    <input type="file" id="file" multiple onChange={onFileHandler} />
                                 </div>
                             </div>
                         </div>
@@ -213,8 +283,8 @@ const ServiceEdit = () => {
                 </ServiceEditTable>
 
                 <div className="btnarea right">
-                    <BorderBtn text="취소" click={onListHandler}><em></em></BorderBtn>
-                    <YellowBtn text="확인" click={onListHandler}><em></em></YellowBtn>
+                    <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
+                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
                 </div>
             </div>
         </ServiceEditLayout>

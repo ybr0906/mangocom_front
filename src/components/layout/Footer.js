@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import PrivacyModal from "../modal/PrivacyModal";
@@ -66,24 +67,42 @@ address{
 `;
 
 const Footer = () => {
-    const [serviceModal, setServiceModal] = useState(false);    
-    const onServiceHandler = (e) => {        
-        setServiceModal(!serviceModal) 
+    const [render, setRender] = useState(false);
+    const [serviceModal, setServiceModal] = useState(false);
+    const onServiceHandler = (e) => {
+        setServiceModal(!serviceModal)
     }
-    const [privacyModal, setPrivacyModal] = useState(false);    
-    const onPrivacyHandler = (e) => {       
-        setPrivacyModal(!privacyModal) 
+    const [privacyModal, setPrivacyModal] = useState(false);
+    const onPrivacyHandler = (e) => {
+        setPrivacyModal(!privacyModal)
     }
-    const [managerModal, setManagerModal] = useState(false);    
-    const onManagerHandler = (e) => {        
-        setManagerModal(!managerModal) 
+    const [managerModal, setManagerModal] = useState(false);
+    const onManagerHandler = (e) => {
+        setManagerModal(!managerModal)
     }
+
+    const onLogoutHandler = () => {
+        localStorage.removeItem('mangocomSession')
+        axios.post(`${process.env.host}/member/logout`, { sid: localStorage.getItem('neoulSession') }).then(({ data }) => {
+            alert('로그아웃 완료')
+            setRender(!render)
+        })
+    }
+    useEffect(() => {
+
+    }, [render])
+
     return (
         <FooterLayout>
             <div className="footer_top">
                 <span onClick={onServiceHandler}>이용약관</span>
                 <span onClick={onPrivacyHandler}>개인정보처리방침</span>
-                <span onClick={onManagerHandler}>관리자</span>
+                {
+                    localStorage.getItem('mangocomSession') == null ?
+                        <span onClick={onManagerHandler}>관리자</span>
+                        :
+                        <span onClick={onLogoutHandler}>로그아웃</span>
+                }
             </div>
             <div className="wrap">
                 <h1 className="logo">로고</h1>
@@ -97,11 +116,11 @@ const Footer = () => {
             </div>
 
 
-            {/*이용약관 모달*/}     
+            {/*이용약관 모달*/}
             {serviceModal && <ServiceModal onServiceHandler={onServiceHandler}></ServiceModal>}
-            {/*개인정보처리방침 모달*/}     
+            {/*개인정보처리방침 모달*/}
             {privacyModal && <PrivacyModal onPrivacyHandler={onPrivacyHandler}></PrivacyModal>}
-            {/*관리자 모달*/}     
+            {/*관리자 모달*/}
             {managerModal && <ManagerModal onManagerHandler={onManagerHandler}></ManagerModal>}
 
         </FooterLayout>

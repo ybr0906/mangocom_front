@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from 'axios'
 
 //components
 import YellowBtn from "../layout/YellowBtn";
@@ -94,7 +95,42 @@ const ManagerModalLayout = styled.div`
     }
 `;
 
-const ManagerModal = ({onManagerHandler}) => {
+const ManagerModal = ({ onManagerHandler }) => {
+    const navigate = useNavigate();
+
+    const [input, setInput] = useState({
+        id: '',
+        password: '',
+    });
+
+    const onChangeHandler = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+
+
+    const onConfirmHandler = (e) => {
+        axios.post(`${process.env.host}/member`, input).then(({ data }) => {
+            if (data.success) {
+                localStorage.setItem('mangocomSession', data.sid);
+                onManagerHandler()
+                alert('로그인 성공')
+            } else {
+                alert('로그인 정보가 일치하지 않습니다.');
+            }
+        })
+    }
+    // const onLoginHandler = () => {        
+    //     if(localStorage.getItem('neoulSession')==null){            
+    //         navigate('/login')
+    //     }else{            
+    //         localStorage.removeItem('neoulSession')
+    //         axios.post(`${process.env.host}/member/logout`, {sid: localStorage.getItem('neoulSession')}).then(({data})=>{               
+    //         })
+    //         navigate(-1)
+    //     }
+    //     setModal(false)
+    // }
+
     return (
         <ManagerModalLayout>
             <div className="inner">
@@ -102,17 +138,17 @@ const ManagerModal = ({onManagerHandler}) => {
                 <div className="inner_wrap">
                     <dl>
                         <dt>아이디</dt>
-                        <dd><input type="text" placeholder="아이디를 입력해주세요."/></dd>
+                        <dd><input type="text" name="id" placeholder="아이디를 입력해주세요." onChange={onChangeHandler} /></dd>
                     </dl>
                     <dl>
                         <dt>비밀번호</dt>
-                        <dd><input type="password" placeholder="비밀번호를 입력해주세요."/></dd>
-                    </dl>       
+                        <dd><input type="password" name="password" placeholder="비밀번호를 입력해주세요." onChange={onChangeHandler} /></dd>
+                    </dl>
                     <div className="btnarea center">
-                        <YellowBtn text="로그인"><em></em></YellowBtn>
-                    </div>   
+                        <YellowBtn text="로그인" click={onConfirmHandler}><em></em></YellowBtn>
+                    </div>
                 </div>
-                <button className="close" onClick={onManagerHandler}></button>   
+                <button className="close" onClick={onManagerHandler}></button>
             </div>
             <div className="shadow"></div>
         </ManagerModalLayout>

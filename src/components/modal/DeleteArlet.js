@@ -45,12 +45,19 @@ const DeleteAlertLayout = styled.div`
 `;
 
 const DeleteAlert = (props) => {
+    const { setDeleteModal, service_id, file } = props;
     const navigate = useNavigate();
+
     const onCancleHandler = (e) => {
-        navigate(-1);
+        setDeleteModal(false)
     }
     const onConfirmHandler = (e) => {
-
+        axios.post(`${process.env.host}/member/check`, { sid: localStorage.getItem('mangocomSession') }).then(({ data }) => {
+            axios.delete(`${process.env.host}/service/${service_id}`, { data: { deleteFile: file } }).then(({ data }) => {
+                setDeleteModal(false)
+                navigate(-1)
+            })
+        })
     }
     return (
         <DeleteAlertLayout>
