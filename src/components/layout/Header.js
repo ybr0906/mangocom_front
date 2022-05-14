@@ -8,6 +8,7 @@ left:0;
 top:0;
 width:100%;
 padding: 20px 0;
+z-index:2;
 .wrap{
     display:flex;
     align-items:center;
@@ -125,6 +126,9 @@ nav{
             font-size: 3vw;
             margin: 0;
             padding-bottom:3vw;
+            &:after{
+                display:none;
+            }
         }
         &.open{
             display:block;

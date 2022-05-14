@@ -126,8 +126,15 @@ const ServiceBox = styled.div`
         background:#efefef;
         padding: 50px 45px;
         color:#3a3a3a;
+        &:first-child{
+            border-radius: 100px 0 0 100px;
+            padding-left:80px;
+        }
         &:last-child{
             text-align:right;
+            border-radius: 0 100px 100px 0;
+            padding-right:80px;
+            background:#dddddd;
         }
         dt{
             font-size: 40px;
@@ -143,7 +150,68 @@ const ServiceBox = styled.div`
     }
 
 @media screen and (max-width: 1500px) {
-    
+    margin: 4vw 0;
+    dl{
+        padding: 3vw 4vw;
+        &:first-child{
+            border-radius: 10vw 0 0 10vw;
+            padding-left: 6vw
+        }
+        &:last-child{
+            border-radius: 0 10vw 10vw 0;
+            padding-right:6vw;
+        }
+        dt{
+            font-size: 2.3vw;
+        }
+        dd{
+            font-size: 1.5vw;
+            margin-top: 1.5vw;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    dl{
+        dt{
+            font-size: 2.6vw;
+        }
+        dd{
+            font-size: 1.8vw;
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    margin: 25px 0;
+    dl{
+        padding: 20px;
+        &:first-child{
+            border-radius: 50px 0 0 50px;
+            padding-left: 40px;
+        }
+        &:last-child{
+            border-radius: 0 50px 50px 0;
+            padding-right:40px;
+        }
+        dt{
+            font-size: 17px;
+        }
+        dd{
+            font-size: 11px;
+            margin-top: 7px;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    flex-wrap:wrap;
+    dl{
+        width:100%;
+        &:first-child{
+            border-radius: 50px 50px 0 0;
+        }
+        &:last-child{
+            border-radius:0 0 50px 50px;
+        }
+    }
 }
 `;
 const ServiceList01 = styled.div`

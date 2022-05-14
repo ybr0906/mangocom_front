@@ -22,6 +22,18 @@ const ServiceWriteLayout = styled.section`
         }
     }
 }
+
+@media screen and (max-width: 1500px) {
+    .btnarea{
+        margin-top:5vw;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .btnarea{
+        margin-top:40px;
+    }
+}
 `;
 const ServiceWriteTable = styled.ul`
 li{
@@ -141,6 +153,116 @@ li{
         }
     }
 }
+
+@media screen and (max-width: 1500px) {
+    li{
+        .line{
+            width:calc((100% - 3vw) / 2);
+            margin-right:3vw;
+            margin-top: 3vw;
+            .item{
+                font-size: 1.5vw;
+                margin-right: 0;
+                min-width: 100%;
+            }
+            .text{
+                margin-top:0.5vw;
+                &.long{
+                    width:100%;
+                    margin-top: 1vw;
+                }
+                input, select, textarea{
+                    font-size: 1.3vw;
+                    padding: 1vw 1.5vw;
+                }
+            }
+        }
+        .filebox{
+            .default{
+                font-size: 1.3vw;
+                padding: 1vw 1.5vw;
+                height:3.5vw;
+            }
+            label{
+                height: 3.5vw;
+                margin-left: 1vw;
+                padding: 1vw 1.5vw;
+            }
+            input[type="file"]{
+                padding:0 !important;
+            }
+        }
+    }  
+    }
+    
+    @media screen and (max-width: 768px) {
+        li{
+            .line{
+                .item{
+                    font-size: 1.8vw;
+                }
+                .text{
+                    margin-top:1vw;
+                    input, select, textarea{
+                        font-size: 1.6vw;
+                        padding: 1.2vw 1.5vw;
+                    }
+                }
+            }
+            .filebox{
+                .default{
+                    height:4.2vw;
+                }
+                label{
+                    height: 4.2vw;
+                }
+            }
+        }  
+    }
+    @media screen and (max-width: 414px) {
+        li{
+            flex-wrap:wrap;
+            &:first-child{
+                .line:first-child{
+                    margin-top:0;
+                }
+            }
+            .line{
+                margin-right:0;
+                width:100%;
+                margin-top:20px;
+                .item{
+                    font-size: 14px;
+                }
+                .text{
+                    margin-top:7px;
+                    input, select, textarea{
+                        font-size: 13px;
+                        padding: 10px 10px;
+                    }
+                    textarea{
+                        min-height:120px;
+                    }
+                    &.long{
+                        margin-top:10px;
+                    }
+                }
+            }
+            .filebox{
+                .default{
+                    height:27px;
+                    font-size: 13px;
+                    padding: 10px 10px;
+                }
+                label{
+                    height: 27px;
+                    font-size: 13px;
+                    padding: 5px 10px;
+                    margin-left: 5px;
+                }
+            }
+        }  
+    }
 `;
 
 const ServiceWrite = () => {
@@ -204,78 +326,76 @@ const ServiceWrite = () => {
 
     return (
         <ServiceWriteLayout>
-            <div className="wrap">
-                <ServiceWriteTable>
-                    <li>
-                        <div className="line">
-                            <p className="item">성함.</p>
-                            <p className="text">
-                                <input type="text" placeholder="성함을 입력해주세요." name="name" onChange={onInputHandler} />
-                            </p>
-                        </div>
-                        <div className="line">
-                            <p className="item">비밀번호.</p>
-                            <p className="text">
-                                <input type="password" placeholder="비밀번호를 입력해 주세요" name="password" onChange={onInputHandler} />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="line">
-                            <p className="item">연락처.</p>
-                            <p className="text">
-                                <input type="text" placeholder="연락처를 입력해 주세요" name="phone" onChange={onInputHandler} />
-                            </p>
-                        </div>
-                        <div className="line">
-                            <p className="item">서비스 항목.</p>
-                            <p className="text">
-                                <select name="type" onChange={onSelectHandler}>
-                                    <option value="">항목을 선택해 주세요</option>
-                                    <option value="apple">맥북, 아이맥 수리(애플)</option>
-                                    <option value="as">컴퓨터 수리(출장AS)</option>
-                                    <option value="product">조립 및 중고 PC 판매</option>
-                                    <option value="monitor">노트북 액정문의</option>
-                                </select>
-                            </p>
-                        </div>
-                    </li>
-                    <li className="w100">
-                        <div className="line">
-                            <p className="item">주소.</p>
-                            <p className="text">
-                                <input type="text" placeholder="주소를 입력해 주세요" name="address" onChange={onInputHandler} />
-                            </p>
-                        </div>
-                    </li>
-                    <li className="w100">
-                        <div className="line">
-                            <p className="item">증상.</p>
-                            <p className="text long">
-                                <textarea placeholder="증상을 입력해 주세요" name="symptom" onChange={onInputHandler}></textarea>
-                            </p>
-                        </div>
-                    </li>
-                    <li className="w100">
-                        <div className="line">
-                            <p className="item">첨부파일.</p>
-                            <div className="text long">
-                                <div className="filebox">
-                                    <div className="default">
-                                        {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)}
-                                    </div>
-                                    <label htmlFor="file">파일찾기</label>
-                                    <input type="file" id="file" multiple onChange={onFileHandler} />
+            <ServiceWriteTable>
+                <li>
+                    <div className="line">
+                        <p className="item">성함.</p>
+                        <p className="text">
+                            <input type="text" placeholder="성함을 입력해주세요." name="name" onChange={onInputHandler} />
+                        </p>
+                    </div>
+                    <div className="line">
+                        <p className="item">비밀번호.</p>
+                        <p className="text">
+                            <input type="password" placeholder="비밀번호를 입력해 주세요" name="password" onChange={onInputHandler} />
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div className="line">
+                        <p className="item">연락처.</p>
+                        <p className="text">
+                            <input type="text" placeholder="연락처를 입력해 주세요" name="phone" onChange={onInputHandler} />
+                        </p>
+                    </div>
+                    <div className="line">
+                        <p className="item">서비스 항목.</p>
+                        <p className="text">
+                            <select name="type" onChange={onSelectHandler}>
+                                <option value="">항목을 선택해 주세요</option>
+                                <option value="apple">맥북, 아이맥 수리(애플)</option>
+                                <option value="as">컴퓨터 수리(출장AS)</option>
+                                <option value="product">조립 및 중고 PC 판매</option>
+                                <option value="monitor">노트북 액정문의</option>
+                            </select>
+                        </p>
+                    </div>
+                </li>
+                <li className="w100">
+                    <div className="line">
+                        <p className="item">주소.</p>
+                        <p className="text">
+                            <input type="text" placeholder="주소를 입력해 주세요" name="address" onChange={onInputHandler} />
+                        </p>
+                    </div>
+                </li>
+                <li className="w100">
+                    <div className="line">
+                        <p className="item">증상.</p>
+                        <p className="text long">
+                            <textarea placeholder="증상을 입력해 주세요" name="symptom" onChange={onInputHandler}></textarea>
+                        </p>
+                    </div>
+                </li>
+                <li className="w100">
+                    <div className="line">
+                        <p className="item">첨부파일.</p>
+                        <div className="text long">
+                            <div className="filebox">
+                                <div className="default">
+                                    {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)}
                                 </div>
+                                <label htmlFor="file">파일찾기</label>
+                                <input type="file" id="file" multiple onChange={onFileHandler} />
                             </div>
                         </div>
-                    </li>
-                </ServiceWriteTable>
+                    </div>
+                </li>
+            </ServiceWriteTable>
 
-                <div className="btnarea right">
-                    <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
-                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
-                </div>
+            <div className="btnarea right">
+                <BorderBtn text="취소" click={onCancleHandler}><em></em></BorderBtn>
+                <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
             </div>
         </ServiceWriteLayout>
     )

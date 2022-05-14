@@ -62,8 +62,12 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
 .mb80{margin-bottom:80px;}
 
 @media screen and (max-width: 1500px) {
-    body,html,button,select,input{font-size:1.3vw;}
-    input{height:3vw;padding:0 1vw;font-size:1.2vw;}
+    body,html,button,select,input, textarea{font-size:1.3vw;}
+    input, select{height:3vw;padding:0 1vw;font-size:1.2vw;}
+    textarea{font-size:1.2vw;padding:1vw;}
+    .checkbox input[type="checkbox"] + label {padding-left: 2vw;}
+    .checkbox input[type="checkbox"] + label:before{width:1.2vw;height:1.2vw;top:0.2vw;}
+
 	.wrap{width:100%;margin:0;padding:0 50px;max-width:100%;}
     .sub_section{padding-bottom:10vw;min-height:calc(100vh - 10vw);}
     .sub_section>.wrap{padding-top:8vw;}
@@ -78,16 +82,21 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
     .mb80{margin-bottom:5vw;}
 }
 @media screen and (max-width: 768px) {
-    body,html,button,select,input{font-size:1.8vw;}
+    body,html,button,select,input, textarea{font-size:1.8vw;}
     .wrap{padding:0 3vw;}
     .bullet01 li:before{top:30%;width: 0.5vw;height: 0.5vw;}
-    input{height:4.5vw;}
+    input, select{height:4.5vw;}
+    .checkbox input[type="checkbox"] + label {padding-left: 3vw;}
+    .checkbox input[type="checkbox"] + label:before{width:1.5vw;height:1.5vw;}
 }
 
 @media screen and (max-width: 414px) {
-
-    body,html,button,select,input{font-size:13px;}
-    input{height: 34px;padding: 0 10px;}
+    .wrap{padding:0 15px;}
+    body,html,button,select,input, textarea{font-size:13px;}
+    input, select{height: 34px;padding: 0 10px;}
+    textarea{font-size:13px;padding:10px;min-height:100px;}
+    .checkbox input[type="checkbox"] + label {padding-left: 20px;}
+    .checkbox input[type="checkbox"] + label:before{width:13px;height:13px;top:2px;}
     .mb80{margin-bottom:40px;}
     .bullet01 li:before{top:20%;}
     .tablescroll{width:100%;overflow-x:auto;}
