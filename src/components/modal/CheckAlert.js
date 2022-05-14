@@ -66,7 +66,7 @@ const CheckAlert = (props) => {
         setcheckAlertModal(false)
     }
     const onConfirmHandler = (e) => {
-        axios.post(`${process.env.host}/auth/check`, { id: service_id, password }).then(({ data }) => {
+        axios.post(`${process.env.host}/service/check`, { id: service_id, password }).then(({ data }) => {
             const { success } = data;
             if (success) {
                 if (type == "detail") {

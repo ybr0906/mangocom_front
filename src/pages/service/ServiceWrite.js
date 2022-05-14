@@ -108,6 +108,15 @@ li{
             -webkit-transition: border-color .5s;
             transition: border-color .5s;
             position:relative;
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            &>div{
+                margin-right:10px;
+                &:last-child{
+                    margin-right:0;
+                }
+            }
         }
         .file-name{
             font-size: 17px;
@@ -163,7 +172,7 @@ const ServiceWrite = () => {
             formData.append('input', JSON.stringify(input));
 
             axios.post(`${process.env.host}/service`, formData).then(({ data }) => {
-                console.log(data)
+                navigate('/service')
             })
         }
     }

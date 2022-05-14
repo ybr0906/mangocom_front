@@ -82,8 +82,11 @@ const ServiceDetail = () => {
     const navigate = useNavigate();
     const param = useParams();
 
+    const [replyRender, setReplyRender] = useState(false);
+    const [reply, setReply] = useState('');
     const [type, setType] = useState('');
     const [checkAlertModal, setcheckAlertModal] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false);
     const [data, setData] = useState({
         name: "",
         phone: "",
@@ -106,18 +109,16 @@ const ServiceDetail = () => {
 
     const onDeleteHandler = (e) => {
         setType('delete');
-        if (localStorage.getItem('neoulSession')) {
-            // axios.post(`${process.env.host}/member/check`, {sid:localStorage.getItem('neoulSession')}).then(({data})=>{
-            //     setDeleteModal(modal => !modal)
-            // })            
+        if (localStorage.getItem('mangocomSession')) {
+            setDeleteModal(true)
         } else {
             setcheckAlertModal(true)
         }
     }
     const onEditHandler = (e) => {
         setType('edit');
-        if (localStorage.getItem('neoulSession')) {
-            //navigate('/message/edit', {state:{id_board:data.id_board}})                    
+        if (localStorage.getItem('mangocomSession')) {
+            navigate('/service/edit', { state: { service_id: param.id } })
         } else {
             setcheckAlertModal(true)
         }
@@ -127,8 +128,15 @@ const ServiceDetail = () => {
         navigate(-1);
     }
 
-    const replyCompeleteHandler = (e) => {
-        setreply(true)
+    const onReplyHandler = (e) => {
+        setReply(e.target.value)
+    }
+
+    const onConfirmHandler = () => {
+        axios.patch(`${process.env.host}/service`, { reply: reply, service_id: param.id, progress: 1 }).then(({ data }) => {
+            setReplyRender((replyRender) => !replyRender)
+            alert("답변완료")
+        })
     }
 
     useEffect(() => {
@@ -136,7 +144,7 @@ const ServiceDetail = () => {
             setFile((data.file_url || '').split(','));
             setData(data);
         })
-    }, [])
+    }, [replyRender])
 
     return (
         <ServiceDetailLayout>
@@ -149,7 +157,16 @@ const ServiceDetail = () => {
                         </div>
                         <div className="line">
                             <p className="item">서비스 항목.</p>
-                            <p className="text">{data.type}</p>
+                            {
+                                data.type == 'apple' ?
+                                    <p className="text">맥북, 아이맥 수리(애플)</p>
+                                    :
+                                    data.type == 'as' ? <p className="text">컴퓨터 수리(출장AS)</p>
+                                        :
+                                        data.type == 'product' ? <p className="text">조립 및 중고 PC 판매</p>
+                                            :
+                                            data.type == 'monitor' && <p className="text">노트북 액정문의</p>
+                            }
                         </div>
                     </li>
                     <li>
@@ -170,6 +187,20 @@ const ServiceDetail = () => {
                     </li>
                     <li className="w100">
                         <div className="line">
+                            <p className="item">첨부파일.</p>
+                            <p className="text">
+                                {
+                                    (data.file_name || '').split(',').map((i, index) => {
+                                        return (
+                                            <span className='file' key={index} data-name={i} data-url={file[index]} onClick={onFileHandler}>{i}</span>
+                                        )
+                                    })
+                                }
+                            </p>
+                        </div>
+                    </li>
+                    <li className="w100">
+                        <div className="line">
                             <p className="item">증상.</p>
                             <p className="text long">
                                 {(data.symptom || '').split('\n').map((line, index) => {
@@ -183,37 +214,42 @@ const ServiceDetail = () => {
                             </p>
                         </div>
                     </li>
-                    <li className="w100">
-                        <div className="line">
-                            <p className="item">첨부파일.</p>
-                            <p className="text">
-                                {
-                                    (data.file_name || '').split(',').map((i, index) => {
-                                        return (
-                                            <span className='file' key={index} data-name={i} data-url={file[index]} onClick={onFileHandler}>{i}</span>
-                                        )
-                                    })
-                                }
-                            </p>
-                        </div>
-                    </li>
                     <li className="w100 reply">
                         <div className="line">
-                            <p className="item">답변.</p>
-                            <div className="replyarea">
-                                {
-                                    data.progress == 0 ?
+                            {
+                                data.progress == 0 ?
+                                    localStorage.getItem('mangocomSession') ?
                                         <>
-                                            <textarea></textarea>
-                                            <div className="btnarea right">
-                                                <YellowBtn text="확인" click={replyCompeleteHandler}><em></em></YellowBtn>
+                                            <p className="item">답변.</p>
+                                            <div className="replyarea">
+                                                <textarea onChange={onReplyHandler}></textarea>
+                                                <div className="btnarea right">
+                                                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
+                                                </div>
                                             </div>
                                         </>
                                         :
-                                        <p className="text long">{data.reply}</p>
-                                }
+                                        <></>
+                                    :
+                                    localStorage.getItem('mangocomSession') ?
+                                        <>
+                                            <p className="item">답변.</p>
+                                            <div className="replyarea">
+                                                <textarea onChange={onReplyHandler} defaultValue={data.reply}></textarea>
+                                                <div className="btnarea right">
+                                                    <YellowBtn text="확인" click={onConfirmHandler}><em></em></YellowBtn>
+                                                </div>
+                                            </div>
+                                        </>
+                                        :
+                                        <>
+                                            <p className="item">답변.</p>
+                                            <div className="replyarea">
+                                                <p className="text long">{data.reply}</p>
+                                            </div>
+                                        </>
+                            }
 
-                            </div>
                         </div>
                     </li>
                 </ServiceDetailTable>
@@ -226,7 +262,7 @@ const ServiceDetail = () => {
             </div>
             {/*삭제 수정 버튼 클릭시 모달*/}
             {checkAlertModal && <CheckAlert setcheckAlertModal={setcheckAlertModal} file={file} type={type} service_id={param.id}></CheckAlert>}
-            {/* {deleteModal && <DeleteAlert setDeleteModal={setDeleteModal}></DeleteAlert>} */}
+            {deleteModal && <DeleteAlert setDeleteModal={setDeleteModal} file={file} service_id={param.id}></DeleteAlert>}
         </ServiceDetailLayout>
     )
 }

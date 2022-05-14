@@ -54,11 +54,11 @@ const PageStyled = styled.div`
 `;
 
 const Paging = (props) => {
-    const { total, setData, page, setPage } = props;
+    const { total, setData, page, setPage, input } = props;
 
     const onPageHandler = (page) => {
         setPage(page);
-        axios.get(`${process.env.host}/service?page=${page}`).then(({ data }) => {
+        axios.get(`${process.env.host}/service?page=${page}&input=${input}`).then(({ data }) => {
             setData(data.data);
         })
     };
