@@ -187,23 +187,23 @@ li{
     }
     .textbox{
         .text{
-            font-size:3vw;
-            margin-bottom:3vw;
+            font-size:14px;
+            margin-bottom:10px;
         }
         .title{
-            font-size:4vw;
-            margin-bottom:3vw;
+            font-size:14px;
+            margin-bottom:10px;
         }
     }
     .service_category{
-        margin-bottom:4vw !important;
+        margin-bottom:15px !important;
         li{
-            margin:0.5vw 2vw;
+            margin:2px;
             &>img {
                 display:none;
             }
             p{
-                font-size:1.2vw;
+                font-size:10px;
             }
         }
     }
@@ -284,15 +284,16 @@ const BoxText = styled.article`
 
 @media screen and (max-width: 414px) {
     .title{
-        font-size:3.5vw;
+        font-size:15px;
     }
     .box{
+        padding:15px;
         p{
-            font-size:2vw;
-            padding-left:4vw;
+            font-size:11px;
+            padding-left:19px;
 
             &:before{
-                font-size:2.5vw;
+                font-size:11px;
                 top:0;
             }
         }

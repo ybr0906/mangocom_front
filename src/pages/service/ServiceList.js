@@ -160,6 +160,120 @@ flex-wrap:wrap;
             }
         }
     }
+
+@media screen and (max-width: 1500px) {
+    .box{
+        margin-right: 2vw;
+        width: calc((100% - 4vw) / 3);
+        padding: 2vw 2vw 2.5vw 2vw;
+        border-radius:2vw;
+        &:nth-child(4n){
+            margin-right:2vw;
+        }
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+4){
+            margin-top:2vw;
+        }
+        .writer, .date{
+            font-size:1.1vw;
+        }
+        .title{
+            font-size:1.3vw;
+            margin:2vw 0 2.5vw 0;
+        }
+        .status_line{
+            right:2vw;
+            bottom:2vw;
+            .status{
+                padding: 0.5vw 1vw;
+                font-size: 1.1vw;
+                border-radius: 5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box{
+        .writer, .date{
+            font-size:1.4vw;
+        }
+        .title{
+            font-size:1.7vw;
+        }
+        .status_line{
+            .status{
+                font-size: 1.3vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .box{
+        margin-right: 4vw;
+        width: calc((100% - 4vw) / 2);
+        padding: 2vw 4vw 3.5vw 4vw;
+        border-radius:3vw;
+        &:nth-child(3n){
+            margin-right:4vw;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:4vw;
+        }
+        
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .box{
+        margin-right: 0;
+        width: 100%;
+        padding: 10px 15px 15px 15px;
+        border-radius: 15px;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+        .writer, .date{
+            font-size:10px;
+        }
+        .title{
+            font-size: 13px;
+            margin: 10px 0 20px 0;
+        }
+        .status_line{
+            right: 15px;
+            bottom: 15px
+            .status{
+                font-size: 11px;
+                padding: 4px 9px;
+                border-radius: 15px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .box{
+        margin-right: 0;
+        width: 100%;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+    }
+}
 `;
 
 const ServiceList = () => {

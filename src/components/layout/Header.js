@@ -163,7 +163,14 @@ const Header = () => {
     const navigate = useNavigate();
 
     const onMenuHandler = (e) => {
+        const navBg = document.getElementById('nav')
+        const button = document.querySelector('.mobile_btn');
+        const shadow = document.querySelector('.shadow');
         navigate(`/${e.target.dataset.title}`);
+
+        navBg.classList.remove('open')
+        shadow.classList.remove('open')
+        button.classList.remove('close')
     }
    
     const [nav, setNav] = useState(false);

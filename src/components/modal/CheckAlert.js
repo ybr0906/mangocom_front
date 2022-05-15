@@ -39,6 +39,7 @@ const CheckAlertLayout = styled.div`
             margin-top: 10px;
             margin-bottom:10px;
         }
+        input{width:100%;}
         .btnarea{
             margin-top:30px;
             button{
@@ -49,6 +50,51 @@ const CheckAlertLayout = styled.div`
             }
         }
     }
+
+@media screen and (max-width: 1500px) {
+
+    .inner{
+        padding:3vw;
+        border-radius:2vw;
+        p{
+            font-size:1.5vw;
+            margin-top:0;
+            margin-bottom:1vw;
+        }
+        .btnarea{
+            margin-top:2vw;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .inner{
+        width:160px;
+        p{
+            font-size:2vw;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .inner{
+    }
+}
+@media screen and (max-width: 414px) {
+    .inner{
+        padding:20px;
+        width:60%;
+        border-radius:15px;
+        p{
+            font-size:16px;
+            margin-bottom:5px;
+        }
+        .btnarea{
+            margin-top:15px;
+        }
+    }
+}
 `;
 
 const CheckAlert = (props) => {
