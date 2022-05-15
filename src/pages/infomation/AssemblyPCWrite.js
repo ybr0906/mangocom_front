@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
@@ -88,9 +89,32 @@ li{
 `;
 const AssemblyPCWrite = () => {
     const navigate = useNavigate();
-    const onListHandler = (e) => {        
+
+    const [data, setData] = useState({});
+    const [files, setFiles] = useState([]);
+
+
+    const onChangeHandler = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    const onFileHandler = (e) => {
+        setFiles({ ...files, [e.target.name]: e.target.files[0] });
+    }
+    const onListHandler = (e) => {
         navigate(-1);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
+    }
+    const onConfirmHandler = () => {
+        const formData = new FormData();
+
+        Object.entries(files).forEach(([key, value]) => {
+            formData.append(`${key}: ${value}`);
+        });
+        formData.append('input', JSON.stringify(data));
+
+        axios.post(`${process.env.host}/product`, formData).then(({ data }) => {
+            console.log(data);
+        })
     }
     return (
         <AssemblyPCWriteLayout>
@@ -99,15 +123,16 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">제품명.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input name="title" onChange={onChangeHandler} type="text" />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">구분.</p>
                         <p className="text">
-                            <select>
-                                <option>구분을 선택해 주세요</option>
-                                <option>조립</option>
+                            <select name="category" onChange={onChangeHandler}>
+                                <option value="">구분을 선택해 주세요</option>
+                                <option value="assembly">조립</option>
+                                <option value="used">중고</option>
                             </select>
                         </p>
                     </div>
@@ -116,13 +141,13 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">CPU.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="cpu_value" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">M.Board.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="mainboard" onChange={onChangeHandler} />
                         </p>
                     </div>
                 </li>
@@ -130,13 +155,13 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">VGA.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="vga" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">RAM.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="ram" onChange={onChangeHandler} />
                         </p>
                     </div>
                 </li>
@@ -144,19 +169,19 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">HDD.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="hdd" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">SSD.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="ssd" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">POWER.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="power" onChange={onChangeHandler} />
                         </p>
                     </div>
                 </li>
@@ -164,19 +189,19 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">CASE.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="case_value" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">CD-ROM.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="cdrom" onChange={onChangeHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">판매가.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="price" onChange={onChangeHandler} />
                         </p>
                     </div>
                 </li>
@@ -184,7 +209,7 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">제품의 특장점.</p>
                         <p className="text long">
-                            <textarea></textarea>
+                            <textarea name="contents" onChange={onChangeHandler}></textarea>
                         </p>
                     </div>
                 </li>
@@ -192,20 +217,20 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">제품 이미지.</p>
                         <p className="text">
-                            <input type="file" />
+                            <input type="file" name="thumbnail_url" onChange={onFileHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
                         <p className="text">
-                            <input type="file" />
+                            <input type="file" name="detail_url" onChange={onFileHandler} />
                         </p>
                     </div>
                 </li>
-            </ServiceWriteTable>    
+            </ServiceWriteTable>
             <div className="btnarea right">
                 <BorderBtn text="취소" click={onListHandler}><em></em></BorderBtn>
-                <YellowBtn text="등록" click={onListHandler}><em></em></YellowBtn>
+                <YellowBtn text="등록" click={onConfirmHandler}><em></em></YellowBtn>
             </div>
         </AssemblyPCWriteLayout>
     )
