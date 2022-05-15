@@ -253,7 +253,7 @@ flex-wrap:wrap;
         }
         .status_line{
             right: 15px;
-            bottom: 15px
+            bottom: 15px;
             .status{
                 font-size: 11px;
                 padding: 4px 9px;

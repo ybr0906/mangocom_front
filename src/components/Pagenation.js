@@ -35,7 +35,7 @@ const PageStyled = styled.div`
                 transform: rotate(180deg);
             }
         }
-        &:nth-child(2n){
+        &:nth-child(2){
             a{
                 font-size:0 !important;
                 display:block;
@@ -69,7 +69,7 @@ const PageStyled = styled.div`
         }
         a { 
             text-decoration: none;
-            color: #fff; 
+            color: #252525; 
             font-size: 14px; 
             &:hover, &.active{
                 color: #ffe383; 
@@ -94,15 +94,15 @@ const PageStyled = styled.div`
         margin-top:3vw;
     }
     li{
-        width:2.4vw;
-        height:2.4vw;
+        width:3vw;
+        height:3vw;
         &:first-child{
             a{
                 width: 1.1vw;
                 height: 1vw;
             }
         }
-        &:nth-child(2n){
+        &:nth-child(2){
             a{
                 width: 0.6vw;
                 height: 1vw;
@@ -119,20 +119,23 @@ const PageStyled = styled.div`
                 width: 0.6vw;
                 height: 1vw;
             }
+        }
+        a{
+            font-size:1.3vw;
         }
     }
 }
 @media screen and (max-width: 768px) {
     li{
-        width:3.4vw;
-        height:3.4vw;
+        width:3.8vw;
+        height:3.8vw;
         &:first-child{
             a{
                 width: 1.6vw;
                 height: 1vw;
             }
         }
-        &:nth-child(2n){
+        &:nth-child(2){
             a{
                 width: 0.9vw;
                 height: 1vw;
@@ -149,6 +152,9 @@ const PageStyled = styled.div`
                 width: 0.9vw;
                 height: 1vw;
             }
+        }
+        a{
+            font-size:1.7vw;
         }
     }
 }
@@ -164,7 +170,7 @@ const PageStyled = styled.div`
                 height: 11px;
             }
         }
-        &:nth-child(2n){
+        &:nth-child(2){
             a{
                 width: 5.5px;
                 height: 9px;
