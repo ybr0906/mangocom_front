@@ -101,7 +101,7 @@ const Informationuse = () => {
                     <li className={target == 'mac' ? 'on' : ''} onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
                     <li className={target == 'pcrepair' ? 'on' : ''}><span data-title="pcrepair" onClick={onMenuHandler}>컴퓨터수리(출장AS)</span></li>
                     <li className={target == 'assemblypc' ? 'on' : ''}><span data-title="assemblypc" onClick={onMenuHandler}>조립 및 중고 PC판매</span></li>
-                    <li className={target == 'monitor' ? 'on' : ''}><span data-title="monitor" onClick={onMenuHandler}>모니터 액정문의</span></li>
+                    <li className={target == 'monitor' ? 'on' : ''}><span data-title="monitor" onClick={onMenuHandler}>노트북 액정문의</span></li>
                 </ul>
             </TabA>
             <div className="wrap">
