@@ -101,6 +101,9 @@ const IntroduceLayout = styled.section`
         .title{
             font-size: 25px;
             margin-bottom: 25px;
+            em{
+                display:block;
+            }
         }
         .big{
             font-size: 16px;

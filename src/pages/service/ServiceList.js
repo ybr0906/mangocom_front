@@ -16,51 +16,17 @@ const ServiceListLayout = styled.section`
 .btnarea{
     margin-top:70px;
 }
-.paging{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top: 80px;
-    span{
-        background: #fff;
-        border: 1px solid #ddd;
-        box-sizing: border-box;
-        width: 36px;
-        height: 36px;
-        transition: background .4s;
-        cursor:pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 3px;
-        &.arrow{
-            &.first_arrow, &.prev_arrow{
-                transform:rotate(180deg);
-            }
-        }
+@media screen and (max-width: 1500px) {
+    .btnarea{
+        margin-top:5vw;
     }
-    .paging_num{
-        margin:0 5px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        .num{
-            font-family: 'Poppins', sans-serif;
-            color: #b5b5b5;
-            font-size: 16px;
-            line-height: 36px;
-            transition:.5s;
-            &:hover{
-                color:#ffc80b;
-            }
-            &.on{            
-                background-color: #ffc80b;
-                color: #252525;
-                border: 1px solid #ffc80b;
-            }
-        }
+}
+
+@media screen and (max-width: 414px) {
+    .btnarea{
+        margin-top:40px;
     }
-    }
+}
 `;
 
 const SearchForm = styled.div`
@@ -87,6 +53,46 @@ button{
     transition: background .4s;
     :hover{
         background: #000;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    margin-bottom:2vw;
+    input{
+        height:4vw;
+        padding-left:2.5vw;
+    }
+    button{
+        height: 4vw;
+        padding: 1.1vw 2.5vw 1.5vw 2vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    input{
+        height: 5vw;
+        padding-left: 2.5vw;
+        width: 35vw;
+    }
+    button{
+        height: 5vw;
+        padding: 0 3.5vw 0 3vw;
+        line-height: 5vw;
+    }
+}
+@media screen and (max-width: 414px) {
+    margin-bottom:5vw;
+    input{
+        height: 35px;
+        padding-left: 21px;
+        width: 80vw;
+        font-size:12px;
+    }
+    button{
+        height: 35px;
+        padding: 0 3.5vw 0 3vw;
+        line-height: 35px;
+        font-size: 12px;
+        width: 20vw;    
     }
 }
 `;
@@ -154,6 +160,120 @@ flex-wrap:wrap;
             }
         }
     }
+
+@media screen and (max-width: 1500px) {
+    .box{
+        margin-right: 2vw;
+        width: calc((100% - 4vw) / 3);
+        padding: 2vw 2vw 2.5vw 2vw;
+        border-radius:2vw;
+        &:nth-child(4n){
+            margin-right:2vw;
+        }
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+4){
+            margin-top:2vw;
+        }
+        .writer, .date{
+            font-size:1.1vw;
+        }
+        .title{
+            font-size:1.3vw;
+            margin:2vw 0 2.5vw 0;
+        }
+        .status_line{
+            right:2vw;
+            bottom:2vw;
+            .status{
+                padding: 0.5vw 1vw;
+                font-size: 1.1vw;
+                border-radius: 5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box{
+        .writer, .date{
+            font-size:1.4vw;
+        }
+        .title{
+            font-size:1.7vw;
+        }
+        .status_line{
+            .status{
+                font-size: 1.3vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .box{
+        margin-right: 4vw;
+        width: calc((100% - 4vw) / 2);
+        padding: 2vw 4vw 3.5vw 4vw;
+        border-radius:3vw;
+        &:nth-child(3n){
+            margin-right:4vw;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:4vw;
+        }
+        
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .box{
+        margin-right: 0;
+        width: 100%;
+        padding: 10px 15px 15px 15px;
+        border-radius: 15px;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+        .writer, .date{
+            font-size:10px;
+        }
+        .title{
+            font-size: 13px;
+            margin: 10px 0 20px 0;
+        }
+        .status_line{
+            right: 15px;
+            bottom: 15px
+            .status{
+                font-size: 11px;
+                padding: 4px 9px;
+                border-radius: 15px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .box{
+        margin-right: 0;
+        width: 100%;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+    }
+}
 `;
 
 const ServiceList = () => {
@@ -216,17 +336,6 @@ const ServiceList = () => {
                 }
             </CardTable>
             <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input}></Pagenation>
-            {/* <Paging>
-                <span className="arrow first_arrow"><img src={dobuleArrow} alt="" /></span>
-                <span className="arrow prev_arrow"><img src={rightArrow} alt="" /></span>
-                <div className="paging_num">
-                    <span className="num on">1</span>
-                    <span className="num">2</span>
-                    <span className="num">3</span>
-                </div>
-                <span className="arrow next_arrow"><img src={rightArrow} alt="" /></span>
-                <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>
-            </Paging> */}
             <div className="btnarea center">
                 <YellowBtn text="글쓰기" click={onWriteHandler}><em></em></YellowBtn>
             </div>

@@ -17,6 +17,15 @@ const CustomerLayout = styled.section`
         align-items:center;
         justify-content:space-between;
     }
+    @media screen and (max-width: 1500px) {
+        padding:5vw 0;
+    }
+    @media screen and (max-width: 414px) {
+        padding:30px 0;
+        .wrap{
+            flex-wrap:wrap;
+        }
+    }
 `;
 const SocialList = styled.div`
 display:flex;
@@ -46,6 +55,48 @@ p{
     font-weight:600;
     margin-top: 15px;
 }
+@media screen and (max-width: 1500px) {
+    width:45%;
+    &>div{
+        margin-right:3vw;
+    }
+    .imgarea{
+        width: 6.62vw;
+        height: 6.62vw;
+        img{
+            width:45%;
+        }
+    }
+    p{
+        font-size:1.2vw;
+        margin-top:1vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    .imgarea{
+        width: 9vw;
+        height: 9vw;
+    }
+    p{
+        font-size:1.5vw;
+    }
+}
+@media screen and (max-width: 414px) {
+    width:100%;
+    &>div{
+        margin-right:20px;
+        &:last-child{
+            margin-right:0;
+        }
+    }
+    .imgarea{
+        width: 60px;
+        height: 60px;
+    }
+    p{
+        font-size:12px;
+    }
+}
 `;
 const CustomerCenter = styled.div`
 background-color:#f7f7f7;
@@ -72,7 +123,39 @@ width:700px;
     transform: skew(-0.1deg);
     font-weight: 600;
 }
-
+@media screen and (max-width: 1500px) {
+    width:55%;
+    padding:3vw 2vw;
+    .title{
+        font-size:2vw;
+    }
+    .tel{
+        font-size:2vw;
+        margin:2vw 0 3vw 0;
+        padding-left:8vw;
+        background-size:5.5vw;
+    }
+    .time{
+        font-size:1.2vw;
+    }
+}
+@media screen and (max-width: 414px) {
+    width:100%;
+    padding:20px;
+    margin-top:20px;
+    .title{
+        font-size:16px;
+    }
+    .tel{
+        font-size: 16px;
+        margin: 10px 0 20px 0;
+        padding-left: 52px;
+        background-size: 36px;
+    }
+    .time{
+        font-size:10px;
+    }
+}
 `;
 
 const MainCustomer = () => {

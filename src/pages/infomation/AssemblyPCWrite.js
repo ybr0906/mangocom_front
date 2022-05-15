@@ -22,6 +22,17 @@ const AssemblyPCWriteLayout = styled.section`
         }
     }
 }
+@media screen and (max-width: 1500px) {
+    .btnarea{
+        margin-top:5vw;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .btnarea{
+        margin-top:40px;
+    }
+}
 `;
 const ServiceWriteTable = styled.ul`
 li{
@@ -85,6 +96,79 @@ li{
             margin-right:0;
         }        
     }
+}
+@media screen and (max-width: 1500px) {
+li{
+    .line{
+        width:calc((100% - 3vw) / 2);
+        margin-right:3vw;
+        margin-top: 3vw;
+        .item{
+            font-size: 1.5vw;
+            margin-right: 0;
+            min-width: 100%;
+        }
+        .text{
+            margin-top:0.5vw;
+            &.long{
+                width:100%;
+                margin-top: 1vw;
+            }
+            input, select, textarea{
+                font-size: 1.3vw;
+                padding: 1vw 1.5vw;
+            }
+        }
+    }
+}  
+}
+
+@media screen and (max-width: 768px) {
+    li{
+        .line{
+            .item{
+                font-size: 1.8vw;
+            }
+            .text{
+                margin-top:1vw;
+                input, select, textarea{
+                    font-size: 1.6vw;
+                    padding: 1.2vw 1.5vw;
+                }
+            }
+        }
+    }  
+}
+@media screen and (max-width: 414px) {
+    li{
+        flex-wrap:wrap;
+        &:first-child{
+            .line:first-child{
+                margin-top:0;
+            }
+        }
+        .line{
+            margin-right:0;
+            width:100%;
+            margin-top:20px;
+            .item{
+                font-size: 14px;
+            }
+            .text{
+                margin-top:7px;
+                input, select, textarea{
+                    font-size: 13px;
+                    padding: 10px 10px;
+                }
+                textarea{
+                    min-height:120px;
+                }
+                &.long{
+                    margin-top:10px;
+                }
+            }
+        }
+    }  
 }
 `;
 const AssemblyPCWrite = () => {

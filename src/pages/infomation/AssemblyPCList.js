@@ -14,7 +14,21 @@ import rightArrow from '../../styles/images/arrow_right.svg'
 import computer from '../../styles/images/computer.jpg'
 
 const AssemblyPCListLayout = styled.section`
+.btnarea{
+    margin-top:70px;
+}
 
+@media screen and (max-width: 1500px) {
+    .btnarea{
+        margin-top:5vw;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .btnarea{
+        margin-top:40px;
+    }
+}
 `;
 
 const SearchForm = styled.div`

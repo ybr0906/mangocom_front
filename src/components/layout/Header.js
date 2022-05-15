@@ -8,6 +8,7 @@ left:0;
 top:0;
 width:100%;
 padding: 20px 0;
+z-index:2;
 .wrap{
     display:flex;
     align-items:center;
@@ -125,6 +126,9 @@ nav{
             font-size: 3vw;
             margin: 0;
             padding-bottom:3vw;
+            &:after{
+                display:none;
+            }
         }
         &.open{
             display:block;
@@ -159,7 +163,14 @@ const Header = () => {
     const navigate = useNavigate();
 
     const onMenuHandler = (e) => {
+        const navBg = document.getElementById('nav')
+        const button = document.querySelector('.mobile_btn');
+        const shadow = document.querySelector('.shadow');
         navigate(`/${e.target.dataset.title}`);
+
+        navBg.classList.remove('open')
+        shadow.classList.remove('open')
+        button.classList.remove('close')
     }
    
     const [nav, setNav] = useState(false);

@@ -38,6 +38,57 @@ padding:65px 0;
         text-decoration:underline;
     }
 }
+
+@media screen and (max-width: 1500px) {
+    padding:3vw 0;
+    .titleB{
+        font-size:2vw;
+    }
+    .more_btn{
+        padding-right:2vw;
+        right:50px;
+        top:1vw;
+        font-size:1.4vw;
+        &:after{
+            background-size:100%;
+            width: 0.8vw;
+            height: 1.4vw;
+            top:0.3vw;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    padding:5vw 0;
+    .titleB{
+        font-size:2.2vw;
+    }
+    .more_btn{
+        right:3vw;
+        font-size:2vw;
+        padding-right:3vw;
+        &:after{
+            width: 1vw;
+            height: 1.4vw;
+            top: 0.6vw;
+        }
+    }
+}
+@media screen and (max-width: 414px) {
+    padding:30px 0;
+    .titleB{
+        font-size:15px;
+    }
+    .more_btn{
+        font-size:14px;
+        padding-right:14px;
+        right:15px;
+        &:after{
+            width: 6px;
+            height: 10px;
+            top: 4px;
+        }
+    }
+}
 `;
 
 const CardTable = styled.section`
@@ -104,6 +155,106 @@ margin-top: 45px;
             }
         }
     }
+
+@media screen and (max-width: 1500px) {
+    margin-top:3vw;
+    .box{
+        margin-right:2vw;
+        width:calc((100% - 4vw) / 3);
+        border-radius:1.5vw;
+        padding:2vw;
+        &:nth-child(n+4){
+            margin-top:2vw;
+        }
+        .writer, .date{
+            font-size:1.1vw;
+        } 
+        .title{
+            font-size:1.2vw;
+            margin: 2vw 0 2.5vw 0;
+        }
+        .status_line{
+            right:2vw;
+            bottom:2vw;
+            .status{
+                padding: 0.5vw 1vw;
+                font-size: 1.1vw;
+                border-radius: 5vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 900px) {
+    .box{
+        margin-right: 1vw;
+        width: calc((100% - 2vw) / 3);
+        &:nth-child(n+4){
+            margin-top:1vw;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box{
+        margin-right: 1vw;
+        width: calc((100% - 1vw) / 2);
+        &:nth-child(3n){
+            margin-right:1vw;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:1vw;
+        }
+        .writer, .date{
+            font-size:1.5vw;
+        } 
+        .title{
+            font-size:1.7vw;
+        }
+        .status_line{
+            .status{
+                padding: 0.7vw 1.5vw;
+                font-size: 1.5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 414px) {
+    margin-top:20px;
+    .box{
+        margin-right: 0;
+        width: 100%;
+        border-radius:15px;
+        padding:17px;
+        &:nth-child(3n){
+            margin-right:0;
+        }
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+2){
+            margin-top:10px;
+        }
+        .writer, .date{
+            font-size:11px;
+        } 
+        .title{
+            font-size:12px;
+            margin:11px 0 14px 0;
+        }
+        .status_line{
+            right:17px;
+            bottom:17px;
+            .status{
+                padding: 4px 9px;
+                font-size: 11px;
+            }
+        }
+    }
+}
 `;
 //임시데이터
 const data = [
