@@ -15,7 +15,7 @@ import Monitor from "./Monitor";
 
 
 const TabA = styled.div`
-border-bottom: 1px solid #efefef;
+// border-bottom: 1px solid #efefef;
 ul{
     display:flex;
     align-itmes:center;
@@ -56,6 +56,7 @@ li{
     }
 }
 @media screen and (max-width: 414px) {
+    border-bottom: 1px solid #efefef;
     ul{
         flex-wrap:wrap;
     }
@@ -95,7 +96,10 @@ const Informationuse = () => {
     }
     return (
         <section className="sub_section">
-            <SubVisual></SubVisual>
+            {/* <SubVisual></SubVisual> */}
+            <div className="wrap">
+            <TitleA title="이용안내"></TitleA>   
+            </div>
             <TabA>
                 <ul>
                     <li className={target == 'mac' ? 'on' : ''} onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>

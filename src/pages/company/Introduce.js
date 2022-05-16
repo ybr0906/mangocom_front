@@ -131,7 +131,7 @@ const IntroduceLayout = styled.section`
 const Introduce = () => {
     return (
         <IntroduceLayout className="sub_section">
-        <SubVisual></SubVisual>
+        {/* <SubVisual></SubVisual> */}
         <div className="wrap">
             <TitleA title="회사소개"></TitleA>   
             <div className="inner">

@@ -97,6 +97,61 @@ li{
             margin-right:0;
         }        
     }
+    .filebox{
+        display:flex;
+        align-items:flex-end;
+        .upload-name {
+            display: inline-block;
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #dddddd;
+            width: 78%;
+            color: #999999;
+        }
+        .default{
+            border: none;
+            border-bottom: 2px solid #d8d8d8;
+            width: 100%;
+            min-width: auto;
+            font-size: 17px;
+            height: 54px;
+            padding: 15px 13px;
+            -webkit-transition: border-color .5s;
+            transition: border-color .5s;
+            position:relative;
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            &>div{
+                margin-right:10px;
+                &:last-child{
+                    margin-right:0;
+                }
+            }
+        }
+        .file-name{
+            font-size: 17px;
+        }
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #999999;
+            cursor: pointer;
+            height: 40px;
+            margin-left: 10px;
+        }
+        input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+    }
 }
 
 @media screen and (max-width: 1500px) {
@@ -122,6 +177,21 @@ li{
             }
         }
     }
+    .filebox{
+        .default{
+            font-size: 1.3vw;
+            padding: 1vw 1.5vw;
+            height:3.5vw;
+        }
+        label{
+            height: 3.5vw;
+            margin-left: 1vw;
+            padding: 1vw 1.5vw;
+        }
+        input[type="file"]{
+            padding:0 !important;
+        }
+    }
 }  
 }
 
@@ -137,6 +207,14 @@ li{
                     font-size: 1.6vw;
                     padding: 1.2vw 1.5vw;
                 }
+            }
+        }
+        .filebox{
+            .default{
+                height:4.2vw;
+            }
+            label{
+                height: 4.2vw;
             }
         }
     }  
@@ -168,6 +246,19 @@ li{
                 &.long{
                     margin-top:10px;
                 }
+            }
+        }
+        .filebox{
+            .default{
+                height:27px;
+                font-size: 13px;
+                padding: 10px 10px;
+            }
+            label{
+                height: 27px;
+                font-size: 13px;
+                padding: 5px 10px;
+                margin-left: 5px;
             }
         }
     }  
@@ -315,15 +406,29 @@ const AssemblyPCEdit = () => {
                 <li>
                     <div className="line">
                         <p className="item">제품 이미지.</p>
-                        <p className="text">
-                            <input type="file" name="thumbnail_url" onChange={onFileHandler} />
-                        </p>
+                        <div className="text">
+                            {/* <input type="file" name="thumbnail_url" onChange={onFileHandler} /> */}
+                            <div className="filebox">
+                                <div className="default">
+                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                </div>
+                                <label htmlFor="file">파일찾기</label>
+                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                            </div>
+                        </div>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
-                        <p className="text">
-                            <input type="file" name="detail_url" onChange={onFileHandler} />
-                        </p>
+                        <div className="text">
+                            {/* <input type="file" name="detail_url" onChange={onFileHandler} /> */}
+                            <div className="filebox">
+                                <div className="default">
+                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                </div>
+                                <label htmlFor="file">파일찾기</label>
+                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ServiceWriteTable>
