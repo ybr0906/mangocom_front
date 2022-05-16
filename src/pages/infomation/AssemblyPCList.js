@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
 import YellowBtn from "../../components/layout/YellowBtn";
 import BlackBtn from "../../components/layout/BlackBtn";
+import Pagenation from '../../components/Pagenation';
 
 //image
 import dobuleArrow from '../../styles/images/arrow_double.svg'
@@ -335,112 +337,124 @@ flex-wrap:wrap;
 `;
 
 //임시데이터
-const data = [
-    {
-        key:1,
-        image:computer, 
-        category:'조립',
-        name:'인텔 7세대 카비레이크 i7-7700',
-        cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
-        mboard:'ASRock Z270 EXTREME4',
-        vga:'NVIDIA Geforce GTX1070 8G',
-        ram:'삼성DDR4 32G',
-        hdd:'ST/WD 1TB',
-        SSd:'SSD 256G',
-        power:'	마이크로닉스 700W 85+',
-        case:'	COX AG 200X',
-        cdRom:'	LG DVD-M',
-        features:'	-',
-        price:'	2,410,000 원',
-        detailImage:''
-    },
-    {
-        key:2,
-        image:computer,
-        category:'조립',
-        name:'인텔 7세대 카비레이크 i7-7700',
-        cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
-        mboard:'ASRock Z270 EXTREME4',
-        vga:'NVIDIA Geforce GTX1070 8G',
-        ram:'삼성DDR4 32G',
-        hdd:'ST/WD 1TB',
-        SSd:'SSD 256G',
-        power:'	마이크로닉스 700W 85+',
-        case:'	COX AG 200X',
-        cdRom:'	LG DVD-M',
-        features:'	-',
-        price:'	2,410,000 원',
-        detailImage:''
-    },
-    {
-        key:3,
-        image:computer,
-        category:'조립',
-        name:'인텔 7세대 카비레이크 i7-7700',
-        cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
-        mboard:'ASRock Z270 EXTREME4',
-        vga:'NVIDIA Geforce GTX1070 8G',
-        ram:'삼성DDR4 32G',
-        hdd:'ST/WD 1TB',
-        SSd:'SSD 256G',
-        power:'	마이크로닉스 700W 85+',
-        case:'	COX AG 200X',
-        cdRom:'	LG DVD-M',
-        features:'	-',
-        price:'	2,410,000 원',
-        detailImage:''
-    },
-    {
-        key:4,
-        image:computer,
-        category:'조립',
-        name:'인텔 7세대 카비레이크 i7-7700',
-        cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
-        mboard:'ASRock Z270 EXTREME4',
-        vga:'NVIDIA Geforce GTX1070 8G',
-        ram:'삼성DDR4 32G',
-        hdd:'ST/WD 1TB',
-        SSd:'SSD 256G',
-        power:'	마이크로닉스 700W 85+',
-        case:'	COX AG 200X',
-        cdRom:'	LG DVD-M',
-        features:'	-',
-        price:'	2,410,000 원',
-        detailImage:''
-    }
-]
+// const data = [
+//     {
+//         key:1,
+//         image:computer, 
+//         category:'조립',
+//         name:'인텔 7세대 카비레이크 i7-7700',
+//         cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
+//         mboard:'ASRock Z270 EXTREME4',
+//         vga:'NVIDIA Geforce GTX1070 8G',
+//         ram:'삼성DDR4 32G',
+//         hdd:'ST/WD 1TB',
+//         SSd:'SSD 256G',
+//         power:'	마이크로닉스 700W 85+',
+//         case:'	COX AG 200X',
+//         cdRom:'	LG DVD-M',
+//         features:'	-',
+//         price:'	2,410,000 원',
+//         detailImage:''
+//     },
+//     {
+//         key:2,
+//         image:computer,
+//         category:'조립',
+//         name:'인텔 7세대 카비레이크 i7-7700',
+//         cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
+//         mboard:'ASRock Z270 EXTREME4',
+//         vga:'NVIDIA Geforce GTX1070 8G',
+//         ram:'삼성DDR4 32G',
+//         hdd:'ST/WD 1TB',
+//         SSd:'SSD 256G',
+//         power:'	마이크로닉스 700W 85+',
+//         case:'	COX AG 200X',
+//         cdRom:'	LG DVD-M',
+//         features:'	-',
+//         price:'	2,410,000 원',
+//         detailImage:''
+//     },
+//     {
+//         key:3,
+//         image:computer,
+//         category:'조립',
+//         name:'인텔 7세대 카비레이크 i7-7700',
+//         cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
+//         mboard:'ASRock Z270 EXTREME4',
+//         vga:'NVIDIA Geforce GTX1070 8G',
+//         ram:'삼성DDR4 32G',
+//         hdd:'ST/WD 1TB',
+//         SSd:'SSD 256G',
+//         power:'	마이크로닉스 700W 85+',
+//         case:'	COX AG 200X',
+//         cdRom:'	LG DVD-M',
+//         features:'	-',
+//         price:'	2,410,000 원',
+//         detailImage:''
+//     },
+//     {
+//         key:4,
+//         image:computer,
+//         category:'조립',
+//         name:'인텔 7세대 카비레이크 i7-7700',
+//         cpuname:'인텔 7세대 카비레이크 i7-7700(3.6Ghz)',
+//         mboard:'ASRock Z270 EXTREME4',
+//         vga:'NVIDIA Geforce GTX1070 8G',
+//         ram:'삼성DDR4 32G',
+//         hdd:'ST/WD 1TB',
+//         SSd:'SSD 256G',
+//         power:'	마이크로닉스 700W 85+',
+//         case:'	COX AG 200X',
+//         cdRom:'	LG DVD-M',
+//         features:'	-',
+//         price:'	2,410,000 원',
+//         detailImage:''
+//     }
+// ]
 
 const AssemblyPCList = () => {
     const navigate = useNavigate();
-    const refId= useRef();
+    const refId = useRef();
+
+    const [input, setInput] = useState('');
+    const [data, setData] = useState();
+    const [count, setCount] = useState(0);
+    const [page, setPage] = useState(1);
+
     const onDetatilHandler = (e) => {
         refId.current = e.currentTarget.dataset.key;
         navigate(`/informationuse/assemblypc/${e.currentTarget.dataset.key}`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onWriteHandler = (e) => {
         navigate(`/informationuse/assemblypc/write`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
 
-    
+    useEffect(() => {
+        axios.get(`${process.env.host}/product?page=${page}&input=${input}`).then(({ data }) => {
+            setCount(data.data[0].count);
+            setData(data.data);
+        })
+    }, [])
+
     return (
         <AssemblyPCListLayout>
             <SearchForm>
                 <input type="text" placeholder="검색어를 입력해주세요" />
                 <button>검색</button>
-            </SearchForm>            
-        
+            </SearchForm>
+
             <CardTable>
                 {
-                    data && data.map(i=>{
-                        return(
-                            <div className="box" key={i.key} data-key={i.key} onClick={onDetatilHandler}>
-                                <div className="imgarea"><img src={i.image} alt="" /></div>
-                                <p className="name"><em>{i.category}</em>{i.name}</p>
+                    data && data.map(i => {
+                        return (
+                            <div className="box" key={i.id_sale} data-key={i.id_sale} onClick={onDetatilHandler}>
+                                <div className="imgarea"><img src={i.thumbnail_url} alt="" /></div>
+                                <p className="name"><em>{i.category}</em>{i.title}</p>
                                 <div className="detail">
-                                    <span>{i.cpuname}</span> / 
-                                    <span>{i.mboard}</span> / 
+                                    <span>{i.cpu_value}</span>
+                                    <span>{i.mainboard}</span>
                                     <span>{i.vga}</span>
                                 </div>
                                 <p className="price">{i.price}</p>
@@ -450,7 +464,7 @@ const AssemblyPCList = () => {
                 }
             </CardTable>
 
-            <Paging>
+            {/* <Paging>
                 <span className="arrow first_arrow"><img src={dobuleArrow} alt="" /></span>
                 <span className="arrow prev_arrow"><img src={rightArrow} alt="" /></span>
                 <div className="paging_num">
@@ -459,14 +473,15 @@ const AssemblyPCList = () => {
                     <span className="num">3</span>
                 </div>
                 <span className="arrow next_arrow"><img src={rightArrow} alt="" /></span>
-                <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>                    
-            </Paging>    
+                <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>
+            </Paging> */}
+            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input}></Pagenation>
 
 
             {/*관리자일때 보이는 버튼*/}
             <div className="btnarea right">
                 <BlackBtn text="등록" click={onWriteHandler}></BlackBtn>
-            </div>                
+            </div>
             {/*관리자일때 보이는 버튼*/}
         </AssemblyPCListLayout>
     )
