@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import SubVisual from "../../components/layout/SubVisual";
@@ -264,24 +265,38 @@ img{
 
 const AssemblyPCDetail = () => {
     const navigate = useNavigate();
-    const onListHandler = (e) => {        
+    const param = useParams();
+
+    const [data, setData] = useState({
+        title: "", contents: "", price: "", category: "", cpu_value: "", mainboard: "", vga: "", ram: "", hdd: "", ssd: "", power: "", case_value: "", cdrom: "", thumbnail_url: "", detail_url: ""
+    });
+    const [file, setFile] = useState([]);
+
+    const onListHandler = (e) => {
         navigate(-1);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
 
-    const onEditHandler = (e) => {        
-        navigate(`/informationuse/assemblypc/edit`);
-        window.scrollTo({top:0, left:0});
+    const onEditHandler = (e) => {
+        navigate(`/informationuse/assemblypc/edit`, { state: { id_product: param.id } });
+        window.scrollTo({ top: 0, left: 0 });
     }
-    
+
+    useEffect(() => {
+        axios.get(`${process.env.host}/product/${param.id}`).then(({ data }) => {
+            //setFile((data.con_url || '').split(','));
+            setData(data);
+        })
+    }, [])
+
     return (
         <AssemblyPCDetailLayout>
             <Info>
-                <div className="name"><em>조립</em>인텔 7세대 카비레이크 i7-7700</div>
+                <div className="name"><em>{data.category}</em>{data.title}</div>
                 <div className="top">
-                    <div className="imgarea"><img src={computer} alt="" /></div>
+                    <div className="imgarea"><img src={data.thumbnail_url} alt="" /></div>
                     <div className="info">
-                        <dl>
+                        {/* <dl>
                             <dt>CPU.</dt>
                             <dd>인텔 7세대 카비레이크 i7-7700(3.6Ghz)</dd>
                         </dl>
@@ -324,6 +339,52 @@ const AssemblyPCDetail = () => {
                         <dl>
                             <dt>판매가.</dt>
                             <dd>2,410,000 원</dd>
+                        </dl> */}
+
+
+                        <dl>
+                            <dt>CPU.</dt>
+                            <dd>{data.cpu_value}</dd>
+                        </dl>
+                        <dl>
+                            <dt>M.Board.</dt>
+                            <dd>{data.mainboard}</dd>
+                        </dl>
+                        <dl>
+                            <dt>VGA.</dt>
+                            <dd>{data.vga}</dd>
+                        </dl>
+                        <dl>
+                            <dt>RAM.</dt>
+                            <dd>{data.ram}</dd>
+                        </dl>
+                        <dl>
+                            <dt>HDD.</dt>
+                            <dd>{data.hdd}</dd>
+                        </dl>
+                        <dl>
+                            <dt>SSD.</dt>
+                            <dd>{data.ssd}</dd>
+                        </dl>
+                        <dl>
+                            <dt>POWER.</dt>
+                            <dd>{data.power}</dd>
+                        </dl>
+                        <dl>
+                            <dt>CASE.</dt>
+                            <dd>{data.case_value}</dd>
+                        </dl>
+                        <dl>
+                            <dt>CD-ROM.</dt>
+                            <dd>{data.cdrom}</dd>
+                        </dl>
+                        <dl>
+                            <dt>제품의 특장점.</dt>
+                            <dd>{data.contents}</dd>
+                        </dl>
+                        <dl>
+                            <dt>판매가.</dt>
+                            <dd>{data.price} 원</dd>
                         </dl>
                     </div>
                     <div className="btnarea right">
@@ -331,11 +392,11 @@ const AssemblyPCDetail = () => {
                     </div>
                 </div>
             </Info>
-            
+
 
             <Detail>
-                <TitleB title="DETAIL"></TitleB> 
-                <img src={sample_detail} alt="" />
+                <TitleB title="DETAIL"></TitleB>
+                <img src={data.detail_url} alt="" />
             </Detail>
             <div className="btnarea right">
                 {/*관리자일경우 보이는 버튼*/}

@@ -192,12 +192,13 @@ const AssemblyPCWrite = () => {
         const formData = new FormData();
 
         Object.entries(files).forEach(([key, value]) => {
-            formData.append(`${key}: ${value}`);
+            formData.append(key, value);
         });
         formData.append('input', JSON.stringify(data));
 
         axios.post(`${process.env.host}/product`, formData).then(({ data }) => {
-            console.log(data);
+            alert('등록완료')
+            navigate('/informationuse/assemblypc')
         })
     }
     return (

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //components
 import YellowBtn from "../../components/layout/YellowBtn";
@@ -174,10 +175,46 @@ li{
 `;
 const AssemblyPCEdit = () => {
     const navigate = useNavigate();
-    const onListHandler = (e) => {        
-        navigate(-1);
-        window.scrollTo({top:0, left:0});
+    const location = useLocation();
+
+    const [files, setFiles] = useState([]);
+    const [data, setData] = useState({
+        title: "", contents: "", price: "", category: "", cpu_value: "", mainboard: "", vga: "", ram: "", hdd: "", ssd: "", power: "", case_value: "", cdrom: "", thumbnail_url: "", detail_url: ""
+    });
+
+    const onInputHandler = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
     }
+    const onFileHandler = (e) => {
+        setFiles({ ...files, [e.target.name]: e.target.files[0] });
+    }
+
+    const onListHandler = (e) => {
+        navigate(-1);
+        window.scrollTo({ top: 0, left: 0 });
+    }
+
+    const onConfirmHandler = () => {
+        const formData = new FormData();
+
+        Object.entries(files).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+        formData.append('input', JSON.stringify(data));
+
+        axios.put(`${process.env.host}/product`, formData).then(({ data }) => {
+            alert('수정완료')
+            navigate('/informationuse/assemblypc')
+        })
+    }
+
+    useEffect(() => {
+        axios.get(`${process.env.host}/product/${location.state.id_product}`).then(({ data }) => {
+            //setFile((data.con_url || '').split(','));
+            setData(data);
+        })
+    }, [])
+
     return (
         <AssemblyPCEditLayout>
             <ServiceWriteTable>
@@ -185,15 +222,16 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">제품명.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="title" defaultValue={data.title} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">구분.</p>
                         <p className="text">
-                            <select>
-                                <option>구분을 선택해 주세요</option>
-                                <option>조립</option>
+                            <select name="category" value={data.category} onChange={onInputHandler}>
+                                <option value="">구분을 선택해 주세요</option>
+                                <option value="assembly">조립</option>
+                                <option value="used">중고</option>
                             </select>
                         </p>
                     </div>
@@ -202,13 +240,13 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">CPU.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="cpu_value" defaultValue={data.cpu_value} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">M.Board.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="mainboard" defaultValue={data.mainboard} onChange={onInputHandler} />
                         </p>
                     </div>
                 </li>
@@ -216,13 +254,13 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">VGA.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="vga" defaultValue={data.vga} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">RAM.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="ram" defaultValue={data.ram} onChange={onInputHandler} />
                         </p>
                     </div>
                 </li>
@@ -230,19 +268,19 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">HDD.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="hdd" defaultValue={data.hdd} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">SSD.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="ssd" defaultValue={data.ssd} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">POWER.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="power" defaultValue={data.power} onChange={onInputHandler} />
                         </p>
                     </div>
                 </li>
@@ -250,19 +288,19 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">CASE.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="case_value" defaultValue={data.case_value} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">CD-ROM.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="cdrom" defaultValue={data.cdrom} onChange={onInputHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">판매가.</p>
                         <p className="text">
-                            <input type="text" />
+                            <input type="text" name="price" defaultValue={data.price} onChange={onInputHandler} />
                         </p>
                     </div>
                 </li>
@@ -270,7 +308,7 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">제품의 특장점.</p>
                         <p className="text long">
-                            <textarea></textarea>
+                            <textarea name="contents" defaultValue={data.contents} onChange={onInputHandler}></textarea>
                         </p>
                     </div>
                 </li>
@@ -278,20 +316,20 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">제품 이미지.</p>
                         <p className="text">
-                            <input type="file" />
+                            <input type="file" name="thumbnail_url" onChange={onFileHandler} />
                         </p>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
                         <p className="text">
-                            <input type="file" />
+                            <input type="file" name="detail_url" onChange={onFileHandler} />
                         </p>
                     </div>
                 </li>
-            </ServiceWriteTable>    
+            </ServiceWriteTable>
             <div className="btnarea right">
                 <BorderBtn text="취소" click={onListHandler}><em></em></BorderBtn>
-                <YellowBtn text="수정" click={onListHandler}><em></em></YellowBtn>
+                <YellowBtn text="수정" click={onConfirmHandler}><em></em></YellowBtn>
             </div>
         </AssemblyPCEditLayout>
     )
