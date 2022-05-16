@@ -54,11 +54,15 @@ const QuickApplication = styled.div`
             display:flex;
             align-items:center;
             dl{
-                margin-top:0;
                 margin-right:20px;
                 width:calc((100% - 20px)/2);
                 &:last-child{
                     margin-right:0;
+                }
+            }
+            &:first-child{
+                dl{
+                    margin-top:0;
                 }
             }
         }
@@ -496,6 +500,12 @@ const MainService = () => {
                                 <dd><input type="text" placeholder="성함을 입력해 주세요" /></dd>
                             </dl>
                             <dl>
+                                <dt>비밀번호.</dt>
+                                <dd><input type="password" placeholder="비밀번호를 입력해 주세요" /></dd>
+                            </dl>
+                        </div>
+                        <div className="w50">                            
+                            <dl>
                                 <dt>서비스 항목.</dt>
                                 <dd>
                                     <select>
@@ -507,11 +517,11 @@ const MainService = () => {
                                     </select>
                                 </dd>
                             </dl>
+                            <dl>
+                                <dt>연락처.</dt>
+                                <dd><input type="text" placeholder="연락처를 입력해 주세요" /></dd>
+                            </dl>
                         </div>
-                        <dl>
-                            <dt>연락처.</dt>
-                            <dd><input type="text" placeholder="연락처를 입력해 주세요" /></dd>
-                        </dl>
                         <dl>
                             <dt>주소.</dt>
                             <dd><input type="text" placeholder="주소를 입력해 주세요" /></dd>
