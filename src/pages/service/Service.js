@@ -5,7 +5,6 @@ import styled from "styled-components";
 //components
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
-import YellowBtn from "../../components/layout/YellowBtn";
 
 //pages
 import ServiceList from "./ServiceList";
@@ -17,7 +16,7 @@ const Service = () => {
 
     return (
         <section className="sub_section">
-            <SubVisual></SubVisual>
+            {/* <SubVisual></SubVisual> */}
             <div className="wrap">
                 <TitleA title="서비스 문의"></TitleA>
                     <Routes>

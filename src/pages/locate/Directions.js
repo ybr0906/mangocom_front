@@ -119,7 +119,7 @@ const DirectionsLayout = styled.section`
 const Directions = () => {
     return (
         <DirectionsLayout className="sub_section">
-            <SubVisual></SubVisual>
+            {/* <SubVisual></SubVisual> */}
             <div className="wrap">
                 <TitleA title="오시는 길"></TitleA>      
                 <div className="maparea">

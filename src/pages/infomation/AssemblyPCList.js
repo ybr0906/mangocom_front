@@ -43,7 +43,6 @@ input{
     width:330px;
     border-radius: 25px 0 0 25px;
     padding-left: 25px;
-    width:30vw;
 }
 button{
     background: #555;
@@ -66,6 +65,7 @@ button{
     input{
         height:4vw;
         padding-left:2.5vw;
+        width:30vw;
     }
     button{
         height: 4vw;
@@ -212,18 +212,12 @@ flex-wrap:wrap;
 
 @media screen and (max-width: 1500px) {
     .box{
-        margin-right: 2vw;
-        width: calc((100% - 4vw) / 3);
-        padding: 2vw 2vw 2.5vw 2vw;
+        margin-right: 1vw;
+        width: calc((100% - 3vw) / 4);
+        padding: 2vw 1.8vw 2.5vw 1.8vw;
         border-radius:2vw;
-        &:nth-child(4n){
-            margin-right:2vw;
-        }
-        &:nth-child(3n){
-            margin-right:0;
-        }
-        &:nth-child(n+4){
-            margin-top:2vw;
+        &:nth-child(n+5){
+            margin-top:1vw;
         }
         .imgarea{
             margin-bottom:1vw;
@@ -246,6 +240,18 @@ flex-wrap:wrap;
         }
     }
 }
+@media screen and (max-width: 800px) {
+    .box{
+        margin-right: 1vw;
+        width: calc((100% - 1vw) / 2);
+        &:nth-child(2n){
+            margin-right:0;
+        }
+        &:nth-child(n+3){
+            margin-top:1vw;
+        }
+    }
+}
 
 @media screen and (max-width: 768px) {
     .box{
@@ -263,18 +269,12 @@ flex-wrap:wrap;
 }
 @media screen and (max-width: 600px) {
     .box{
-        margin-right: 4vw;
-        width: calc((100% - 4vw) / 2);
+        margin-right: 2vw;
+        width: calc((100% - 2vw) / 2);
         padding: 2vw 4vw 3.5vw 4vw;
         border-radius:3vw;
-        &:nth-child(3n){
-            margin-right:4vw;
-        }
-        &:nth-child(2n){
-            margin-right:0;
-        }
         &:nth-child(n+3){
-            margin-top:4vw;
+            margin-top:2vw;
         }
         .name{
             font-size: 2.4vw;

@@ -10,8 +10,6 @@ import BorderBtn from "../../components/layout/BorderBtn";
 import CheckAlert from "../../components/modal/CheckAlert";
 
 //image
-import dobuleArrow from '../../styles/images/arrow_double.svg'
-import rightArrow from '../../styles/images/arrow_right.svg'
 import DeleteAlert from "../../components/modal/DeleteArlet";
 
 const ServiceDetailLayout = styled.section`
