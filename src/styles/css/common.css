@@ -104,6 +104,6 @@ textarea {display: block;font-family: 'NanumSquare', sans-serif;font-size:15px; 
     .tableA thead th, .tableA tbody td{padding:8px 13px;}
     .bullet02{padding-left:15px;}
 
-    .sub_section{padding-bottom: 70px;min-height: calc(100vh - 177px);}
+    .sub_section{padding-bottom: 70px;min-height: calc(100vh - 192px);}
     .sub_section>.wrap{padding-top:40px}
 }

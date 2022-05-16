@@ -69,6 +69,7 @@ const Info = styled.section`
             justify-content:center;
             img{
                 display:block;
+                max-width:100%;
             }
         }
         .info{

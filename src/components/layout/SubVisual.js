@@ -30,7 +30,7 @@ position: relative;
 &:after{
     content:'';
     width:100%;
-    height:27%;
+    height:73px;
     position:absolute;
     left:0;
     top:0;
@@ -56,15 +56,18 @@ p{
 @media screen and (max-width: 1500px) {
     padding-top:5vw;
     height:20vw;
+    &:after{
+        height:5vw;
+    }
     p{
         font-size:2vw;
     }
 }
 @media screen and (max-width: 768px) {
     padding-top: 6vw;
-    height: 22vw;
+    height: 160px;
     &:after{
-        height:45px;
+        height:50px;
     }
     p{
         font-size:2.5vw;
@@ -73,6 +76,9 @@ p{
 @media screen and (max-width: 414px) {
     padding-top: 42px;
     height: 160px;
+    &:after{
+        height:40px;
+    }
     p{
         font-size:20px;
     }

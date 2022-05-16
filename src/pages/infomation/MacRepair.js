@@ -198,7 +198,7 @@ li{
     .service_category{
         margin-bottom:15px !important;
         li{
-            margin:2px;
+            margin:2px 5px;
             &>img {
                 display:none;
             }

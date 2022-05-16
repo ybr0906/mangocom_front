@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
 import axios from "axios";
 
+import logo from '../../styles/images/logo_w.png'
+
 //components
 import PrivacyModal from "../modal/PrivacyModal";
 import ServiceModal from "../modal/ServiceModal";
@@ -46,6 +48,11 @@ padding: 0 0 50px 0;
 }
 .logo{
     color:#fff;
+    width:125px;
+    img{
+        display:block;
+        width:100%;
+    }
 }
 address{
     display:flex;
@@ -75,7 +82,7 @@ address{
         }
     }
     .logo{
-        font-size:2.5vw;
+        width: 9vw;
     }
     address{
         max-width: 35vw;
@@ -98,12 +105,16 @@ address{
             padding:2vw;
         }
     }
+    .wrap{
+        justify-content:center;
+    }
     .logo{
-        font-size:2.5vw;
+        width: 13vw;
     }
     address{
         max-width: initial;
         margin-top:2vw;
+        justify-content: center;
         p{
             font-size:1.4vw;
             &.copyright{
@@ -133,7 +144,7 @@ address{
         }
     }
     .logo{
-        font-size:19px;
+        width: 70px;
     }
     address{
         margin-top:10px;
@@ -185,7 +196,7 @@ const Footer = () => {
                 }
             </div>
             <div className="wrap">
-                <h1 className="logo">로고</h1>
+                <h1 className="logo"><img src={logo} alt="" /></h1>
                 <address>
                     <p>경기도 수원시 장안구 파장동 606-5번지 1층</p>
                     <p>TEL : 000-000-0000</p>

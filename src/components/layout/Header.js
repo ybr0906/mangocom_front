@@ -2,20 +2,28 @@ import React, { useRef, useState } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
+import logo from '../../styles/images/logo2.png'
+
 const HeaderLayout = styled.header`
 position:absolute;
 left:0;
 top:0;
 width:100%;
-padding: 20px 0;
 z-index:2;
+height: 73px;
 .wrap{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    height:100%;
 }
 .logo{
     cursor:pointer;
+    width:110px;
+    img{
+        display:block;
+        width:100%;
+    }
 }
 .mobile_btn, .shadow{
     display:none;
@@ -30,7 +38,7 @@ nav{
         font-weight: 600;
         margin: 0 30px;
         cursor:pointer;
-        padding-bottom: 10px;
+        padding: 10px 0;
         position:relative;
         &:after{
             content: '';
@@ -51,9 +59,9 @@ nav{
     }
 }
 @media screen and (max-width: 1500px) {
-padding: 1.5vw 0 1vw 0;
+    height:5vw;
 .logo{
-    font-size:2vw;
+    width: 6.5vw;
 }
 nav{
     span{
@@ -62,21 +70,23 @@ nav{
         padding-bottom: 1vw;
     }
 }
+}
 
 @media screen and (max-width: 768px) {
     padding:0;
-    height:40px;
+    height:50px;
     .wrap{
         height:100%;
     }
     .logo{
-        font-size:2vw;
+        width: 70px;
     }
     .mobile_btn{
         display:block;
         position:relative;
         width:25px;
         height:16px;
+        top: -3px;
         z-index:6;
         .line{
             width:100%;
@@ -148,6 +158,10 @@ nav{
     }
 }
 @media screen and (max-width: 414px) {
+    height:40px;
+    .logo{
+        width:60px;
+    }
     nav{
         width: 60vw;
         padding: 60px 25px;
@@ -185,7 +199,7 @@ const Header = () => {
     return (
         <HeaderLayout>
             <div className="wrap">
-                <h1 className="logo" data-title="" onClick={onMenuHandler}>로고</h1>
+                <h1 className="logo" data-title="" onClick={onMenuHandler}><img src={logo} alt="" /></h1>
                 <span className={nav ? "mobile_btn close" : "mobile_btn"} onClick={onNavHandler}>
                     <em className="line line01"></em>
                     <em className="line line02"></em>
