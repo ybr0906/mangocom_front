@@ -5,7 +5,6 @@ import styled from "styled-components";
 //components
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
-import YellowBtn from "../../components/layout/YellowBtn";
 
 //pages
 import ServiceList from "./ServiceList";
