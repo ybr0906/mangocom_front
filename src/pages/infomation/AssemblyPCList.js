@@ -451,7 +451,7 @@ const AssemblyPCList = () => {
                         return (
                             <div className="box" key={i.id_sale} data-key={i.id_sale} onClick={onDetatilHandler}>
                                 <div className="imgarea"><img src={i.thumbnail_url} alt="" /></div>
-                                <p className="name"><em>{i.category}</em>{i.title}</p>
+                                <p className="name">{i.category == "used" ? <em>중고</em> : <em>조립</em>}{i.title}</p>
                                 <div className="detail">
                                     <span>{i.cpu_value}</span>
                                     <span>{i.mainboard}</span>

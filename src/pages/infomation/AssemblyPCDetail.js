@@ -283,9 +283,15 @@ const AssemblyPCDetail = () => {
         window.scrollTo({ top: 0, left: 0 });
     }
 
+    const onDeleteHandler = () => {
+        axios.delete(`${process.env.host}/product/${param.id}`, { data: data }).then(({ data }) => {
+            alert('삭제 완료')
+            navigate('/informationuse/assemblypc')
+        })
+    }
+
     useEffect(() => {
         axios.get(`${process.env.host}/product/${param.id}`).then(({ data }) => {
-            //setFile((data.con_url || '').split(','));
             setData(data);
         })
     }, [])
@@ -293,7 +299,7 @@ const AssemblyPCDetail = () => {
     return (
         <AssemblyPCDetailLayout>
             <Info>
-                <div className="name"><em>{data.category}</em>{data.title}</div>
+                <div className="name">{data.category == "used" ? <em>중고</em> : <em>조립</em>}{data.title}</div>
                 <div className="top">
                     <div className="imgarea"><img src={data.thumbnail_url} alt="" /></div>
                     <div className="info">
@@ -402,7 +408,7 @@ const AssemblyPCDetail = () => {
             <div className="btnarea right">
                 {/*관리자일경우 보이는 버튼*/}
                 <BlackBtn text="수정" click={onEditHandler}></BlackBtn>
-                <BlackBtn text="삭제"></BlackBtn>
+                <BlackBtn text="삭제" click={onDeleteHandler}></BlackBtn>
                 <YellowBtn text="목록" click={onListHandler}><em></em></YellowBtn>
             </div>
         </AssemblyPCDetailLayout>

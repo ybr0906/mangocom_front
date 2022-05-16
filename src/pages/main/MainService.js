@@ -461,27 +461,27 @@ const ServiceCategory = styled.div`
 //component
 
 const MainService = () => {
-    const [privacyModal, setPrivacyModal] = useState(false);    
-    const onPrivacyHandler = (e) => {       
-        setPrivacyModal(!privacyModal) 
+    const [privacyModal, setPrivacyModal] = useState(false);
+    const onPrivacyHandler = (e) => {
+        setPrivacyModal(!privacyModal)
     }
     const navigate = useNavigate();
-    
+
     const onMacRepairHandler = (e) => {
         navigate(`/informationuse/mac`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onAssemblyPCHandler = (e) => {
         navigate(`/informationuse/pcrepair`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onPCRepairHandler = (e) => {
         navigate(`/informationuse/assemblypc`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onMonitorHandler = (e) => {
         navigate(`/informationuse/monitor`);
-        window.scrollTo({top:0, left:0});
+        window.scrollTo({ top: 0, left: 0 });
     }
 
     return (
@@ -524,7 +524,7 @@ const MainService = () => {
                             <input type="checkbox" id="check" name="check" />
                             <label htmlFor="check"><em>개인정보 수집 이용</em>에 동의합니다</label>
                             <span className="link" onClick={onPrivacyHandler}>보기</span>
-                        </div>                        
+                        </div>
                         <div className="btnarea center">
                             <YellowBtn text="서비스 신청 접수"><em></em></YellowBtn>
                         </div>
@@ -550,7 +550,7 @@ const MainService = () => {
                     </div>
                 </ServiceCategory>
             </div>
-            {/*개인정보처리방침 모달*/}     
+            {/*개인정보처리방침 모달*/}
             {privacyModal && <PrivacyModal onPrivacyHandler={onPrivacyHandler}></PrivacyModal>}
         </ServiceLayout>
     )

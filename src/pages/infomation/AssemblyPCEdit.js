@@ -268,7 +268,8 @@ const AssemblyPCEdit = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [files, setFiles] = useState([]);
+    const [deleteFiles, setDeleteFiles] = useState();
+    const [files, setFiles] = useState();
     const [data, setData] = useState({
         title: "", contents: "", price: "", category: "", cpu_value: "", mainboard: "", vga: "", ram: "", hdd: "", ssd: "", power: "", case_value: "", cdrom: "", thumbnail_url: "", detail_url: ""
     });
@@ -285,15 +286,18 @@ const AssemblyPCEdit = () => {
         window.scrollTo({ top: 0, left: 0 });
     }
 
-    const onConfirmHandler = () => {
+    const onConfirmHandler = async () => {
         const formData = new FormData();
 
-        Object.entries(files).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
+        if (files) {
+            Object.entries(files).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+        }
+
         formData.append('input', JSON.stringify(data));
 
-        axios.put(`${process.env.host}/product`, formData).then(({ data }) => {
+        await axios.put(`${process.env.host}/product/${location.state.id_product}`, formData).then(({ data }) => {
             alert('수정완료')
             navigate('/informationuse/assemblypc')
         })
@@ -301,7 +305,6 @@ const AssemblyPCEdit = () => {
 
     useEffect(() => {
         axios.get(`${process.env.host}/product/${location.state.id_product}`).then(({ data }) => {
-            //setFile((data.con_url || '').split(','));
             setData(data);
         })
     }, [])
@@ -407,26 +410,24 @@ const AssemblyPCEdit = () => {
                     <div className="line">
                         <p className="item">제품 이미지.</p>
                         <div className="text">
-                            {/* <input type="file" name="thumbnail_url" onChange={onFileHandler} /> */}
                             <div className="filebox">
                                 <div className="default">
-                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                    {data && <div className="file-name" >{data.thumbnail_name}</div>}
                                 </div>
-                                <label htmlFor="file">파일찾기</label>
-                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                                <label htmlFor="thumbnail_url">파일찾기</label>
+                                <input type="file" name="thumbnail_url" id="thumbnail_url" onChange={onFileHandler} />
                             </div>
                         </div>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
                         <div className="text">
-                            {/* <input type="file" name="detail_url" onChange={onFileHandler} /> */}
                             <div className="filebox">
                                 <div className="default">
-                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                    {data && <div className="file-name" >{data.detail_name}</div>}
                                 </div>
-                                <label htmlFor="file">파일찾기</label>
-                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                                <label htmlFor="detail_url">파일찾기</label>
+                                <input type="file" name="detail_url" id="detail_url" onChange={onFileHandler} />
                             </div>
                         </div>
                     </div>

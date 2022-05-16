@@ -268,7 +268,11 @@ const AssemblyPCWrite = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState({});
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState({
+        thumbnail_url: "",
+        detail_url: "",
+    });
+    //const [files, setFiles] = useState();
 
 
     const onChangeHandler = (e) => {
@@ -395,26 +399,24 @@ const AssemblyPCWrite = () => {
                     <div className="line">
                         <p className="item">제품 이미지.</p>
                         <div className="text">
-                            {/* <input type="file" name="thumbnail_url" onChange={onFileHandler} /> */}
                             <div className="filebox">
                                 <div className="default">
-                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                    {files && <div className="file-name" >{files.thumbnail_url.name}</div>}
                                 </div>
-                                <label htmlFor="file">파일찾기</label>
-                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                                <label htmlFor="thumbnail_url">파일찾기</label>
+                                <input type="file" name="thumbnail_url" id="thumbnail_url" onChange={onFileHandler} />
                             </div>
                         </div>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
                         <div className="text">
-                            {/* <input type="file" name="detail_url" onChange={onFileHandler} /> */}
                             <div className="filebox">
                                 <div className="default">
-                                    {/* {postfiles && postfiles.file.map((i, index) => <div className="file-name" key={index}>{i.name}</div>)} */}
+                                    {files && <div className="file-name" >{files.detail_url.name}</div>}
                                 </div>
-                                <label htmlFor="file">파일찾기</label>
-                                <input type="file" name="detail_url" id="file" multiple onChange={onFileHandler} />
+                                <label htmlFor="detail_url">파일찾기</label>
+                                <input type="file" name="detail_url" id="detail_url" onChange={onFileHandler} />
                             </div>
                         </div>
                     </div>

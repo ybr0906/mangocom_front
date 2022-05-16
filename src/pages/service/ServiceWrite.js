@@ -306,7 +306,7 @@ const ServiceWrite = () => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const onFileHandler = (e) => {
-        e.stopPropagation();
+
         let reader = new FileReader();
         let file = e.target.files[0];
         const filesInArr = Array.from(e.target.files);
