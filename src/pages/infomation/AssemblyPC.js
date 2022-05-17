@@ -1,16 +1,6 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
-
-//components
-import SubVisual from "../../components/layout/SubVisual";
-import TitleA from "../../components/layout/TitleA";
-import YellowBtn from "../../components/layout/YellowBtn";
-
-//image
-import dobuleArrow from '../../styles/images/arrow_double.svg'
-import rightArrow from '../../styles/images/arrow_right.svg'
-import computer from '../../styles/images/computer.jpg'
 
 //pages
 import AssemblyPCList from "./AssemblyPCList";
@@ -30,7 +20,7 @@ const AssemblyPC = () => {
     return (
         <AssemblyPCLayout>
             <div className="wrap">
-                <TitleA title="조립 및 중고 PC판매"></TitleA>    
+                {/* <TitleA title="조립 및 중고 PC판매"></TitleA> */}
                 <Routes>
                     {/* 리스트 */}
                     <Route path="/" element={<AssemblyPCList />}></Route>
@@ -40,8 +30,8 @@ const AssemblyPC = () => {
                     <Route path="/write" element={<AssemblyPCWrite />}></Route>
                     {/* 수정 */}
                     <Route path="/edit" element={<AssemblyPCEdit />}></Route>
-                </Routes>    
-            </div>            
+                </Routes>
+            </div>
         </AssemblyPCLayout>
     )
 }

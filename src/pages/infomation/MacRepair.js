@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
 
 //components
 import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
 import OrangeBtn from "../../components/layout/OrangeBtn";
+
+
 
 //images
 import macbook from '../../styles/images/macbook.svg'
@@ -302,10 +304,12 @@ const BoxText = styled.article`
 `;
 
 const MacRepair = () => {
+    const navigate = useNavigate();
+
     return (
         <MacRepairLayout>
             <div className="wrap">
-                <TitleA title="맥북, 아이맥 수리(애플)"></TitleA> 
+                {/* <TitleA title="맥북, 아이맥 수리(애플)"></TitleA> */}
                 <MacLayout className="macbook">
                     <img src={macbook} alt="" className="bg" />
                     <div className="textbox">
@@ -341,14 +345,14 @@ const MacRepair = () => {
                                 <p>기타수리</p>
                             </li>
                         </ul>
-                        <OrangeBtn text="MACBOOK AS 신청하기"><em></em></OrangeBtn>
+                        <OrangeBtn text="MACBOOK AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) }}><em></em></OrangeBtn>
                     </div>
-                </MacLayout>       
+                </MacLayout>
 
                 <MacLayout className="imac">
                     <img src={imac} alt="" className="bg" />
                     <div className="textbox">
-                        <p className="text">보다 더 안전하게 가까워진다 <br/>컴퓨터를 뛰어넘는 iMac</p>
+                        <p className="text">보다 더 안전하게 가까워진다 <br />컴퓨터를 뛰어넘는 iMac</p>
                         <p className="title">iMac AS</p>
                         <ul className="service_category">
                             <li>
@@ -358,7 +362,7 @@ const MacRepair = () => {
                             <li>
                                 <img src={power} alt="" />
                                 <p>파워수리</p>
-                            </li>   
+                            </li>
                             <li>
                                 <img src={m_board} alt="" />
                                 <p>메인보드수리</p>
@@ -376,9 +380,9 @@ const MacRepair = () => {
                                 <p>기타수리</p>
                             </li>
                         </ul>
-                        <OrangeBtn text="iMac AS 신청하기"><em></em></OrangeBtn>
+                        <OrangeBtn text="iMac AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) }}><em></em></OrangeBtn>
                     </div>
-                </MacLayout>  
+                </MacLayout>
 
                 <BoxText>
                     <p className="title">MANGO COM MAC 서비스센터가 지키는 약속</p>
@@ -391,8 +395,8 @@ const MacRepair = () => {
                             <p data-num="05.">철저한 고객정보 보안을 책임지겠습니다.</p>
                         </div>
                     </div>
-                </BoxText>     
-            </div>            
+                </BoxText>
+            </div>
         </MacRepairLayout>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //component
 import YellowBtn from '../../components/layout/YellowBtn'
@@ -466,6 +467,15 @@ const ServiceCategory = styled.div`
 
 const MainService = () => {
     const [privacyModal, setPrivacyModal] = useState(false);
+    const [input, setInput] = useState({
+        name: "",
+        password: "",
+        phone: "",
+        category: "",
+        address: "",
+        symptom: "",
+        check: "",
+    });
     const onPrivacyHandler = (e) => {
         setPrivacyModal(!privacyModal)
     }
@@ -488,6 +498,34 @@ const MainService = () => {
         window.scrollTo({ top: 0, left: 0 });
     }
 
+    const onChangeHandler = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+
+    const onConfirmHandler = (e) => {
+
+        if (input.name == '') {
+            alert('이름을 입력해주세요.');
+        } else if (input.password == '') {
+            alert('비밀번호를 입력해주세요.');
+        } else if (input.category == '') {
+            alert('서비스항목을 입력해주세요.');
+        } else if (input.phone == "") {
+            alert('연락처를 입력해주세요.');
+        } else if (input.address == "") {
+            alert('주소를 입력해주세요.');
+        } else if (input.symptom == "") {
+            alert('증상을 입력해주세요.');
+        } else if (input.check == "") {
+            alert('계정 정보 수집 이용에 동의해주세요.');
+        } else {
+            axios.post(`${process.env.host}/service/index`, input).then(({ data }) => {
+                alert('접수 완료')
+                navigate('/service')
+            })
+        }
+    }
+
     return (
         <ServiceLayout>
             <div className="wrap">
@@ -497,46 +535,46 @@ const MainService = () => {
                         <div className="w50">
                             <dl>
                                 <dt>성함.</dt>
-                                <dd><input type="text" placeholder="성함을 입력해 주세요" /></dd>
+                                <dd><input type="text" placeholder="성함을 입력해 주세요" name="name" onChange={onChangeHandler} /></dd>
                             </dl>
                             <dl>
                                 <dt>비밀번호.</dt>
-                                <dd><input type="password" placeholder="비밀번호를 입력해 주세요" /></dd>
+                                <dd><input type="password" placeholder="비밀번호를 입력해 주세요" name="password" onChange={onChangeHandler} /></dd>
                             </dl>
                         </div>
-                        <div className="w50">                            
+                        <div className="w50">
                             <dl>
                                 <dt>서비스 항목.</dt>
                                 <dd>
-                                    <select>
-                                        <option>항목을 선택해 주세요</option>
-                                        <option>맥북, 아이맥 수리(애플)</option>
-                                        <option>컴퓨터 수리(출장AS)</option>
-                                        <option>조립 및 중고 PC 판매</option>
-                                        <option>노트북 액정문의</option>
+                                    <select name="category" onChange={onChangeHandler}>
+                                        <option value="">항목을 선택해 주세요</option>
+                                        <option value="apple">맥북, 아이맥 수리(애플)</option>
+                                        <option value="as">컴퓨터 수리(출장AS)</option>
+                                        <option value="product">조립 및 중고 PC 판매</option>
+                                        <option value="monitor">노트북 액정문의</option>
                                     </select>
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>연락처.</dt>
-                                <dd><input type="text" placeholder="연락처를 입력해 주세요" /></dd>
+                                <dd><input type="text" placeholder="연락처를 입력해 주세요" name="phone" onChange={onChangeHandler} /></dd>
                             </dl>
                         </div>
                         <dl>
                             <dt>주소.</dt>
-                            <dd><input type="text" placeholder="주소를 입력해 주세요" /></dd>
+                            <dd><input type="text" placeholder="주소를 입력해 주세요" name="address" onChange={onChangeHandler} /></dd>
                         </dl>
                         <dl>
                             <dt>증상.</dt>
-                            <dd><textarea placeholder="증상을 입력해 주세요"></textarea></dd>
+                            <dd><textarea placeholder="증상을 입력해 주세요" name="symptom" onChange={onChangeHandler}></textarea></dd>
                         </dl>
                         <div className="checkbox">
-                            <input type="checkbox" id="check" name="check" />
+                            <input type="checkbox" id="check" name="check" onChange={onChangeHandler} />
                             <label htmlFor="check"><em>개인정보 수집 이용</em>에 동의합니다</label>
                             <span className="link" onClick={onPrivacyHandler}>보기</span>
                         </div>
                         <div className="btnarea center">
-                            <YellowBtn text="서비스 신청 접수"><em></em></YellowBtn>
+                            <YellowBtn text="서비스 신청 접수" click={onConfirmHandler}><em></em></YellowBtn>
                         </div>
                     </div>
                 </QuickApplication>

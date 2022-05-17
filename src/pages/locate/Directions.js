@@ -121,7 +121,7 @@ const Directions = () => {
         <DirectionsLayout className="sub_section">
             {/* <SubVisual></SubVisual> */}
             <div className="wrap">
-                <TitleA title="오시는 길"></TitleA>      
+                <TitleA title="오시는 길"></TitleA>
                 <div className="maparea">
                     <img src={map} alt="" />
                 </div>
@@ -139,7 +139,7 @@ const Directions = () => {
                         <dd>aaa@gmail.com</dd>
                     </dl>
                 </div>
-            </div>            
+            </div>
         </DirectionsLayout>
     )
 }

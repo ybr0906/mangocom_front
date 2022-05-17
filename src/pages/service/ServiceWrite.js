@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -266,15 +266,27 @@ li{
 `;
 
 const ServiceWrite = () => {
-    const [input, setInput] = useState();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const [input, setInput] = useState({
+        name: "",
+        password: "",
+        phone: "",
+        category: location.state.select,
+        address: "",
+        symptom: "",
+        check: "",
+    });
     const [postfiles, setPostfiles] = useState({
         file: [],
         previewURL: "",
     });
-    const navigate = useNavigate();
 
     const onCancleHandler = (e) => {
         navigate(-1)
+
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onConfirmHandler = (e) => {
 
@@ -282,10 +294,14 @@ const ServiceWrite = () => {
             alert('이름을 입력해주세요.');
         } else if (input.password == '') {
             alert('비밀번호를 입력해주세요.');
-        } else if (input.title == '') {
-            alert('제목을 입력해주세요.');
-        } else if (input.contents == "") {
-            alert('내용을 입력해주세요.');
+        } else if (input.category == '') {
+            alert('서비스항목을 입력해주세요.');
+        } else if (input.phone == "") {
+            alert('연락처를 입력해주세요.');
+        } else if (input.address == "") {
+            alert('주소를 입력해주세요.');
+        } else if (input.symptom == "") {
+            alert('증상을 입력해주세요.');
         } else {
             const formData = new FormData();
             postfiles.file.map((i) => {
@@ -297,14 +313,14 @@ const ServiceWrite = () => {
                 navigate('/service')
             })
         }
+
+        window.scrollTo({ top: 0, left: 0 });
     }
 
     const onInputHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
-    const onSelectHandler = (e) => {
-        setInput({ ...input, [e.target.name]: e.target.value })
-    }
+
     const onFileHandler = (e) => {
 
         let reader = new FileReader();
@@ -351,7 +367,7 @@ const ServiceWrite = () => {
                     <div className="line">
                         <p className="item">서비스 항목.</p>
                         <p className="text">
-                            <select name="type" onChange={onSelectHandler}>
+                            <select name="category" value={input.category} onChange={onInputHandler}>
                                 <option value="">항목을 선택해 주세요</option>
                                 <option value="apple">맥북, 아이맥 수리(애플)</option>
                                 <option value="as">컴퓨터 수리(출장AS)</option>

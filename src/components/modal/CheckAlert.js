@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from "styled-components";
 import axios from "axios";
 
@@ -54,7 +54,7 @@ const CheckAlertLayout = styled.div`
 @media screen and (max-width: 1500px) {
 
     .inner{
-        padding:3vw;
+        padding:3vw 3vw 2vw 3vw;
         border-radius:2vw;
         p{
             font-size:1.5vw;
@@ -110,6 +110,7 @@ const CheckAlert = (props) => {
     }
     const onCancleHandler = (e) => {
         setcheckAlertModal(false)
+        window.scrollTo({ top: 0, left: 0 });
     }
     const onConfirmHandler = (e) => {
         axios.post(`${process.env.host}/service/check`, { id: service_id, password }).then(({ data }) => {
@@ -130,6 +131,8 @@ const CheckAlert = (props) => {
             }
 
         })
+
+        window.scrollTo({ top: 0, left: 0 });
     }
     return (
         <CheckAlertLayout>

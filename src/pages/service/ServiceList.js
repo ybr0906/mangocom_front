@@ -299,7 +299,9 @@ const ServiceList = () => {
         }
     }
     const onWriteHandler = () => {
-        navigate("/service/write");
+        navigate("/service/write", { state: { select: "" } });
+
+        window.scrollTo({ top: 0, left: 0 });
     }
 
     const onInputHandler = (e) => {

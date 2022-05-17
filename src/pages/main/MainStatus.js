@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
-import { Routes, Route } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 //component
+import CheckAlert from '../../components/modal/CheckAlert'
 
 //images
 import ArrowRight from '../../styles/images/arrow_right.svg'
@@ -256,72 +258,51 @@ margin-top: 45px;
     }
 }
 `;
-//임시데이터
-const data = [
-    {
-        key:1,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수대기'
-    },
-    {
-        key:2,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수대기'
-    },
-    {
-        key:3,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:4,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:5,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    },
-    {
-        key:6,
-        title: '3월 중순쯤 msi 크리에이터 노트북 배터리 교체한 사람입니다.! 잘 쓰고있었는데 이번 주말에 노트북을 아예…',     
-        writer:'MSI스트레*',
-        date:'2022-05-02',
-        status:'접수완료'
-    }
-]
+
 const MainStatus = () => {
+    const navigate = useNavigate();
+    const [data, setData] = useState();
+    const [checkAlertModal, setcheckAlertModal] = useState(false);
+    const service_id = useRef();
+
+    const onDetatilHandler = (e) => {
+        service_id.current = e.currentTarget.dataset.key;
+        setcheckAlertModal(true);
+        if (localStorage.getItem("mangocomSession")) {
+            navigate(`/service/${service_id.current}`);
+        }
+    }
+
+    useEffect(() => {
+        axios.get(`${process.env.host}/service/index`).then(({ data }) => {
+            setData(data);
+        })
+    }, [])
+
     return (
         <StatusLayout>
-        <div className="wrap">
-            <h3 className="titleB">A/S 실시간 접수 및 처리현황</h3>
-            <CardTable>
-                {
-                    data && data.map(i=>{
-                        return(
-                            <div className="box" key={i.key} data-key={i.key}>
-                                <p className="writer">{i.writer}님</p>
-                                <p className="title"><span>{i.title}</span></p>
-                                <p className="date">{i.date}</p>
-                                <p className="status_line">{i.reply == "" || i.reply == null ? <span className='status wait'>접수대기</span>: <span className='status complete'>접수완료</span>}</p>
-                            </div>
-                        )
-                    })
-                }
-            </CardTable>
-            <span className="more_btn">more</span>
-        </div>
+            <div className="wrap">
+                <h3 className="titleB">A/S 실시간 접수 및 처리현황</h3>
+                <CardTable>
+                    {
+                        data && data.map(i => {
+                            return (
+                                <div className="box" key={i.service_id} data-key={i.service_id} onClick={onDetatilHandler}>
+                                    <p className="writer">{i.name}님</p>
+                                    <p className="title"><span>{i.symptom}</span></p>
+                                    <p className="date">{i.reg_date}</p>
+                                    <p className="status_line">{i.progress == 0 ? <span className='status wait'>접수대기</span> : <span className='status complete'>접수완료</span>}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </CardTable>
+                <span className="more_btn" onClick={() => {
+                    navigate('/service')
+                    window.scrollTo({ top: 0, left: 0 });
+                }}>more</span>
+            </div>
+            {checkAlertModal && <CheckAlert service_id={service_id.current} type="detail" setcheckAlertModal={setcheckAlertModal}></CheckAlert>}
         </StatusLayout>
     )
 }

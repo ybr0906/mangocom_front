@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
 import axios from "axios";
 
@@ -8,8 +8,7 @@ import YellowBtn from "../../components/layout/YellowBtn";
 import BorderBtn from "../../components/layout/BorderBtn";
 
 //image
-import dobuleArrow from '../../styles/images/arrow_double.svg'
-import rightArrow from '../../styles/images/arrow_right.svg'
+
 import ArrowGray from '../../styles/images/arrow_gray.svg'
 
 const AssemblyPCEditLayout = styled.section`
@@ -304,6 +303,12 @@ const AssemblyPCEdit = () => {
     }
 
     useEffect(() => {
+
+        if (!localStorage.getItem('mangocomSession')) {
+            alert('잘못된 접근입니다.')
+            navigate(-1)
+        }
+
         axios.get(`${process.env.host}/product/${location.state.id_product}`).then(({ data }) => {
             setData(data);
         })
@@ -412,7 +417,16 @@ const AssemblyPCEdit = () => {
                         <div className="text">
                             <div className="filebox">
                                 <div className="default">
-                                    {data && <div className="file-name" >{data.thumbnail_name}</div>}
+                                    {/* {data && <div className="file-name" >{data.thumbnail_name}</div>} */}
+                                    {
+                                        files ?
+                                            files.thumbnail_url ?
+                                                <div className="file-name" >{files.thumbnail_url.name}</div>
+                                                :
+                                                <div className="file-name" >{data.thumbnail_name}</div>
+                                            :
+                                            <div className="file-name" >{data.thumbnail_name}</div>
+                                    }
                                 </div>
                                 <label htmlFor="thumbnail_url">파일찾기</label>
                                 <input type="file" name="thumbnail_url" id="thumbnail_url" onChange={onFileHandler} />
@@ -424,7 +438,15 @@ const AssemblyPCEdit = () => {
                         <div className="text">
                             <div className="filebox">
                                 <div className="default">
-                                    {data && <div className="file-name" >{data.detail_name}</div>}
+                                    {
+                                        files ?
+                                            files.detail_url ?
+                                                <div className="file-name" >{files.detail_url.name}</div>
+                                                :
+                                                <div className="file-name" >{data.detail_name}</div>
+                                            :
+                                            <div className="file-name" >{data.detail_name}</div>
+                                    }
                                 </div>
                                 <label htmlFor="detail_url">파일찾기</label>
                                 <input type="file" name="detail_url" id="detail_url" onChange={onFileHandler} />

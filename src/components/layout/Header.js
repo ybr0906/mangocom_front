@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
-import logo from '../../styles/images/logo2.png'
+import logo from '../../styles/images/logo.png'
 
 const HeaderLayout = styled.header`
 position:absolute;
@@ -180,13 +180,13 @@ const Header = () => {
         const navBg = document.getElementById('nav')
         const button = document.querySelector('.mobile_btn');
         const shadow = document.querySelector('.shadow');
-        navigate(`/${e.target.dataset.title}`);
+        navigate(`/${e.currentTarget.dataset.title}`);
 
         navBg.classList.remove('open')
         shadow.classList.remove('open')
         button.classList.remove('close')
     }
-   
+
     const [nav, setNav] = useState(false);
     const onNavHandler = () => {
         const navBg = document.getElementById('nav')
@@ -199,7 +199,7 @@ const Header = () => {
     return (
         <HeaderLayout>
             <div className="wrap">
-                <h1 className="logo" data-title="" onClick={onMenuHandler}><img src={logo} alt="" /></h1>
+                <h1 className="logo" data-title="index" onClick={onMenuHandler}><img src={logo} alt="" /></h1>
                 <span className={nav ? "mobile_btn close" : "mobile_btn"} onClick={onNavHandler}>
                     <em className="line line01"></em>
                     <em className="line line02"></em>
@@ -210,8 +210,8 @@ const Header = () => {
                     <span data-title="informationuse" onClick={onMenuHandler}>이용안내</span>
                     <span data-title="service" onClick={onMenuHandler}>서비스 문의</span>
                     <span data-title="directions" onClick={onMenuHandler}>오시는 길</span>
-                </nav>     
-                <div className="shadow"></div>           
+                </nav>
+                <div className="shadow"></div>
             </div>
         </HeaderLayout>
     )

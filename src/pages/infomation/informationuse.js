@@ -1,11 +1,9 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import styled from "styled-components";
 
 //components
-import SubVisual from "../../components/layout/SubVisual";
 import TitleA from "../../components/layout/TitleA";
-import YellowBtn from "../../components/layout/YellowBtn";
 
 //pages
 import MacRepair from "./MacRepair";
@@ -85,8 +83,9 @@ li{
 
 const Informationuse = () => {
     const navigate = useNavigate();
-    const refId= useRef();
-    const [target, setTargetTab] = useState('mac')
+    const refId = useRef();
+    const location = useLocation();
+    const [target, setTargetTab] = useState()
 
     const onMenuHandler = (e) => {
         refId.current = e.currentTarget.dataset.num;
@@ -94,15 +93,20 @@ const Informationuse = () => {
         navigate(`/informationuse/${target}`);
         setTargetTab(e.target.dataset.title);
     }
+
+    useEffect(() => {
+        setTargetTab(location.pathname.split('/')[2]);
+    }, [])
+
     return (
         <section className="sub_section">
             {/* <SubVisual></SubVisual> */}
             <div className="wrap">
-            <TitleA title="이용안내"></TitleA>   
+                <TitleA title="이용안내"></TitleA>
             </div>
             <TabA>
                 <ul>
-                    <li className={target == 'mac' ? 'on' : ''} onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
+                    <li className={target == 'mac' || target == undefined ? 'on' : ''} onClick={onMenuHandler}><span data-title="mac">맥북, 아이맥 수리(애플)</span></li>
                     <li className={target == 'pcrepair' ? 'on' : ''}><span data-title="pcrepair" onClick={onMenuHandler}>컴퓨터수리(출장AS)</span></li>
                     <li className={target == 'assemblypc' ? 'on' : ''}><span data-title="assemblypc" onClick={onMenuHandler}>조립 및 중고 PC판매</span></li>
                     <li className={target == 'monitor' ? 'on' : ''}><span data-title="monitor" onClick={onMenuHandler}>노트북 액정문의</span></li>
@@ -119,8 +123,8 @@ const Informationuse = () => {
                     <Route path="/assemblypc/*" element={<AssemblyPC />}></Route>
                     {/* 모니터 액정문의 */}
                     <Route path="/monitor" element={<Monitor />}></Route>
-                </Routes>          
-            </div>            
+                </Routes>
+            </div>
         </section>
     )
 }

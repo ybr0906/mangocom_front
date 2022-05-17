@@ -1,19 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import axios from "axios";
 
 //components
-import SubVisual from "../../components/layout/SubVisual";
-import TitleA from "../../components/layout/TitleA";
-import YellowBtn from "../../components/layout/YellowBtn";
 import BlackBtn from "../../components/layout/BlackBtn";
 import Pagenation from '../../components/Pagenation';
 
-//image
-import dobuleArrow from '../../styles/images/arrow_double.svg'
-import rightArrow from '../../styles/images/arrow_right.svg'
-import computer from '../../styles/images/computer.jpg'
 
 const AssemblyPCListLayout = styled.section`
 .btnarea{
@@ -33,119 +26,75 @@ const AssemblyPCListLayout = styled.section`
 }
 `;
 
-const SearchForm = styled.div`
-display:flex;
-align-items:center;
-justify-content: flex-end;
-margin-bottom:20px;
-input{
-    height: 45px;
-    width:330px;
-    border-radius: 25px 0 0 25px;
-    padding-left: 25px;
-}
-button{
-    background: #555;
-    text-align: center;
-    color: #fff;
-    display: inline-block;
-    height: 45px;
-    border-radius: 0 25px 25px 0;
-    padding: 8px 30px 8px 24px;
-    box-sizing: border-box;
-    vertical-align: top;
-    transition: background .4s;
-    :hover{
-        background: #000;
-    }
-}
+// const SearchForm = styled.div`
+// display:flex;
+// align-items:center;
+// justify-content: flex-end;
+// margin-bottom:20px;
+// input{
+//     height: 45px;
+//     width:330px;
+//     border-radius: 25px 0 0 25px;
+//     padding-left: 25px;
+// }
+// button{
+//     background: #555;
+//     text-align: center;
+//     color: #fff;
+//     display: inline-block;
+//     height: 45px;
+//     border-radius: 0 25px 25px 0;
+//     padding: 8px 30px 8px 24px;
+//     box-sizing: border-box;
+//     vertical-align: top;
+//     transition: background .4s;
+//     :hover{
+//         background: #000;
+//     }
+// }
 
-@media screen and (max-width: 1500px) {
-    margin-bottom:2vw;
-    input{
-        height:4vw;
-        padding-left:2.5vw;
-        width:30vw;
-    }
-    button{
-        height: 4vw;
-        padding: 1.1vw 2.5vw 1.5vw 2vw;
-    }
-}
-@media screen and (max-width: 768px) {
-    input{
-        height: 5vw;
-        padding-left: 2.5vw;
-        width: 35vw;
-    }
-    button{
-        height: 5vw;
-        padding: 0 3.5vw 0 3vw;
-        line-height: 5vw;
-    }
-}
-@media screen and (max-width: 414px) {
-    margin-bottom:5vw;
-    input{
-        height: 35px;
-        padding-left: 21px;
-        width: 80vw;
-        font-size:12px;
-    }
-    button{
-        height: 35px;
-        padding: 0 3.5vw 0 3vw;
-        line-height: 35px;
-        font-size: 12px;
-        width: 20vw;    
-    }
-}
-`;
-const Paging = styled.div`
-display:flex;
-align-items:center;
-justify-content:center;
-margin-top: 80px;
-span{
-    background: #fff;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    width: 36px;
-    height: 36px;
-    transition: background .4s;
-    cursor:pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 3px;
-    &.arrow{
-        &.first_arrow, &.prev_arrow{
-            transform:rotate(180deg);
-        }
-    }
-}
-.paging_num{
-    margin:0 5px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    .num{
-        font-family: 'Poppins', sans-serif;
-        color: #b5b5b5;
-        font-size: 16px;
-        line-height: 36px;
-        transition:.5s;
-        &:hover{
-            color:#ffc80b;
-        }
-        &.on{            
-            background-color: #ffc80b;
-            color: #252525;
-            border: 1px solid #ffc80b;
-        }
-    }
-}
-`;
+// @media screen and (max-width: 1500px) {
+//     margin-bottom:2vw;
+//     input{
+//         height:4vw;
+//         padding-left:2.5vw;
+//         width:30vw;
+//     }
+//     button{
+//         height: 4vw;
+//         padding: 1.1vw 2.5vw 1.5vw 2vw;
+//     }
+// }
+// @media screen and (max-width: 768px) {
+//     input{
+//         height: 5vw;
+//         padding-left: 2.5vw;
+//         width: 35vw;
+//     }
+//     button{
+//         height: 5vw;
+//         padding: 0 3.5vw 0 3vw;
+//         line-height: 5vw;
+//     }
+// }
+// @media screen and (max-width: 414px) {
+//     margin-bottom:5vw;
+//     input{
+//         height: 35px;
+//         padding-left: 21px;
+//         width: 80vw;
+//         font-size:12px;
+//     }
+//     button{
+//         height: 35px;
+//         padding: 0 3.5vw 0 3vw;
+//         line-height: 35px;
+//         font-size: 12px;
+//         width: 20vw;    
+//     }
+// }
+// `;
+
 
 const CardTable = styled.section`
 display:flex;
@@ -177,6 +126,9 @@ flex-wrap:wrap;
             align-items:center;
             justify-content:center;
             margin-bottom: 20px;
+            width:274px;
+            height:265px;
+            overflow:hidden;
             img{
                 display:inline-block;
                 width: 100%;
@@ -200,6 +152,17 @@ flex-wrap:wrap;
         .detail{
             font-size: 13px;
             color: #a1a1a1;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            transform: skew(-0.1deg);
+            min-height: 33px;
+            span{
+                display:inline-block;
+            }
         }
         .price{
             margin-top: 30px;
@@ -221,6 +184,8 @@ flex-wrap:wrap;
         }
         .imgarea{
             margin-bottom:1vw;
+            width: 100%;
+            height: 17vw;
         }
         .name{
             font-size:1.5vw;
@@ -233,6 +198,7 @@ flex-wrap:wrap;
         }
         .detail{
             font-size:1.1vw;
+            min-height:2.5vw;
         }
         .price{
             margin-top: 2vw;
@@ -249,6 +215,9 @@ flex-wrap:wrap;
         }
         &:nth-child(n+3){
             margin-top:1vw;
+        }
+        .imgarea{
+            height:38vw;
         }
     }
 }
@@ -315,6 +284,7 @@ flex-wrap:wrap;
         }
         .detail{
             font-size:11px;
+            min-height:30px;
         }
         .price{
             font-size:15px;
@@ -332,9 +302,16 @@ flex-wrap:wrap;
         &:nth-child(n+2){
             margin-top:10px;
         }
+        .imgarea{
+            height:80vw;
+        }
     }
 }
 `;
+
+// const Category = styled.div`
+
+// `;
 
 //임시데이터
 // const data = [
@@ -440,11 +417,15 @@ const AssemblyPCList = () => {
 
     return (
         <AssemblyPCListLayout>
-            <SearchForm>
+            {/* <SearchForm>
                 <input type="text" placeholder="검색어를 입력해주세요" />
                 <button>검색</button>
-            </SearchForm>
-
+            </SearchForm> */}
+            {/* <Category>
+                <span className="on">전체</span>
+                <span>중고</span>
+                <span>조립</span>
+            </Category> */}
             <CardTable>
                 {
                     data && data.map(i => {
@@ -453,11 +434,11 @@ const AssemblyPCList = () => {
                                 <div className="imgarea"><img src={i.thumbnail_url} alt="" /></div>
                                 <p className="name">{i.category == "used" ? <em>중고</em> : <em>조립</em>}{i.title}</p>
                                 <div className="detail">
-                                    <span>{i.cpu_value}</span>
-                                    <span>{i.mainboard}</span>
+                                    <span>{i.cpu_value}</span> /
+                                    <span>{i.mainboard}</span> /
                                     <span>{i.vga}</span>
                                 </div>
-                                <p className="price">{i.price}</p>
+                                <p className="price">{i.price}만원</p>
                             </div>
                         )
                     })
@@ -479,9 +460,13 @@ const AssemblyPCList = () => {
 
 
             {/*관리자일때 보이는 버튼*/}
-            <div className="btnarea right">
-                <BlackBtn text="등록" click={onWriteHandler}></BlackBtn>
-            </div>
+            {
+                localStorage.getItem('mangocomSession') &&
+                <div className="btnarea right">
+                    <BlackBtn text="등록" click={onWriteHandler}></BlackBtn>
+                </div>
+            }
+
             {/*관리자일때 보이는 버튼*/}
         </AssemblyPCListLayout>
     )

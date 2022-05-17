@@ -19,17 +19,17 @@ const Service = () => {
             {/* <SubVisual></SubVisual> */}
             <div className="wrap">
                 <TitleA title="서비스 문의"></TitleA>
-                    <Routes>
-                        {/* 리스트 */}
-                        <Route path="/" element={<ServiceList />}></Route>
-                        {/* 디테일 */}
-                        <Route path="/:id" element={<ServiceDetail />}></Route>
-                        {/* 글쓰기 */}
-                        <Route path="/write" element={<ServiceWrite />}></Route>
-                        {/* 수정 */}
-                        <Route path="/edit" element={<ServiceEdit />}></Route>
-                    </Routes>                                  
-            </div>            
+                <Routes>
+                    {/* 리스트 */}
+                    <Route path="/" element={<ServiceList />}></Route>
+                    {/* 디테일 */}
+                    <Route path="/:id" element={<ServiceDetail />}></Route>
+                    {/* 글쓰기 */}
+                    <Route path="/write" element={<ServiceWrite />}></Route>
+                    {/* 수정 */}
+                    <Route path="/edit" element={<ServiceEdit />}></Route>
+                </Routes>
+            </div>
         </section>
     )
 }

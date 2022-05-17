@@ -75,12 +75,16 @@ const PageStyled = styled.div`
                 color: #ffe383; 
             }
         } 
-        .active { 
-            background-color: #ffe383; 
-            a { 
-                color: white; 
-            } 
-        } 
+        
+        &.active{
+            background:#ffc80b;
+            color:#252525;
+            &:hover{
+                a{
+                    color:#252525;
+                }
+            }
+        }
 
     }
     .page-selection { 
@@ -122,6 +126,11 @@ const PageStyled = styled.div`
         }
         a{
             font-size:1.3vw;
+        }
+        &:hover{
+            a{
+                color:#ffc80b;
+            }
         }
     }
 }

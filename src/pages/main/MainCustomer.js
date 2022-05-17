@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
 //component
@@ -159,6 +159,10 @@ width:700px;
 `;
 
 const MainCustomer = () => {
+    const navigate = useNavigate();
+    const onMoveHandler = (e) => {
+        navigate(`/directions`);
+    }
     return (
         <CustomerLayout>
             <div className="wrap">
@@ -171,7 +175,7 @@ const MainCustomer = () => {
                         <div className="imgarea"><img src={blog} alt="" /></div>
                         <p>블로그</p>
                     </div>
-                    <div>
+                    <div onClick={onMoveHandler}>
                         <div className="imgarea"><img src={map} alt="" /></div>
                         <p>오시는 길</p>
                     </div>
@@ -183,7 +187,7 @@ const MainCustomer = () => {
                         <p>012-345-6789</p>
                         <p>012-345-6789</p>
                     </div>
-                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br/>일요일, 공휴일 휴무</p>
+                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />일요일, 공휴일 휴무</p>
                 </CustomerCenter>
             </div>
         </CustomerLayout>

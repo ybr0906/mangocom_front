@@ -1,10 +1,6 @@
-import React, { useState, useRef } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React from "react";
 import styled from "styled-components";
 
-//components
-import YellowBtn from "../layout/YellowBtn";
-import BorderBtn from "../layout/BorderBtn";
 
 const ServiceModalLayout = styled.div`
     position:fixed;
@@ -269,7 +265,7 @@ const ServiceModalLayout = styled.div`
 }
 `;
 
-const ServiceModal = ({onServiceHandler}) => {
+const ServiceModal = ({ onServiceHandler }) => {
     console.log('닫기')
     return (
         <ServiceModalLayout>
@@ -282,7 +278,7 @@ const ServiceModal = ({onServiceHandler}) => {
                     <p className="small">이 이용약관(이하 '약관')은  MANGO COM(이하 회사라 합니다)와 이용 고객(이하 '회원')간에 회사가 제공하는 서비스의 가입조건 및 이용에 관한 제반 사항과 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다. </p>
 
                     <p className="big">제2조(이용약관의 효력 및 변경)</p>
-                    <p className="small num01" data-num="1"> 이 약관은 본 회사에 가입된 고객을 포함하여 서비스를 이용하고자 하는 모든 이용자에 대하여 서비스 메뉴 및 회사에 게시하여 공시하거나 기타의 방법으로 고객에게 공지함으로써 그 효력을 발생합니다. <br/>약관의 게시는 홈페이지에서 확인 할 수 있습니다 </p>
+                    <p className="small num01" data-num="1"> 이 약관은 본 회사에 가입된 고객을 포함하여 서비스를 이용하고자 하는 모든 이용자에 대하여 서비스 메뉴 및 회사에 게시하여 공시하거나 기타의 방법으로 고객에게 공지함으로써 그 효력을 발생합니다. <br />약관의 게시는 홈페이지에서 확인 할 수 있습니다 </p>
                     <p className="small num01" data-num="2">회사는 합리적인 사유가 발생될 경우에는 이 약관을 변경할 수 있으며, 약관을 변경할 경우에는 지체 없이 이를 사전에 공시합니다.</p>
 
                     <p className="big">제 3 조 (약관외 준칙)</p>
@@ -314,7 +310,7 @@ const ServiceModal = ({onServiceHandler}) => {
 
                     <p className="big">제 8 조 (이용 신청의 승낙과 제한) </p>
                     <p className="small num01" data-num="1">회사는 제 6조의 규정에 의한 이용신청고객에 대하여 업무 수행상 또는 기술상 지장이 없는 경우에 서비스 이용을 승낙합니다. </p>
-                    <p className="small num01" data-num="2">회사는 아래사항에 해당하는 경우에 대해서 승낙하지 아니 합니다. </p>                    
+                    <p className="small num01" data-num="2">회사는 아래사항에 해당하는 경우에 대해서 승낙하지 아니 합니다. </p>
                     <p className="small num02" data-num="1.">타인 명의의 신청 또는 이름이 실명이 아닌경우 </p>
                     <p className="small num02" data-num="2.">허위 서류를 첨부하거나 허위내용을 기재하여 신청하는 경우 </p>
                     <p className="small num02" data-num="3.">신용정보의 이용과보호에 관한 법류에 의한 PC통신, 인터넷 서비스의 신용불량자로 등록되어 있는경우 </p>
@@ -358,7 +354,7 @@ const ServiceModal = ({onServiceHandler}) => {
                     <p className="small num02" data-num="7.">회사는 이용고객이 방문하거나 전자서명 또는 아이디(ID)등을 이용하여 자신의 개인정보에 대한 열람 또는 정정을 요구하는 경우에는 본인 여부를 확인하고 지체없이 필요한 조치를 취하여야 합니다. </p>
                     <p className="small num02" data-num="8.">회사는 이용고객의 대리인이 방문하여 열람 또는 정정을 요구하는 경우에는 대리관계를 나타내는 증표를 제시하도록 요구할 수 있습니다. </p>
                     <p className="small num02" data-num="9.">회사는 개인정보와 관련하여 이용고객의 의견을 수렴하고 불만을 처리하기 위한 절차를 마련하여야 합니다. </p>
-                    
+
                     <p className="bigA">제 4 장 서비스의 이용 </p>
                     <p className="big">제 11 조 (서비스 이용 시간) </p>
                     <p className="small num01" data-num="1">서비스 이용은 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴, 1일 24시간 운영을 원칙으로 합니다. 단, 회사는 시스템 정기점검, 증설 및 교체를 위해 회사가 정한 날이나 시간에 서비스를 일시중단할 수 있으며, 예정되어 있는 작업으로 인한 서비스 일시중단은 웹을 통해 사전에 공지합니다. </p>
@@ -378,7 +374,7 @@ const ServiceModal = ({onServiceHandler}) => {
                     <p className="small line">다른 이용자 또는 제 3자의 저작권 등 기타 권리를 침해하는 내용인 경우 </p>
                     <p className="small line">회사에서 규정한 게시물 원칙에 어긋나거나, 게시판 성격에 부합하지 않는 경우 </p>
                     <p className="small line">기타 관계법령에 위배된다고 판단되는 경우 </p>
-                    
+
                     <p className="big">제 14 조 (게시물에 대한 저작권) </p>
                     <p className="small num01" data-num="1">회원은 서비스를 이용하여 취득한 정보를 임의 가공, 판매하는 행위 등 서비스에 게재된 자료를 상업적으로 사용할 수 없습니다. </p>
                     <p className="small num01" data-num="2">회사는 회원이 게시하거나 등록하는 서비스 내의 내용물, 게시 내용에 대해 제 13조 각 호에 해당된다고 판단되는 경우 사전통지 없이 삭제하거나 이동 또는 등록 거부할 수 있습니다. </p>
