@@ -383,7 +383,7 @@ const AssemblyPCDetail = () => {
                         </dl>
                         <dl>
                             <dt>판매가.</dt>
-                            <dd>{data.price} 원</dd>
+                            <dd>{data.price} 만원</dd>
                         </dl>
                     </div>
                     <div className="btnarea right">

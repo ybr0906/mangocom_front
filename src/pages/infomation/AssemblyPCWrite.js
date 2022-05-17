@@ -284,7 +284,8 @@ li{
                 }
                 &.long{
                     margin-top:10px;
-                }&.right{
+                }
+                &.right{
                     input{
                         paddingr-right:31px;
                     }
