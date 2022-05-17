@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "node server.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
