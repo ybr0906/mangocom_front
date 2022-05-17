@@ -247,7 +247,7 @@ textarea {
 .sub_section {
     padding-bottom: 120px;
     min-height: calc(100vh - 201px);
-    padding-top: 73px;
+    padding-top: 100px;
 }
 
 .sub_section>.wrap {
@@ -371,7 +371,7 @@ textarea {
     .sub_section {
         padding-bottom: 10vw;
         min-height: calc(100vh - 20vw);
-        padding-top: 5vw;
+        padding-top: 6vw;
     }
 
     .sub_section>.wrap {
@@ -443,7 +443,7 @@ textarea {
 
     .sub_section {
         min-height: calc(100vh - 26vw);
-        padding-top: 50px;
+        padding-top: 65px;
     }
 }
 
@@ -512,7 +512,7 @@ textarea {
     .sub_section {
         padding-bottom: 70px;
         min-height: calc(100vh - 192px);
-        padding-top: 40px;
+        padding-top: 57px;
     }
 
     .sub_section>.wrap {

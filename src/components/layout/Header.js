@@ -10,16 +10,16 @@ left:0;
 top:0;
 width:100%;
 z-index:2;
-height: 73px;
+height: 100px;
 .wrap{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    height:100%;
+    justify-content: space-between;
+    height: 100%;
 }
 .logo{
     cursor:pointer;
-    width:110px;
+    width:140px;
     img{
         display:block;
         width:100%;
@@ -31,6 +31,8 @@ height: 73px;
 nav{
     display:flex;
     align-items:center;
+    position: relative;
+    top: -5px;
     span{
         display: block;
         font-size: 18px;
@@ -59,11 +61,12 @@ nav{
     }
 }
 @media screen and (max-width: 1500px) {
-    height:5vw;
+    height:6vw;
 .logo{
-    width: 6.5vw;
+    width: 8.5vw;
 }
 nav{
+    top: -0.1vw;
     span{
         font-size: 1.3vw;
         margin: 0 2vw;
@@ -74,12 +77,12 @@ nav{
 
 @media screen and (max-width: 768px) {
     padding:0;
-    height:50px;
+    height:65px;
     .wrap{
         height:100%;
     }
     .logo{
-        width: 70px;
+        width: 90px;
     }
     .mobile_btn{
         display:block;
@@ -158,9 +161,9 @@ nav{
     }
 }
 @media screen and (max-width: 414px) {
-    height:40px;
+    height:57px;
     .logo{
-        width:60px;
+        width:80px;
     }
     nav{
         width: 60vw;

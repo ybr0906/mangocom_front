@@ -30,12 +30,31 @@ align-items: center;
         font-size:70px;
         color:#333;
         margin-bottom: 30px;
+        span{
+            display:block;
+            font-family: 'Orbitron',sans-serif;
+            overflow:hidden;
+            em{
+                display:block;
+                transform: translateY(100%);
+                transition:transform .8s;
+                transition-delay:.2s;
+            }
+        }
     }
     ul{
         li{
             font-size:25px;
-            color:#fff;
+            font-weight: 600;
+            color: #0c1762;
             line-height: 1.8;
+            overflow:hidden;
+            em{
+                display:block;
+                transform: translateY(100%);
+                transition:transform .8s;
+                transition-delay:.5s;
+            }
         }
     }
 }
@@ -47,6 +66,23 @@ align-items: center;
     img{
         display:block;
         width:100%;
+    }
+}
+
+.swiper-slide-active{
+    .title{
+        span{
+            em{
+                transform: translateY(0);
+            }
+        }
+    }
+    ul{
+        li{
+            em{
+                transform: translateY(0);
+            }
+        }
     }
 }
 
@@ -146,30 +182,39 @@ const MainVisual = () => {
                     modules={[Autoplay, EffectFade]} effect="fade"
                     loop={true}
                     autoplay={{
-                        delay: 3000,
+                        delay: 4000,
                         disableOnInteraction: false,
                     }}
                     allowTouchMove={false}
                     >
                         <SwiperSlide className="slide">
-                            <p className="title">HONEST <br/>REPAIR</p>
+                            <p className="title">
+                                <span><em>HONEST</em></span>
+                                <span><em>REPAIR</em></span>
+                            </p>
                             <ul>
-                                <li>01. 최대한 고객님 앞에서 테스트하고 고장유무 확인 후 수리</li>
-                                <li>02. 고장유무 확인 후 고객님께 안내후 수리진행</li>
+                                <li><em>01. 최대한 고객님 앞에서 테스트하고 고장유무 확인 후 수리</em></li>
+                                <li><em>02. 고장유무 확인 후 고객님께 안내후 수리진행</em></li>
                             </ul>
                         </SwiperSlide>
                         <SwiperSlide className="slide">
-                            <p className="title">OUT OF ORDER<br/>FREE</p>
+                            <p className="title">
+                                <span><em>OUT OF ORDER</em></span>
+                                <span><em>FREE</em></span>
+                            </p>
                             <ul>
-                                <li>01. 동일증상에 한해 15일</li>
-                                <li>02. 항상 최선을 다하는 A/S</li>
+                                <li><em>01. 동일증상에 한해 15일</em></li>
+                                <li><em>02. 항상 최선을 다하는 A/S</em></li>
                             </ul>
                         </SwiperSlide>
                         <SwiperSlide className="slide">
-                            <p className="title">NOTICE ON <br/>REPAIR</p>
+                            <p className="title">
+                                <span><em>NOTICE ON </em></span>
+                                <span><em>REPAIR</em></span>
+                            </p>
                             <ul>
-                                <li>01. 매장없는 업체어 절대 수리하지 말 것</li>
-                                <li>02. 매장유무 확실히 확인할 것</li>
+                                <li><em>01. 매장없는 업체어 절대 수리하지 말 것</em></li>
+                                <li><em>02. 매장유무 확실히 확인할 것</em></li>
                             </ul>
                         </SwiperSlide>  
                     </Swiper>
