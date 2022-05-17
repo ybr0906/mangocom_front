@@ -261,7 +261,7 @@ margin-top: 45px;
 
 const MainStatus = () => {
     const navigate = useNavigate();
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [checkAlertModal, setcheckAlertModal] = useState(false);
     const service_id = useRef();
 
