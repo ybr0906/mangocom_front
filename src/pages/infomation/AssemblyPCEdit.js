@@ -61,6 +61,7 @@ li{
                 width:100%;
                 margin-top: 20px;
             }&.right{
+                position:relative;
                 input{
                     padding-right:50px;
                     text-align:right;
