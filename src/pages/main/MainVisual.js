@@ -46,7 +46,7 @@ align-items: center;
         li{
             font-size:25px;
             font-weight: 600;
-            color: #0c1762;
+            color: #070f44;
             line-height: 1.8;
             overflow:hidden;
             em{
@@ -171,21 +171,21 @@ align-items: center;
 import mainVisual from '../../styles/images/main_visual04.png'
 
 const MainVisual = () => {
-    
+
     return (
         <VisualLayout>
             <div className="wrap">
                 <div className="textarea">
-                <Swiper
-                    spaceBetween={0}
-                    slidesPerView={1}
-                    modules={[Autoplay, EffectFade]} effect="fade"
-                    loop={true}
-                    autoplay={{
-                        delay: 4000,
-                        disableOnInteraction: false,
-                    }}
-                    allowTouchMove={false}
+                    <Swiper
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        modules={[Autoplay, EffectFade]} effect="fade"
+                        loop={true}
+                        autoplay={{
+                            delay: 4000,
+                            disableOnInteraction: false,
+                        }}
+                        allowTouchMove={false}
                     >
                         <SwiperSlide className="slide">
                             <p className="title">
@@ -216,7 +216,7 @@ const MainVisual = () => {
                                 <li><em>01. 매장없는 업체어 절대 수리하지 말 것</em></li>
                                 <li><em>02. 매장유무 확실히 확인할 것</em></li>
                             </ul>
-                        </SwiperSlide>  
+                        </SwiperSlide>
                     </Swiper>
                 </div>
                 <div className="imgarea">
