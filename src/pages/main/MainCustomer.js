@@ -112,7 +112,7 @@ width:700px;
 .tel{
     font-size:33px;
     font-weight:600;    
-    padding: 35px 0 40px 0;
+    padding: 40px 0px 40px 110px;
     display: inline-block;
     padding-left:110px;
     background:url(${tel_bg})left center no-repeat;
@@ -131,7 +131,7 @@ width:700px;
     }
     .tel{
         font-size:2vw;
-        padding:2vw 0 3vw 0;
+        padding:3vw 0 3vw 0;
         padding-left:8vw;
         background-size:5.5vw;
     }
@@ -148,7 +148,7 @@ width:700px;
     }
     .tel{
         font-size: 16px;
-        padding: 10px 0 20px 0;
+        padding: 20px 0 20px 0;
         padding-left: 52px;
         background-size: 36px;
     }
