@@ -55,24 +55,24 @@ module.exports = webpackEnv => {
             mergeDuplicateChunks: true,
             minimize: true,
 
-            splitChunks: {
-                chunks: 'all',
-                //maxSize: 0,
-                cacheGroups: {
-                    defaultVendors: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendors',
-                        priority: 1,
-                    },
-                    reactBundle: {
-                        test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-                        name: 'react.bundle',
-                        priority: 2,
-                        minSize: 1000,
-                    }
-                },
-                name: 'vendor',
-            }
+            // splitChunks: {
+            //     chunks: 'all',
+            //     //maxSize: 0,
+            //     cacheGroups: {
+            //         defaultVendors: {
+            //             test: /[\\/]node_modules[\\/]/,
+            //             name: 'vendors',
+            //             priority: 1,
+            //         },
+            //         reactBundle: {
+            //             test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            //             name: 'react.bundle',
+            //             priority: 2,
+            //             minSize: 1000,
+            //         }
+            //     },
+            //     name: 'vendor',
+            // }
         },
         plugins: [
             new Dotenv(), //.env에 있는 변수를 가져오는 Plugin
