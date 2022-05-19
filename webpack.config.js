@@ -51,6 +51,10 @@ module.exports = webpackEnv => {
             ]
         },
         optimization: {
+            mangleWasmImports: true,
+            mergeDuplicateChunks: true,
+            minimize: true,
+
             splitChunks: {
                 chunks: 'all',
                 //maxSize: 0,
@@ -77,7 +81,7 @@ module.exports = webpackEnv => {
         ],
         mode: 'production',
         // externals: {
-        //     react: 'React',
+        //     react: 'react',
         //     'react-dom': 'ReactDOM',
         // },
         performance: { hints: false }
