@@ -50,36 +50,36 @@ module.exports = webpackEnv => {
                 }
             ]
         },
-        optimization: {
-            splitChunks: {
-                chunks: 'all',
-                //maxSize: 0,
-                cacheGroups: {
-                    defaultVendors: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendors',
-                        priority: 1,
-                    },
-                    reactBundle: {
-                        test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-                        name: 'react.bundle',
-                        priority: 2,
-                        minSize: 100,
-                    }
-                },
-                name: 'vendor',
-            }
-        },
+        // optimization: {
+        //     splitChunks: {
+        //         chunks: 'all',
+        //         //maxSize: 0,
+        //         cacheGroups: {
+        //             defaultVendors: {
+        //                 test: /[\\/]node_modules[\\/]/,
+        //                 name: 'vendors',
+        //                 priority: 1,
+        //             },
+        //             reactBundle: {
+        //                 test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+        //                 name: 'react.bundle',
+        //                 priority: 2,
+        //                 minSize: 100,
+        //             }
+        //         },
+        //         name: 'vendor',
+        //     }
+        // },
         plugins: [
             new Dotenv(), //.env에 있는 변수를 가져오는 Plugin
             new CleanWebpackPlugin(), //성공적으로 다시 빌드 한 후 webpack의 output.path에 있는 모든 빌드 폴더를 제거 및 정리
             new HtmlWebpackPlugin({ template: './public/index.html' }), //빌드한 결과물을 HTML 파일로 생성해주는 Plugin           
         ],
         mode: 'development',
-        // externals: {
-        //     react: 'React',
-        //     'react-dom': 'ReactDOM',
-        // },
+        externals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+        },
         performance: { hints: false }
     }
 }
