@@ -60,6 +60,12 @@ li{
             &.long{
                 width:100%;
                 margin-top: 20px;
+            }&.right{
+                position:relative;
+                input{
+                    padding-right:50px;
+                    text-align:right;
+                }
             }
             input, select, textarea{
                 font-size:17px;
@@ -88,6 +94,16 @@ li{
             textarea{
                 min-height:200px;
             }
+            .unit{
+                position:absolute;
+                right:0;
+                bottom:14px;
+                font-size:17px;
+            }
+        }
+        .img_size{
+            font-size:14px;
+            margin-top:5px;
         }
     }
     &.w100{
@@ -170,10 +186,24 @@ li{
                 width:100%;
                 margin-top: 1vw;
             }
+            &.right{
+                input{
+                    paddingr-right:3vw;
+                }
+                .unit{
+                    bottom: 1vw;
+                    font-size: 1.3vw;
+                }
+            }
             input, select, textarea{
                 font-size: 1.3vw;
                 padding: 1vw 1.5vw;
             }
+        }
+        
+        .img_size{
+            font-size:1vw;
+            margin-top:0.5vw;
         }
     }
     .filebox{
@@ -205,6 +235,15 @@ li{
                 input, select, textarea{
                     font-size: 1.6vw;
                     padding: 1.2vw 1.5vw;
+                }
+                &.right{
+                    input{
+                        paddingr-right:4vw;
+                    }
+                    .unit{
+                        bottom: 1.2vw;
+                        font-size: 1.7vw;
+                    }
                 }
             }
         }
@@ -245,6 +284,19 @@ li{
                 &.long{
                     margin-top:10px;
                 }
+                &.right{
+                    input{
+                        paddingr-right:31px;
+                    }
+                    .unit{
+                        bottom: 11px;
+                        font-size: 13px;
+                    }
+                }
+            }
+            .img_size{
+                font-size:10px;
+                margin-top:5px;
             }
         }
         .filebox{
@@ -398,8 +450,9 @@ const AssemblyPCEdit = () => {
                     </div>
                     <div className="line">
                         <p className="item">판매가.</p>
-                        <p className="text">
+                        <p className="text right">
                             <input type="text" name="price" defaultValue={data.price} onChange={onInputHandler} />
+                            <em className="unit">만원</em>
                         </p>
                     </div>
                 </li>
@@ -432,6 +485,7 @@ const AssemblyPCEdit = () => {
                                 <input type="file" name="thumbnail_url" id="thumbnail_url" onChange={onFileHandler} />
                             </div>
                         </div>
+                        <p className="img_size">제품 이미지 규격은 566 X 549 입니다.</p>
                     </div>
                     <div className="line">
                         <p className="item">디테일 이미지.</p>
