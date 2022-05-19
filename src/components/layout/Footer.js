@@ -198,10 +198,9 @@ const Footer = () => {
             <div className="wrap">
                 <h1 className="logo"><img src={logo} alt="" /></h1>
                 <address>
-                    <p>경기도 수원시 장안구 파장동 606-5번지 1층</p>
-                    <p>TEL : 000-000-0000</p>
-                    <p>E-mail : aaa@gmail.com</p>
-                    <p>사업자등록번호 : 000-00-00000</p>
+                    <p>경기도 수원시 장안구 경수대로 1019번길 8, 1층 101호(파장동)</p>
+                    <p>TEL : 010-9009-7747</p>
+                    <p>사업자등록번호 : 835-28-00958</p>
                     <p className="copyright">Copyright (c) 2022 ALL Rights Reserved.</p>
                 </address>
             </div>

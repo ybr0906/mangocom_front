@@ -128,16 +128,16 @@ const Directions = () => {
                 <div className="info">
                     <dl>
                         <dt>위치.</dt>
-                        <dd>경기도 수원시 장안구 파장동 606-5번지 1층</dd>
+                        <dd>경기도 수원시 장안구 경수대로 1019번길 8, 1층 101호(파장동)</dd>
                     </dl>
                     <dl className="w50">
                         <dt>전화.</dt>
-                        <dd>000-000-0000</dd>
+                        <dd>010-9009-7747</dd>
                     </dl>
-                    <dl className="w50">
+                    {/* <dl className="w50">
                         <dt>Email.</dt>
                         <dd>aaa@gmail.com</dd>
-                    </dl>
+                    </dl> */}
                 </div>
             </div>
         </DirectionsLayout>

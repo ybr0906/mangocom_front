@@ -29,26 +29,26 @@ const App = () => {
             <Routes>
                 {/* 첫페이지 */}
                 <Route path="/*" element={
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<div className="loading">Loading...</div>}>
                         <Index />
                     </Suspense>}>
                 </Route>
                 {/* 회사소개 */}
-                <Route path="/introduce" element={<Suspense fallback={<div>Loading...</div>}>
+                <Route path="/introduce" element={<Suspense fallback={<div className="loading">Loading...</div>}>
                     <Introduce></Introduce>
-                </Suspense>}>}></Route>
+                </Suspense>}></Route>
                 {/* 이용안내 */}
-                <Route path="informationuse/*" element={<Suspense fallback={<div>Loading...</div>}>
+                <Route path="informationuse/*" element={<Suspense fallback={<div className="loading">Loading...</div>}>
                     <Informationuse></Informationuse>
-                </Suspense>}>}></Route>
+                </Suspense>}></Route>
                 {/* 서비스문의 */}
-                <Route path="/service/*" element={<Suspense fallback={<div>Loading...</div>}>
+                <Route path="/service/*" element={<Suspense fallback={<div className="loading">Loading...</div>}>
                     <Service></Service>
-                </Suspense>}>}></Route>
+                </Suspense>}></Route>
                 {/* 찾아오시는길 */}
-                <Route path="/directions" element={<Suspense fallback={<div>Loading...</div>}>
+                <Route path="/directions" element={<Suspense fallback={<div className="loading">Loading...</div>}>
                     <Directions></Directions>
-                </Suspense>}>}></Route>
+                </Suspense>}></Route>
 
                 {/* <Route path="/apple" element={<Apple />}></Route>
                 <Route path="/pc" element={<Apple />}></Route>
