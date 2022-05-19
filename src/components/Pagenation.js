@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Pagenation from 'react-js-pagination';
 import styled from 'styled-components';
 
@@ -202,13 +203,22 @@ const PageStyled = styled.div`
 `;
 
 const Paging = (props) => {
+    const location = useLocation();
     const { total, setData, page, setPage, input, range } = props;
 
     const onPageHandler = (page) => {
-        setPage(page);
-        axios.get(`${process.env.host}/service?page=${page}&input=${input}`).then(({ data }) => {
-            setData(data.data);
-        })
+
+        if (location.pathname.split('/')[1] == 'informationuse') {
+            setPage(page);
+            axios.get(`${process.env.host}/product?page=${page}`).then(({ data }) => {
+                setData(data.data);
+            })
+        } else {
+            setPage(page);
+            axios.get(`${process.env.host}/service?page=${page}&input=${input}`).then(({ data }) => {
+                setData(data.data);
+            })
+        }
     };
 
     return (

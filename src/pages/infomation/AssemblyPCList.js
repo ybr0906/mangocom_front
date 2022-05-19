@@ -410,11 +410,9 @@ const AssemblyPCList = () => {
     }
 
     useEffect(() => {
-        axios.get(`${process.env.host}/product?page=${page}&input=${input}`).then(({ data }) => {
-            if (data.success) {
-                setCount(data.data[0].count);
-                setData(data.data);
-            }
+        axios.get(`${process.env.host}/product?page=${page}`).then(({ data }) => {
+            setCount(data.data[0].count);
+            setData(data.data);
         })
     }, [])
 
