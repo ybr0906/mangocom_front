@@ -184,9 +184,10 @@ const MainCustomer = () => {
                 <CustomerCenter>
                     <p className="title">CUSTOMER CENTER</p>
                     <div className="tel">
-                        <p>010-9009-7747</p>
+                        <p>010-8009-4613</p>
+                        <p>010-3959-6434</p>
                     </div>
-                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />일요일, 공휴일 휴무</p>
+                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />연중무휴</p>
                 </CustomerCenter>
             </div>
         </CustomerLayout>
