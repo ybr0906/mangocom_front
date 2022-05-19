@@ -202,7 +202,7 @@ const PageStyled = styled.div`
 `;
 
 const Paging = (props) => {
-    const { total, setData, page, setPage, input } = props;
+    const { total, setData, page, setPage, input, range } = props;
 
     const onPageHandler = (page) => {
         setPage(page);
@@ -215,9 +215,9 @@ const Paging = (props) => {
         <PageStyled>
             <Pagenation
                 activePage={page}
-                itemsCountPerPage={5}
+                itemsCountPerPage={range}
                 totalItemsCount={total}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={range}
                 prevPageText={"‹"}
                 nextPageText={"›"}
                 onChange={onPageHandler}

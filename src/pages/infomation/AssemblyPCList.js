@@ -397,6 +397,7 @@ const AssemblyPCList = () => {
     const [data, setData] = useState();
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
+    const [range, serRange] = useState(8);
 
     const onDetatilHandler = (e) => {
         refId.current = e.currentTarget.dataset.key;
@@ -410,8 +411,10 @@ const AssemblyPCList = () => {
 
     useEffect(() => {
         axios.get(`${process.env.host}/product?page=${page}&input=${input}`).then(({ data }) => {
-            setCount(data.data[0].count);
-            setData(data.data);
+            if (data.success) {
+                setCount(data.data[0].count);
+                setData(data.data);
+            }
         })
     }, [])
 
@@ -456,7 +459,7 @@ const AssemblyPCList = () => {
                 <span className="arrow next_arrow"><img src={rightArrow} alt="" /></span>
                 <span className="arrow last_arrow"><img src={dobuleArrow} alt="" /></span>
             </Paging> */}
-            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input}></Pagenation>
+            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input} range={range}></Pagenation>
 
 
             {/*관리자일때 보이는 버튼*/}

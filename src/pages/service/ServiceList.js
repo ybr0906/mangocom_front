@@ -286,6 +286,7 @@ const ServiceList = () => {
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
+    const [range, serRange] = useState(8);
     const [checkAlertModal, setcheckAlertModal] = useState(false)
     const service_id = useRef();
 
@@ -342,7 +343,7 @@ const ServiceList = () => {
                     })
                 }
             </CardTable>
-            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input}></Pagenation>
+            <Pagenation className="paging" total={count} setData={setData} page={page} setPage={setPage} input={input} range={range}></Pagenation>
             <div className="btnarea center">
                 <YellowBtn text="글쓰기" click={onWriteHandler}><em></em></YellowBtn>
             </div>
