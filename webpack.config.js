@@ -76,10 +76,10 @@ module.exports = webpackEnv => {
             new HtmlWebpackPlugin({ template: './public/index.html' }), //빌드한 결과물을 HTML 파일로 생성해주는 Plugin           
         ],
         mode: 'development',
-        externals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-        },
+        // externals: {
+        //     react: 'React',
+        //     'react-dom': 'ReactDOM',
+        // },
         performance: { hints: false }
     }
 }
