@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
 
-const YellowButton = styled.button`
+const YellowButton = styled.div`
     background-color:#ffc80b;
     font-size: 15px;
     font-weight: 600;
