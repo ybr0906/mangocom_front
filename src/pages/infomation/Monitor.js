@@ -77,7 +77,8 @@ const Monitor = () => {
             </div>
 
             <div className="btnarea center">
-                <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'monitor' } }) }}><em></em></OrangeBtn>
+                <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'monitor' } }) 
+            window.scrollTo({ top: 0, left: 0 });}}><em></em></OrangeBtn>
             </div>
         </MonitorLayout>
     )

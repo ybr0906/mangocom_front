@@ -439,7 +439,8 @@ const PCRepair = () => {
                     </dl>
                 </ServiceList01>
                 <div className="btnarea center">
-                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) }}><em></em></OrangeBtn>
+                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) 
+                window.scrollTo({ top: 0, left: 0 });}}><em></em></OrangeBtn>
                 </div>
             </div>
             <div className={(openTab == 2 ? 'show' : 'service_as tab_content')}>
@@ -487,7 +488,8 @@ const PCRepair = () => {
                 <BoxTitle><em>하드웨어와 소프트웨어 수리는 별개입니다.</em></BoxTitle>
 
                 <div className="btnarea center">
-                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) }}><em></em></OrangeBtn>
+                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) 
+                window.scrollTo({ top: 0, left: 0 });}}><em></em></OrangeBtn>
                 </div>
             </div>
             <div className={(openTab == 3 ? 'show' : 'service_price tab_content')}>
@@ -656,7 +658,8 @@ const PCRepair = () => {
                 </ul>
                 <BoxTitle><em>항상 최선을 다하는 MANGO COM이 되도록 노력하겠습니다.</em></BoxTitle>
                 <div className="btnarea center">
-                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) }}><em></em></OrangeBtn>
+                    <OrangeBtn text="서비스 신청 접수" click={() => { navigate('/service/write', { state: { select: 'as' } }) 
+                window.scrollTo({ top: 0, left: 0 });}}><em></em></OrangeBtn>
                 </div>
             </div>
         </PCRepairLayout>

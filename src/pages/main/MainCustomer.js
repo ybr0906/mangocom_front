@@ -112,7 +112,7 @@ width:700px;
 .tel{
     font-size:33px;
     font-weight:600;    
-    padding: 35px 0 40px 0;
+    padding: 40px 0px 40px 110px;
     display: inline-block;
     padding-left:110px;
     background:url(${tel_bg})left center no-repeat;
@@ -131,7 +131,7 @@ width:700px;
     }
     .tel{
         font-size:2vw;
-        padding:2vw 0 3vw 0;
+        padding:3vw 0 3vw 0;
         padding-left:8vw;
         background-size:5.5vw;
     }
@@ -148,7 +148,7 @@ width:700px;
     }
     .tel{
         font-size: 16px;
-        padding: 10px 0 20px 0;
+        padding: 20px 0 20px 0;
         padding-left: 52px;
         background-size: 36px;
     }
@@ -184,9 +184,10 @@ const MainCustomer = () => {
                 <CustomerCenter>
                     <p className="title">CUSTOMER CENTER</p>
                     <div className="tel">
-                        <p>010-9009-7747</p>
+                        <p>010-8009-4613</p>
+                        <p>010-3959-6434</p>
                     </div>
-                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />일요일, 공휴일 휴무</p>
+                    <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />연중무휴</p>
                 </CustomerCenter>
             </div>
         </CustomerLayout>

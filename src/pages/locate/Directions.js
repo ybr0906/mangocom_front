@@ -39,7 +39,7 @@ const DirectionsLayout = styled.section`
         margin-top: 15px;
         width:100%;
         display:flex;
-        align-items:center;
+        align-items:flex-start;
         &:first-child{
             margin-top:0;
         }
@@ -54,6 +54,12 @@ const DirectionsLayout = styled.section`
         dd{
             width: calc(100% - 100px);
             font-size: 17px;
+            display:flex;
+            flex-wrap:wrap;
+            span{
+                display:inline-block;
+                margin-right:10px;
+            }
         }
     }
 }
@@ -130,9 +136,12 @@ const Directions = () => {
                         <dt>위치.</dt>
                         <dd>경기도 수원시 장안구 경수대로 1019번길 8, 1층 101호(파장동)</dd>
                     </dl>
-                    <dl className="w50">
+                    <dl>
                         <dt>전화.</dt>
-                        <dd>010-9009-7747</dd>
+                        <dd>
+                            <span>010-8009-4613, </span> 
+                            <span>010-3959-6434</span>
+                        </dd>
                     </dl>
                     {/* <dl className="w50">
                         <dt>Email.</dt>

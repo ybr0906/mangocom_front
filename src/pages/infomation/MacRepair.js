@@ -345,7 +345,8 @@ const MacRepair = () => {
                                 <p>기타수리</p>
                             </li>
                         </ul>
-                        <OrangeBtn text="MACBOOK AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) }}><em></em></OrangeBtn>
+                        <OrangeBtn text="MACBOOK AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) 
+                        window.scrollTo({ top: 0, left: 0 }); }}><em></em></OrangeBtn>
                     </div>
                 </MacLayout>
 
@@ -380,7 +381,8 @@ const MacRepair = () => {
                                 <p>기타수리</p>
                             </li>
                         </ul>
-                        <OrangeBtn text="iMac AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) }}><em></em></OrangeBtn>
+                        <OrangeBtn text="iMac AS 신청하기" click={() => { navigate('/service/write', { state: { select: 'apple' } }) 
+                    window.scrollTo({ top: 0, left: 0 });}}><em></em></OrangeBtn>
                     </div>
                 </MacLayout>
 

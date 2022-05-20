@@ -110,7 +110,6 @@ const CheckAlert = (props) => {
     }
     const onCancleHandler = (e) => {
         setcheckAlertModal(false)
-        window.scrollTo({ top: 0, left: 0 });
     }
     const onConfirmHandler = (e) => {
         axios.post(`${process.env.host}/service/check`, { id: service_id, password }).then(({ data }) => {

@@ -392,6 +392,11 @@ const ServiceCategory = styled.div`
                 font-size:1.3vw;
                 margin-top:2vw;
             }
+            &:last-child{
+                &>img{
+                    width: 26%;
+                }
+            }
         }
     }
     @media screen and (max-width: 768px) {
