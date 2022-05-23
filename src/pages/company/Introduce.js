@@ -146,7 +146,7 @@ const Introduce = () => {
                     </p>
                     <p className="small">
                         MANGO COM의 모든 임직원과 매장, 서비스 센터에서는 고객을 MANGO COM의 회장님으로 생각합니다.
-                        <br />MANGO COM를 사용 하시면서 조금이라도 불편하신 점이 있으시면 사장에게 직접 이메일을 보내주십시오.
+                        <br />MANGO COM를 사용 하시면서 조금이라도 불편하신 점이 있으시면 사장에게 직접 연락을 주십시오.
                         <br />반드시 사장이 직접 읽고 정성을 다하여 조치해 드릴 것을 약속드립니다.
                     </p>
                     <p className="small">
@@ -155,7 +155,7 @@ const Introduce = () => {
                     <p className="small">
                         앞으로도 MANGO COM는 고객을 생각하고 고객과 항상 함께하며 더욱 사랑받는 회사가 되도록 노력하겠습니다.
                     </p>
-                    <p className="ceo">MANGO COM 공동대표 <em>박강철, 김영석</em></p>
+                    <p className="ceo">MANGO COM 공동대표 <em>최강철, 김영석</em></p>
                 </div>
             </div>
         </IntroduceLayout>

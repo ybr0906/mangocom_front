@@ -213,7 +213,7 @@ const MainVisual = () => {
                                 <span><em>REPAIR</em></span>
                             </p>
                             <ul>
-                                <li><em>01. 매장없는 업체어 절대 수리하지 말 것</em></li>
+                                <li><em>01. 매장없는 업체에 절대 수리하지 말 것</em></li>
                                 <li><em>02. 매장유무 확실히 확인할 것</em></li>
                             </ul>
                         </SwiperSlide>
