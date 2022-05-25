@@ -41,13 +41,14 @@ const QuickApplication = styled.div`
     width:454px;
     border-radius:30px;
     box-shadow:5px 5px 15px rgba(0,0,0,.15);
+    border: 4px solid #ffc80b;
     .title{
         font-size:18px;
         font-weight:600;
         text-align:center;
         background-color:#ffc80b;
         padding: 20px 10px;
-        border-radius:30px 30px 0 0;
+        border-radius:25px 25px 0 0;
     }
     .inner{
         padding: 30px;
@@ -151,7 +152,7 @@ const QuickApplication = styled.div`
         .title{
             font-size:1.5vw;
             padding:1.5vw 1vw;
-            border-radius:2vw 2vw 0 0;
+            border-radius:1.5vw 1.5vw 0 0;
         }
         .inner{
             padding:2vw;
@@ -187,6 +188,7 @@ const QuickApplication = styled.div`
         .title{
             font-size:2vw;
             padding:1.8vw 1vw;
+            border-radius: 1.3vw 1.3vw 0px 0px;
         }
         .inner{
             padding:3vw;
@@ -231,6 +233,7 @@ const QuickApplication = styled.div`
         .title{
             font-size:2vw;
             padding:1.8vw 1vw;
+            border-radius: 4px 4px 0px 0px;
         }
         .inner{
             padding:3vw;
@@ -275,7 +278,7 @@ const QuickApplication = styled.div`
         .title{
             font-size: 16px;
             padding: 12px 20px;
-            border-radius: 15px 15px 0 0;        
+            border-radius: 8px 8px 0 0;        
         }
         .inner{
             padding:18px;
