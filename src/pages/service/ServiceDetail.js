@@ -288,7 +288,11 @@ const ServiceDetail = () => {
                                         :
                                         data.type == 'product' ? <p className="text">조립 및 중고 PC 판매</p>
                                             :
-                                            data.type == 'monitor' && <p className="text">노트북 액정문의</p>
+                                            data.type == 'monitor' ? <p className="text">노트북 액정문의</p>
+                                                :
+                                                data.type == 'store_as' ? <p className="text">매장 방문</p>
+                                                    :
+                                                    data.type == 'business_trip_as' && <p className="text">출장 방문</p>
                             }
                         </div>
                     </li>

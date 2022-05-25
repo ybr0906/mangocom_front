@@ -509,16 +509,30 @@ const MainService = () => {
 
     const onConfirmHandler = (e) => {
 
+        // if (input.name == '') {
+        //     alert('이름을 입력해주세요.');
+        // } else if (input.password == '') {
+        //     alert('비밀번호를 입력해주세요.');
+        // } else if (input.category == '') {
+        //     alert('서비스항목을 입력해주세요.');
+        // } else if (input.phone == "") {
+        //     alert('연락처를 입력해주세요.');
+        // } else if (input.address == "") {
+        //     alert('주소를 입력해주세요.');
+        // } else if (input.symptom == "") {
+        //     alert('증상을 입력해주세요.');
+        // } else if (input.check == "") {
+        //     alert('계정 정보 수집 이용에 동의해주세요.');
+        // } else {
+        //     axios.post(`${process.env.host}/service/index`, input).then(({ data }) => {
+        //         alert('접수 완료')
+        //         navigate('/service')
+        //     })
+        // }
         if (input.name == '') {
             alert('이름을 입력해주세요.');
         } else if (input.password == '') {
             alert('비밀번호를 입력해주세요.');
-        } else if (input.category == '') {
-            alert('서비스항목을 입력해주세요.');
-        } else if (input.phone == "") {
-            alert('연락처를 입력해주세요.');
-        } else if (input.address == "") {
-            alert('주소를 입력해주세요.');
         } else if (input.symptom == "") {
             alert('증상을 입력해주세요.');
         } else if (input.check == "") {
@@ -550,13 +564,20 @@ const MainService = () => {
                         <div className="w50">
                             <dl>
                                 <dt>서비스 항목.</dt>
-                                <dd>
+                                {/* <dd>
                                     <select name="category" onChange={onChangeHandler}>
                                         <option value="">항목을 선택해 주세요</option>
                                         <option value="apple">맥북, 아이맥 수리(애플)</option>
                                         <option value="as">컴퓨터 수리(출장AS)</option>
                                         <option value="product">조립 및 중고 PC 판매</option>
                                         <option value="monitor">노트북 액정문의</option>
+                                    </select>
+                                </dd> */}
+                                <dd>
+                                    <select name="category" onChange={onChangeHandler}>
+                                        <option value="">항목을 선택해 주세요</option>
+                                        <option value="store_as">매장 방문</option>
+                                        <option value="business_trip_as">출장 방문</option>
                                     </select>
                                 </dd>
                             </dl>
