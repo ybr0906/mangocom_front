@@ -163,16 +163,23 @@ const MainCustomer = () => {
     const onMoveHandler = (e) => {
         navigate(`/directions`);
     }
+    const onKakaoHandler = () => {
+        window.open('http://pf.kakao.com/_nxmKtb/chat', '_blank')
+    }
+    const onBlogHandler = () => {
+        window.open('https://blog.naver.com/rkdcjf108', '_blank')
+    }
+
     return (
         <CustomerLayout>
             <div className="wrap">
                 <SocialList>
                     <div>
-                        <div className="imgarea"><img src={kakao} alt="" /></div>
+                        <div className="imgarea"><img src={kakao} alt="" onClick={onKakaoHandler} /></div>
                         <p>카카오톡 상담</p>
                     </div>
                     <div>
-                        <div className="imgarea"><img src={blog} alt="" /></div>
+                        <div className="imgarea"><img src={blog} alt="" onClick={onBlogHandler} /></div>
                         <p>블로그</p>
                     </div>
                     <div onClick={onMoveHandler}>
