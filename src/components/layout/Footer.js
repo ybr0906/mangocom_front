@@ -69,6 +69,10 @@ address{
         &.copyright{
             margin-top:25px;
         }
+        a{
+            display:inline-block;
+            color:#fff;
+        }
     }
 }
 
@@ -199,7 +203,9 @@ const Footer = () => {
                 <h1 className="logo"><img src={logo} alt="" /></h1>
                 <address>
                     <p>경기도 수원시 장안구 경수대로 1019번길 8, 1층 101호(파장동)</p>
-                    <p>TEL : 010-8009-4613, 010-3959-6434</p>
+                    <p>TEL : <a href="tel:010-8009-4613">010-8009-4613</a>, <a href="tel:010-9009-7747">010-9009-7747</a></p>
+                    {/* 010-3959-6434 */}
+
                     <p>사업자등록번호 : 835-28-00958</p>
                     <p className="copyright">Copyright (c) 2022 ALL Rights Reserved.</p>
                 </address>

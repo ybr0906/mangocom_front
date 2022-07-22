@@ -8,17 +8,16 @@ module.exports = webpackEnv => {
     // const isEnvDevelopment = mode === 'development'
     // const isEnvProduction = mode === 'production'
     return {
-        mode: 'none',
         entry: './src',
         output: {
-            // path: path.join(__dirname, '/dist'),
-            // filename: 'index_bundle.js',
-            filename: '[name].js',
+            path: path.join(__dirname, '/dist'),
+            //filename: 'index_bundle.js',
+            // filename: '[name].js',
             chunkFilename: '[name].chunk.js',
-            path: path.resolve(__dirname, 'dist'),
+            // path: path.resolve(__dirname, 'dist'),
             publicPath: '/',
         },
-        devtool: 'inline-source-map',
+        //devtool: 'inline-source-map',
         devServer: {
             historyApiFallback: true,
             port: 3000,
@@ -80,6 +79,7 @@ module.exports = webpackEnv => {
             new HtmlWebpackPlugin({ template: './public/index.html' }), //빌드한 결과물을 HTML 파일로 생성해주는 Plugin           
         ],
         mode: 'production',
+        //mode: 'development',
         // externals: {
         //     react: 'react',
         //     'react-dom': 'ReactDOM',

@@ -139,8 +139,9 @@ const Directions = () => {
                     <dl>
                         <dt>전화.</dt>
                         <dd>
-                            <span>010-8009-4613, </span> 
-                            <span>010-3959-6434</span>
+                            <span>010-8009-4613, </span>
+                            <span>010-9009-7747</span>
+                            {/* <span>010-3959-6434</span> */}
                         </dd>
                     </dl>
                     {/* <dl className="w50">

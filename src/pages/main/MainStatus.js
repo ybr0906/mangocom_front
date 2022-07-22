@@ -282,7 +282,7 @@ const MainStatus = () => {
     return (
         <StatusLayout>
             <div className="wrap">
-                <h3 className="titleB">A/S 실시간 접수 및 처리현황</h3>
+                <h3 className="titleB">서비스 문의</h3>
                 <CardTable>
                     {
                         data && data.map(i => {

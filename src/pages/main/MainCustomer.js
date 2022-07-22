@@ -116,6 +116,9 @@ width:700px;
     display: inline-block;
     padding-left:110px;
     background:url(${tel_bg})left center no-repeat;
+    a{
+        display:block;
+    }
 }
 .time{
     font-size:14px;
@@ -191,8 +194,9 @@ const MainCustomer = () => {
                 <CustomerCenter>
                     <p className="title">CUSTOMER CENTER</p>
                     <div className="tel">
-                        <p>010-8009-4613</p>
-                        <p>010-3959-6434</p>
+                        <a href="tel:010-8009-4613">010-8009-4613</a>
+                        <a href="tel:010-9009-7747">010-9009-7747</a>
+                        {/* <a href="tel:010-3959-6434">010-3959-6434</a> */}
                     </div>
                     <p className="time">평일 09:00 ~ 20:00  /  토요일 09:00 ~ 17:00 <br />연중무휴</p>
                 </CustomerCenter>
